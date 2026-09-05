@@ -1,0 +1,74 @@
+package: stridelab-department-skills
+version: 1.0.0
+target: portable-agent-skills
+compatible_with:
+  - OpenAI
+  - Claude Code
+installation_target: /StrideLab/stridelab-ai/departments/
+skill_count: 38
+departments:
+  - id: "01"
+    name: "Product & Experience"
+    path: 01-product-experience/skills/core
+    skills:
+      - product-strategy
+      - domain-modeling
+      - workflow-architecture
+      - information-architecture
+      - user-research-usability
+      - interaction-design
+      - visual-ui-design
+      - accessibility-design
+  - id: "02"
+    name: "Client & Feature Engineering"
+    path: 02-client-feature-engineering/skills/core
+    skills:
+      - ios-ipados-engineering
+      - web-engineering
+      - media-engineering
+      - video-analysis-engineering
+      - training-planning-engineering
+      - workout-performance-engineering
+  - id: "03"
+    name: "Platform & Data Engineering"
+    path: 03-platform-data-engineering/skills/core
+    skills:
+      - backend-api-engineering
+      - database-engineering
+      - offline-local-first-engineering
+      - realtime-messaging-notifications
+      - search-retrieval-engineering
+      - reporting-analytics-engineering
+  - id: "04"
+    name: "Security, Identity & Compliance"
+    path: 04-security-identity-compliance/skills/core
+    skills:
+      - authorization-tenancy
+      - identity-account-lifecycle
+      - security-engineering
+      - privacy-data-governance
+      - youth-safeguarding-trust-safety
+      - legal-regulatory-compliance
+      - app-store-platform-compliance
+  - id: "05"
+    name: "Quality, Infrastructure & Release"
+    path: 05-quality-infrastructure-release/skills/core
+    skills:
+      - quality-engineering
+      - performance-engineering
+      - infrastructure-devops
+      - reliability-disaster-recovery
+      - observability-incident-response
+      - release-engineering
+  - id: "06"
+    name: "Business Operations & Governance"
+    path: 06-business-operations-governance/skills/core
+    skills:
+      - billing-entitlements
+      - cost-engineering
+      - internal-admin-support
+      - documentation-knowledge-management
+      - ai-engineering-governance
+package_validation:
+  command: python3 tests/validate_package.py
+  expected: PASS

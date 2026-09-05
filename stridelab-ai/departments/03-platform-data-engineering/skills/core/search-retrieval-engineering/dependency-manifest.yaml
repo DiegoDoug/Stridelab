@@ -1,0 +1,35 @@
+skill: search-retrieval-engineering
+department: "03 Platform & Data Engineering"
+domain: authorization-aware-retrieval
+
+core_dependencies:
+  - "backend-api-engineering"
+  - "database-engineering"
+  - "information-architecture"
+
+complementary_skills:
+  required: []
+  optional:
+    - "backend-data-engineering"
+    - "security-identity"
+    - "vercel:marketplace"
+
+consumes_artifacts:
+  - "search/IA model"
+  - "domain objects"
+  - "authorization requirements"
+  - "representative query corpus"
+
+produces_artifacts:
+  - "retrieval contract"
+  - "indexes and query implementation"
+  - "relevance evaluation"
+  - "isolation evidence"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "02 Client & Feature Engineering"
+  - "05 Quality, Infrastructure & Release"

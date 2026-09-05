@@ -1,0 +1,34 @@
+skill: identity-account-lifecycle
+department: "04 Security, Identity & Compliance"
+domain: authentication-and-membership-lifecycle
+
+core_dependencies:
+  - "authorization-tenancy"
+  - "workflow-architecture"
+
+complementary_skills:
+  required: []
+  optional:
+    - "security-identity"
+
+consumes_artifacts:
+  - "identity requirements"
+  - "authorization model"
+  - "privacy/deletion rules"
+  - "Team lifecycle"
+
+produces_artifacts:
+  - "identity lifecycle model"
+  - "auth/membership implementation"
+  - "deletion/export workflow"
+  - "lifecycle evidence"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

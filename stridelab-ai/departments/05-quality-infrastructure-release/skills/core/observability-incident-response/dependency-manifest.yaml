@@ -1,0 +1,37 @@
+skill: observability-incident-response
+department: "05 Quality, Infrastructure & Release"
+domain: production-diagnostics-and-response
+
+core_dependencies:
+  - "reliability-disaster-recovery"
+  - "security-engineering"
+  - "infrastructure-devops"
+
+complementary_skills:
+  required: []
+  optional:
+    - "production-operations"
+    - "vercel:observability"
+    - "vercel:investigation-mode"
+    - "vercel:vercel-api"
+
+consumes_artifacts:
+  - "failure/threat model"
+  - "SLOs"
+  - "runtime topology"
+  - "privacy/safety escalation rules"
+
+produces_artifacts:
+  - "telemetry specification and changes"
+  - "dashboards/alerts"
+  - "runbooks"
+  - "incident and review evidence"
+
+upstream_departments:
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+  - "05 Quality, Infrastructure & Release"
+
+downstream_departments:
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

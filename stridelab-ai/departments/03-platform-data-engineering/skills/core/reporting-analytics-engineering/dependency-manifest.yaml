@@ -1,0 +1,37 @@
+skill: reporting-analytics-engineering
+department: "03 Platform & Data Engineering"
+domain: reporting-and-derived-data
+
+core_dependencies:
+  - "database-engineering"
+  - "backend-api-engineering"
+  - "domain-modeling"
+  - "workout-performance-engineering"
+
+complementary_skills:
+  required: []
+  optional:
+    - "backend-data-engineering"
+    - "vercel:observability"
+
+consumes_artifacts:
+  - "report requirements"
+  - "canonical domain records"
+  - "metric definitions"
+  - "authorization/privacy rules"
+
+produces_artifacts:
+  - "reporting queries/services"
+  - "metric dictionary"
+  - "analytics event schema"
+  - "golden-fact evidence"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "02 Client & Feature Engineering"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "02 Client & Feature Engineering"
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

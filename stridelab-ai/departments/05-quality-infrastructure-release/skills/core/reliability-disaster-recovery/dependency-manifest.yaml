@@ -1,0 +1,36 @@
+skill: reliability-disaster-recovery
+department: "05 Quality, Infrastructure & Release"
+domain: resilience-and-recovery
+
+core_dependencies:
+  - "infrastructure-devops"
+  - "offline-local-first-engineering"
+  - "database-engineering"
+
+complementary_skills:
+  required: []
+  optional:
+    - "production-operations"
+    - "vercel:observability"
+    - "vercel:investigation-mode"
+
+consumes_artifacts:
+  - "critical journeys"
+  - "architecture/dependency map"
+  - "data classifications"
+  - "provider backup behavior"
+
+produces_artifacts:
+  - "failure model"
+  - "SLO/RPO/RTO proposal"
+  - "backup/restore design"
+  - "resilience exercise evidence"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+  - "06 Business Operations & Governance"
+
+downstream_departments:
+  - "05 Quality, Infrastructure & Release"

@@ -1,0 +1,35 @@
+skill: offline-local-first-engineering
+department: "03 Platform & Data Engineering"
+domain: sync-and-local-persistence
+
+core_dependencies:
+  - "backend-api-engineering"
+  - "database-engineering"
+  - "workflow-architecture"
+
+complementary_skills:
+  required: []
+  optional:
+    - "backend-data-engineering"
+    - "client-engineering"
+
+consumes_artifacts:
+  - "offline workflow contract"
+  - "domain conflict policy"
+  - "API/database versioning and tombstone semantics"
+
+produces_artifacts:
+  - "local schema and sync engine"
+  - "outbox protocol"
+  - "conflict/reconciliation contract"
+  - "cross-run evidence"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "02 Client & Feature Engineering"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "05 Quality, Infrastructure & Release"

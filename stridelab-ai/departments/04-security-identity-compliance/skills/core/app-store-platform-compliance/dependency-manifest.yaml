@@ -1,0 +1,35 @@
+skill: app-store-platform-compliance
+department: "04 Security, Identity & Compliance"
+domain: apple-distribution-compliance
+
+core_dependencies:
+  - "ios-ipados-engineering"
+  - "privacy-data-governance"
+  - "youth-safeguarding-trust-safety"
+  - "identity-account-lifecycle"
+
+complementary_skills:
+  required: []
+  optional:
+    - "platform-release"
+    - "security-identity"
+
+consumes_artifacts:
+  - "release candidate behavior"
+  - "privacy/identity/safety/billing requirements"
+  - "SDK and permission inventory"
+
+produces_artifacts:
+  - "App Store compliance matrix"
+  - "privacy metadata requirements"
+  - "review evidence plan"
+  - "release blockers"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "06 Business Operations & Governance"
+
+downstream_departments:
+  - "05 Quality, Infrastructure & Release"

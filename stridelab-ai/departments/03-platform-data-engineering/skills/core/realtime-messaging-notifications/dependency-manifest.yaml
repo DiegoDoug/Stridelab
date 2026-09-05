@@ -1,0 +1,37 @@
+skill: realtime-messaging-notifications
+department: "03 Platform & Data Engineering"
+domain: messaging-delivery
+
+core_dependencies:
+  - "backend-api-engineering"
+  - "database-engineering"
+  - "offline-local-first-engineering"
+  - "workflow-architecture"
+
+complementary_skills:
+  required: []
+  optional:
+    - "backend-data-engineering"
+    - "security-identity"
+    - "vercel:vercel-queues"
+    - "vercel:workflow"
+
+consumes_artifacts:
+  - "messaging workflow"
+  - "authorization matrix"
+  - "safeguarding policy"
+  - "notification preferences"
+
+produces_artifacts:
+  - "messaging backend"
+  - "realtime recovery contract"
+  - "notification routing"
+  - "delivery evidence"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "02 Client & Feature Engineering"
+  - "05 Quality, Infrastructure & Release"

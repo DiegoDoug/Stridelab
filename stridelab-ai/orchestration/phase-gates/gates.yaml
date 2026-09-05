@@ -1,0 +1,104 @@
+{
+  "gates": [
+    {
+      "id": "G0",
+      "name": "Authority & Context",
+      "owner": "stridelab-orchestrator",
+      "required_when": "all non-trivial tasks",
+      "pass": [
+        "primary owner resolved",
+        "current authoritative project artifacts identified",
+        "no unresolved authoritative contradiction"
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "Product / Workflow",
+      "owner": "01-product-experience",
+      "required_when": "behavior, workflow, UX hierarchy, domain semantics, or product scope changes",
+      "pass": [
+        "approved requirement/workflow exists",
+        "actors/states/ownership are sufficiently defined",
+        "open product decisions are explicit"
+      ]
+    },
+    {
+      "id": "G2",
+      "name": "Architecture / Contracts",
+      "owner": "architecture-reviewer",
+      "required_when": "bounded-context boundaries, APIs, shared contracts, persistence model, or deployable topology changes",
+      "pass": [
+        "dependency direction preserved",
+        "public contracts defined",
+        "migration/rollback considered",
+        "no unjustified service extraction"
+      ]
+    },
+    {
+      "id": "G3",
+      "name": "Security / Privacy / Compliance",
+      "owner": "04-security-identity-compliance",
+      "required_when": "identity, protected data, minors, UGC, media sharing, messaging, billing identity, deletion/export, or App Store concerns are affected",
+      "pass": [
+        "authorization/privacy requirements approved",
+        "threat/privacy/safety concerns addressed",
+        "legal/compliance open questions not misrepresented as settled"
+      ]
+    },
+    {
+      "id": "G4",
+      "name": "Implementation Integrity",
+      "owner": "02-or-03-primary-implementation-department",
+      "required_when": "code/configuration/data changes occur",
+      "pass": [
+        "approved contracts implemented",
+        "targeted tests pass",
+        "no undocumented boundary changes"
+      ]
+    },
+    {
+      "id": "G5",
+      "name": "Quality / Performance / Reliability",
+      "owner": "05-quality-infrastructure-release",
+      "required_when": "material feature/platform change or release candidate",
+      "pass": [
+        "required test suites pass",
+        "performance/reliability criteria met where applicable",
+        "critical failures have recovery paths"
+      ]
+    },
+    {
+      "id": "G6",
+      "name": "Release Readiness",
+      "owner": "05-quality-infrastructure-release",
+      "required_when": "candidate may reach users/production",
+      "pass": [
+        "release checklist complete",
+        "migrations/backups/rollback ready",
+        "required security/compliance gates passed",
+        "production observability ready"
+      ]
+    },
+    {
+      "id": "G7",
+      "name": "Human Approval",
+      "owner": "human",
+      "required_when": "locked decisions, security exceptions, final legal risk acceptance, production release, destructive/irreversible production actions",
+      "pass": [
+        "explicit approval recorded"
+      ]
+    },
+    {
+      "id": "G8",
+      "name": "Production Verification",
+      "owner": "05-quality-infrastructure-release",
+      "required_when": "production release/change occurred",
+      "pass": [
+        "critical journeys verified",
+        "telemetry healthy",
+        "no blocking regression",
+        "release record updated"
+      ]
+    }
+  ]
+}

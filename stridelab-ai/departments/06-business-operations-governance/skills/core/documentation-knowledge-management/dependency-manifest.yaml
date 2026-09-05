@@ -1,0 +1,42 @@
+skill: documentation-knowledge-management
+department: "06 Business Operations & Governance"
+domain: project-knowledge-governance
+
+core_dependencies:
+  - "product-strategy"
+
+complementary_skills:
+  required: []
+  optional:
+    - "notion:notion-knowledge-capture"
+    - "notion:notion-research-documentation"
+    - "notion:notion-spec-to-implementation"
+    - "vercel:geistdocs"
+
+consumes_artifacts:
+  - "approved decisions"
+  - "requirements and issues"
+  - "repository/review/release evidence"
+  - "current-state changes"
+
+produces_artifacts:
+  - "canonical record updates"
+  - "traceability links"
+  - "current project state"
+  - "synchronization report"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"
+
+downstream_departments:
+  - "01 Product & Experience"
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

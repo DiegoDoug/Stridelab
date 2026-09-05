@@ -1,0 +1,37 @@
+skill: youth-safeguarding-trust-safety
+department: "04 Security, Identity & Compliance"
+domain: safeguarding-and-moderation
+
+core_dependencies:
+  - "workflow-architecture"
+  - "authorization-tenancy"
+  - "identity-account-lifecycle"
+  - "privacy-data-governance"
+
+complementary_skills:
+  required: []
+  optional:
+    - "security-identity"
+    - "deep-research-work:deep-research"
+
+consumes_artifacts:
+  - "communication/media workflows"
+  - "age and identity model"
+  - "authorization/privacy requirements"
+  - "support and incident capabilities"
+
+produces_artifacts:
+  - "safeguarding requirements"
+  - "report/block/moderation workflow"
+  - "severity/escalation model"
+  - "safety release gates"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

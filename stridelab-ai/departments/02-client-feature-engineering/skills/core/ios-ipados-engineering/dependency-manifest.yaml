@@ -1,0 +1,35 @@
+skill: ios-ipados-engineering
+department: "02 Client & Feature Engineering"
+domain: apple-client-platform
+
+core_dependencies:
+  - "interaction-design"
+  - "visual-ui-design"
+  - "accessibility-design"
+
+complementary_skills:
+  required: []
+  optional:
+    - "client-engineering"
+    - "software-architecture"
+
+consumes_artifacts:
+  - "client requirements"
+  - "interaction and visual specifications"
+  - "accessibility requirements"
+  - "platform architecture"
+
+produces_artifacts:
+  - "iOS/iPadOS code changes"
+  - "native-module contract"
+  - "device validation evidence"
+  - "platform implementation record"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "02 Client & Feature Engineering"
+  - "05 Quality, Infrastructure & Release"

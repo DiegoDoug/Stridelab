@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "departments": 6,
+  "core_skill_installation_targets": 38,
+  "core_skill_content_authored": false,
+  "department_agents_reserved": 46,
+  "department_commands_reserved": 256,
+  "bounded_contexts": 13,
+  "platform_capabilities": 8,
+  "apps": 3,
+  "shared_packages": 6,
+  "files": 759,
+  "directories": 471,
+  "skill_content_violations": []
+}

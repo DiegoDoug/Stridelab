@@ -1,0 +1,36 @@
+skill: performance-engineering
+department: "05 Quality, Infrastructure & Release"
+domain: end-to-end-performance
+
+core_dependencies:
+  - "quality-engineering"
+  - "media-engineering"
+  - "video-analysis-engineering"
+  - "offline-local-first-engineering"
+
+complementary_skills:
+  required: []
+  optional:
+    - "production-operations"
+    - "vercel:observability"
+
+consumes_artifacts:
+  - "performance budgets"
+  - "critical journeys"
+  - "representative workload"
+  - "implementation/runtime evidence"
+
+produces_artifacts:
+  - "benchmark/profile evidence"
+  - "performance fixes"
+  - "budget verification"
+  - "monitoring thresholds"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+
+downstream_departments:
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

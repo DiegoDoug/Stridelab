@@ -1,0 +1,39 @@
+skill: training-planning-engineering
+department: "02 Client & Feature Engineering"
+domain: training-planning-feature
+
+core_dependencies:
+  - "domain-modeling"
+  - "workflow-architecture"
+  - "interaction-design"
+  - "ios-ipados-engineering"
+  - "web-engineering"
+
+complementary_skills:
+  required: []
+  optional:
+    - "client-engineering"
+    - "backend-data-engineering"
+    - "software-architecture"
+
+consumes_artifacts:
+  - "training domain model"
+  - "planning workflow"
+  - "authorization matrix"
+  - "API and persistence contracts"
+
+produces_artifacts:
+  - "training planning feature changes"
+  - "revision/duplication contract"
+  - "assignment evidence"
+  - "implementation record"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "05 Quality, Infrastructure & Release"

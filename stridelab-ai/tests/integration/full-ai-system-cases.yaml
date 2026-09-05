@@ -1,0 +1,143 @@
+{
+  "cases": [
+    {
+      "id": "SYS-001",
+      "name": "New protected media sharing feature",
+      "expected_primary": "01-product-experience",
+      "expected_sequence": [
+        "workflow contract",
+        "D04 access/privacy/safety requirements",
+        "D02 client implementation",
+        "D03 platform implementation",
+        "D04 verification",
+        "D05 quality/readiness",
+        "D06 knowledge update"
+      ],
+      "hard_invariants": [
+        "tagging != Team-wide publication",
+        "athlete Vault is ACL/share constrained"
+      ]
+    },
+    {
+      "id": "SYS-002",
+      "name": "Event Coach authorization change",
+      "expected_primary": "04-security-identity-compliance",
+      "hard_invariants": [
+        "Event Coach management scope is assigned Event Groups",
+        "Team-wide coach-athlete chat remains separately permitted"
+      ]
+    },
+    {
+      "id": "SYS-003",
+      "name": "Coach edits athlete profile",
+      "expected_result": "BLOCK",
+      "hard_invariants": [
+        "coaches cannot edit athlete-owned personal profile"
+      ]
+    },
+    {
+      "id": "SYS-004",
+      "name": "Enable personal workouts",
+      "expected_primary": "06-business-operations-governance",
+      "expected_collaborators": [
+        "02-client-feature-engineering",
+        "03-platform-data-engineering",
+        "04-security-identity-compliance"
+      ],
+      "hard_invariants": [
+        "athlete personal workouts do not grant coach planning authority"
+      ]
+    },
+    {
+      "id": "SYS-005",
+      "name": "Offline workout log mutation",
+      "expected_primary": "03-platform-data-engineering",
+      "expected_collaborators": [
+        "02-client-feature-engineering",
+        "05-quality-infrastructure-release"
+      ],
+      "hard_invariants": [
+        "offline/online final-state equivalence"
+      ]
+    },
+    {
+      "id": "SYS-006",
+      "name": "Redesign navigation",
+      "expected_primary": "01-product-experience",
+      "precondition": "approved workflows and information architecture",
+      "hard_invariants": [
+        "revoked navigation is not authoritative"
+      ]
+    },
+    {
+      "id": "SYS-007",
+      "name": "New media worker service",
+      "expected_primary": "03-platform-data-engineering",
+      "required_gates": [
+        "G2",
+        "G3",
+        "G5",
+        "G7"
+      ],
+      "hard_invariants": [
+        "service extraction must be operationally justified"
+      ]
+    },
+    {
+      "id": "SYS-008",
+      "name": "TestFlight release",
+      "expected_primary": "05-quality-infrastructure-release",
+      "required_gates": [
+        "G3",
+        "G5",
+        "G6",
+        "G7"
+      ],
+      "hard_invariants": [
+        "human approval required before production/release promotion"
+      ]
+    },
+    {
+      "id": "SYS-009",
+      "name": "Legal question about minors and media",
+      "expected_primary": "04-security-identity-compliance",
+      "hard_invariants": [
+        "current authoritative sources",
+        "legal research != final legal counsel"
+      ]
+    },
+    {
+      "id": "SYS-010",
+      "name": "Mid tier feature restriction",
+      "expected_primary": "06-business-operations-governance",
+      "hard_invariants": [
+        "entitlement != authorization"
+      ]
+    },
+    {
+      "id": "SYS-011",
+      "name": "Private chat moderation report",
+      "expected_primary": "04-security-identity-compliance",
+      "expected_collaborators": [
+        "03-platform-data-engineering",
+        "02-client-feature-engineering"
+      ],
+      "hard_invariants": [
+        "Team owner does not receive blanket private-message surveillance authority"
+      ]
+    },
+    {
+      "id": "SYS-012",
+      "name": "Database migration for protected athlete data",
+      "expected_primary": "03-platform-data-engineering",
+      "required_gates": [
+        "G2",
+        "G3",
+        "G5"
+      ],
+      "hard_invariants": [
+        "D04 policy requirements remain authoritative"
+      ]
+    }
+  ]
+}

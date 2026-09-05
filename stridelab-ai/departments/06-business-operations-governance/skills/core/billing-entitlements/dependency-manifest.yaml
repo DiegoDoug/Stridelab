@@ -1,0 +1,38 @@
+skill: billing-entitlements
+department: "06 Business Operations & Governance"
+domain: subscriptions-and-commercial-access
+
+core_dependencies:
+  - "product-strategy"
+  - "authorization-tenancy"
+  - "backend-api-engineering"
+  - "app-store-platform-compliance"
+
+complementary_skills:
+  required: []
+  optional:
+    - "vercel:payments"
+    - "backend-data-engineering"
+    - "security-identity"
+
+consumes_artifacts:
+  - "plan/tier contract"
+  - "authorization model"
+  - "provider/platform rules"
+  - "Team billing lifecycle"
+
+produces_artifacts:
+  - "billing state model"
+  - "entitlement/limit matrix"
+  - "webhook/reconciliation implementation"
+  - "billing correctness evidence"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

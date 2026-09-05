@@ -1,0 +1,37 @@
+skill: security-engineering
+department: "04 Security, Identity & Compliance"
+domain: application-security
+
+core_dependencies:
+  - "authorization-tenancy"
+  - "identity-account-lifecycle"
+  - "backend-api-engineering"
+
+complementary_skills:
+  required: []
+  optional:
+    - "security-identity"
+    - "vercel:vercel-firewall"
+    - "vercel:investigation-mode"
+
+consumes_artifacts:
+  - "architecture and data flows"
+  - "authorization/identity model"
+  - "privacy/youth requirements"
+  - "repository/runtime evidence"
+
+produces_artifacts:
+  - "threat model"
+  - "security requirements and changes"
+  - "control evidence"
+  - "residual-risk register"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+
+downstream_departments:
+  - "04 Security, Identity & Compliance"
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

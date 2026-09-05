@@ -1,0 +1,39 @@
+skill: cost-engineering
+department: "06 Business Operations & Governance"
+domain: unit-economics-and-cloud-cost
+
+core_dependencies:
+  - "billing-entitlements"
+  - "media-engineering"
+  - "infrastructure-devops"
+
+complementary_skills:
+  required: []
+  optional:
+    - "vercel:observability"
+    - "vercel:vercel-storage"
+    - "vercel:marketplace"
+
+consumes_artifacts:
+  - "workload assumptions"
+  - "provider topology/pricing"
+  - "tier limits"
+  - "retention and SLO requirements"
+
+produces_artifacts:
+  - "cost model"
+  - "unit economics"
+  - "forecast and sensitivities"
+  - "optimization/budget recommendations"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+  - "05 Quality, Infrastructure & Release"
+
+downstream_departments:
+  - "01 Product & Experience"
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

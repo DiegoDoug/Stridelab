@@ -1,0 +1,34 @@
+skill: database-engineering
+department: "03 Platform & Data Engineering"
+domain: postgresql-persistence
+
+core_dependencies:
+  - "domain-modeling"
+  - "backend-api-engineering"
+
+complementary_skills:
+  required: []
+  optional:
+    - "backend-data-engineering"
+    - "security-identity"
+    - "vercel:vercel-storage"
+
+consumes_artifacts:
+  - "domain and API contracts"
+  - "authorization/RLS requirements"
+  - "data lifecycle and query workload"
+
+produces_artifacts:
+  - "database migrations"
+  - "constraints and indexes"
+  - "query implementation"
+  - "database correctness evidence"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "03 Platform & Data Engineering"
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

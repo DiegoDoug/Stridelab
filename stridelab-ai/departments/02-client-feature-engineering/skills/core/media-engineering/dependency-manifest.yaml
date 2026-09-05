@@ -1,0 +1,36 @@
+skill: media-engineering
+department: "02 Client & Feature Engineering"
+domain: client-media-pipeline
+
+core_dependencies:
+  - "ios-ipados-engineering"
+  - "interaction-design"
+
+complementary_skills:
+  required: []
+  optional:
+    - "client-engineering"
+    - "backend-data-engineering"
+
+consumes_artifacts:
+  - "capture/import workflow"
+  - "media lifecycle requirements"
+  - "storage and worker contracts"
+  - "privacy and authorization requirements"
+
+produces_artifacts:
+  - "client media pipeline"
+  - "media state model"
+  - "transfer contract"
+  - "device validation evidence"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

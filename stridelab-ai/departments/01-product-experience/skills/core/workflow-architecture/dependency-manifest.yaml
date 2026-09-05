@@ -1,0 +1,36 @@
+skill: workflow-architecture
+department: "01 Product & Experience"
+domain: end-to-end-workflows
+
+core_dependencies:
+  - "product-strategy"
+  - "domain-modeling"
+
+complementary_skills:
+  required: []
+  optional:
+    - "evidence-based-ui-ux"
+    - "software-architecture"
+    - "security-identity"
+
+consumes_artifacts:
+  - "product contract"
+  - "domain model"
+  - "policy requirements"
+
+produces_artifacts:
+  - "workflow specification"
+  - "state model"
+  - "recovery contract"
+  - "permission checkpoints"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "01 Product & Experience"
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+  - "05 Quality, Infrastructure & Release"

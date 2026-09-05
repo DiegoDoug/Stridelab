@@ -1,0 +1,40 @@
+{
+  "actions": [
+    {
+      "action": "draft_research_or_spec",
+      "human_approval": false
+    },
+    {
+      "action": "implement_nonproduction_approved_scope",
+      "human_approval": false
+    },
+    {
+      "action": "approve_product_or_architecture_lock",
+      "human_approval": true
+    },
+    {
+      "action": "accept_security_exception",
+      "human_approval": true
+    },
+    {
+      "action": "accept_final_legal_risk",
+      "human_approval": true
+    },
+    {
+      "action": "change_production_secret",
+      "human_approval": true
+    },
+    {
+      "action": "destructive_production_action",
+      "human_approval": true
+    },
+    {
+      "action": "release_to_production",
+      "human_approval": true
+    },
+    {
+      "action": "rollback_production_when_emergency_policy_preapproves",
+      "human_approval": "policy-dependent"
+    }
+  ]
+}

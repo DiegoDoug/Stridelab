@@ -1,0 +1,32 @@
+skill: accessibility-design
+department: "01 Product & Experience"
+domain: inclusive-product-design
+
+core_dependencies:
+  - "interaction-design"
+  - "visual-ui-design"
+
+complementary_skills:
+  required: []
+  optional:
+    - "evidence-based-ui-ux"
+
+consumes_artifacts:
+  - "interaction specification"
+  - "visual system"
+  - "implemented UI"
+  - "media behavior"
+
+produces_artifacts:
+  - "accessibility requirements"
+  - "assistive-technology behavior"
+  - "test matrix"
+  - "accessibility findings"
+
+upstream_departments:
+  - "01 Product & Experience"
+
+downstream_departments:
+  - "02 Client & Feature Engineering"
+  - "05 Quality, Infrastructure & Release"
+  - "04 Security, Identity & Compliance"

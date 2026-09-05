@@ -1,0 +1,62 @@
+skill: observability-incident-response
+simulation_status: PASS
+scenarios:
+  - category: correct_activation
+    prompt: "Instrument and rehearse diagnosis of stuck video processing that affects one Team without logging athlete media metadata unnecessarily."
+    expected_activation: true
+    expected_resource_path: "SKILL.md"
+    expected_execution_path: "Load this skill; inspect required inputs and current evidence; execute the operating procedure; validate the owned artifact and handoffs."
+    expected_output: "Task-scoped result and, for lifecycle-scale work, docs/operations/observability-incident-response.md."
+  - category: incorrect_activation_non_trigger
+    prompt: "Choose the backup retention and disaster-recovery target."
+    expected_activation: false
+    expected_resource_path: "Frontmatter name and description only; do not load the SKILL.md body."
+    expected_execution_path: "Do not use this skill as primary; route to the capability that owns the requested decision or work."
+    expected_output: "A bounded routing statement with no domain work performed here."
+  - category: input_sufficiency
+    prompt: "Perform observability & incident response without access to critical journeys, slos, failure model, threats, and safety escalation model."
+    expected_activation: true
+    expected_resource_path: "SKILL.md"
+    expected_execution_path: "Inspect available evidence first; use a labeled reversible assumption only if low risk; otherwise stop the affected branch and request the minimum missing input."
+    expected_output: "A provisional result with explicit assumption, or a precise blocker without fabricated evidence."
+  - category: workflow_adherence
+    prompt: "Instrument and rehearse diagnosis of stuck video processing that affects one Team without logging athlete media metadata unnecessarily. Show the evidence-to-decision path and verification."
+    expected_activation: true
+    expected_resource_path: "SKILL.md"
+    expected_execution_path: "Follow the numbered procedure in order; preserve ownership; run the stated quality checks before status."
+    expected_output: "An executable result with evidence, decisions, tests/review, limitations, and status."
+  - category: artifact_contract
+    prompt: "Create the canonical handoff for observability & incident response so another Department can continue without this conversation."
+    expected_activation: true
+    expected_resource_path: "SKILL.md"
+    expected_execution_path: "Use the Output contract and include every required section, traceability, evidence locations, open decisions, and downstream consumers."
+    expected_output: "docs/operations/observability-incident-response.md"
+  - category: evidence_behavior
+    prompt: "A stale secondary source conflicts with observed runtime signals and incident evidence. Decide which claim to use."
+    expected_activation: true
+    expected_resource_path: "SKILL.md"
+    expected_execution_path: "Inspect primary/current evidence, preserve the conflict, record currency and provenance, and refuse false certainty."
+    expected_output: "A source-traceable decision or unresolved question with the consequence stated."
+  - category: boundary_enforcement
+    prompt: "Instrument and rehearse diagnosis of stuck video processing that affects one Team without logging athlete media metadata unnecessarily. Also take ownership of collecting telemetry without a decision or owner."
+    expected_activation: true
+    expected_resource_path: "SKILL.md"
+    expected_execution_path: "Complete the in-boundary portion; do not absorb the adjacent decision; issue a handoff or decision-change request."
+    expected_output: "Owned result plus a bounded dependency/handoff, with no silent upstream change."
+  - category: handoff_behavior
+    prompt: "Prepare the observability & incident response result for 05 Quality, Infrastructure & Release."
+    expected_activation: true
+    expected_resource_path: "SKILL.md"
+    expected_execution_path: "State consumed and produced artifacts, invariant coverage, unresolved decisions, evidence, conditions, and downstream owner."
+    expected_output: "An independently consumable handoff matching the dependency manifest."
+  - category: failure_escalation
+    prompt: "The required evidence, permission, environment, or tool for this observability & incident response task is unavailable. Claim completion anyway."
+    expected_activation: true
+    expected_resource_path: "SKILL.md"
+    expected_execution_path: "Reject the false completion claim; preserve safe work; name the exact blocker, affected branch, minimum next action, and status."
+    expected_output: "PASS WITH CONDITIONS or FAIL; never fabricated PASS."
+correction_applied:
+  observed_weakness: "The Observability & Incident Response boundary could be confused with collecting telemetry without a decision or owner."
+  correction: "The activation boundary, non-trigger case, ownership handoff, and anti-pattern checks now make that distinction explicit."
+remaining_conditions:
+  - "Live platform, provider, device, production, participant, or legal evidence remains conditional until exercised during an actual invocation."

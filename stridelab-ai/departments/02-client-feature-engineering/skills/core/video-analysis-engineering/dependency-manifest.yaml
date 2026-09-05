@@ -1,0 +1,35 @@
+skill: video-analysis-engineering
+department: "02 Client & Feature Engineering"
+domain: frame-analysis-client
+
+core_dependencies:
+  - "media-engineering"
+  - "interaction-design"
+  - "accessibility-design"
+
+complementary_skills:
+  required: []
+  optional:
+    - "client-engineering"
+    - "software-architecture"
+
+consumes_artifacts:
+  - "analysis workflow"
+  - "media/timebase contract"
+  - "interaction and accessibility specifications"
+  - "persistence contract"
+
+produces_artifacts:
+  - "analysis client changes"
+  - "precision contract"
+  - "annotation model"
+  - "golden-fixture evidence"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "03 Platform & Data Engineering"
+  - "05 Quality, Infrastructure & Release"

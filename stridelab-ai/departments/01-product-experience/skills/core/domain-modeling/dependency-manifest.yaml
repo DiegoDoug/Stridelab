@@ -1,0 +1,31 @@
+skill: domain-modeling
+department: "01 Product & Experience"
+domain: product-semantics
+
+core_dependencies:
+  - "product-strategy"
+
+complementary_skills:
+  required: []
+  optional:
+    - "software-architecture"
+
+consumes_artifacts:
+  - "product contract"
+  - "workflow evidence"
+  - "accepted terminology"
+
+produces_artifacts:
+  - "domain glossary"
+  - "concept model"
+  - "lifecycle semantics"
+  - "bounded-context inputs"
+
+upstream_departments:
+  - "01 Product & Experience"
+
+downstream_departments:
+  - "01 Product & Experience"
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"

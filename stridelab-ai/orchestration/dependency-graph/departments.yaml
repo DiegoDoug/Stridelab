@@ -1,0 +1,79 @@
+{
+  "departments": {
+    "D01": {
+      "slug": "01-product-experience",
+      "may_block": [
+        "D02",
+        "D03"
+      ],
+      "produces": [
+        "product requirements",
+        "domain semantics",
+        "workflow/UX contracts"
+      ]
+    },
+    "D02": {
+      "slug": "02-client-feature-engineering",
+      "depends_on": [
+        "D01",
+        "D04",
+        "D06 when entitled feature"
+      ],
+      "produces": [
+        "client implementation",
+        "client verification inputs"
+      ]
+    },
+    "D03": {
+      "slug": "03-platform-data-engineering",
+      "depends_on": [
+        "D01",
+        "D04",
+        "D06 when entitled feature"
+      ],
+      "produces": [
+        "platform/data implementation",
+        "server contracts"
+      ]
+    },
+    "D04": {
+      "slug": "04-security-identity-compliance",
+      "may_block": [
+        "D02",
+        "D03",
+        "D05",
+        "D06"
+      ],
+      "produces": [
+        "authorization/security/privacy/safety/legal/platform compliance requirements"
+      ]
+    },
+    "D05": {
+      "slug": "05-quality-infrastructure-release",
+      "depends_on": [
+        "D02",
+        "D03",
+        "D04"
+      ],
+      "may_block": [
+        "release"
+      ],
+      "produces": [
+        "verification evidence",
+        "readiness disposition",
+        "release artifacts"
+      ]
+    },
+    "D06": {
+      "slug": "06-business-operations-governance",
+      "produces": [
+        "billing/entitlement rules",
+        "cost/support/governance contracts",
+        "project knowledge"
+      ],
+      "depends_on": [
+        "verified outputs from other departments for durable state"
+      ]
+    }
+  }
+}

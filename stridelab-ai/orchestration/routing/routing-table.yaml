@@ -1,0 +1,77 @@
+{
+  "rules": [
+    {
+      "id": "R-01",
+      "match": "product_scope|product_strategy|tiers|prioritization",
+      "primary": "01-product-experience"
+    },
+    {
+      "id": "R-02",
+      "match": "workflow|domain_model|navigation|ux|design",
+      "primary": "01-product-experience"
+    },
+    {
+      "id": "R-03",
+      "match": "mobile|ipad|iphone|web_client|media_client|video_analysis_client|planner_client|workout_client",
+      "primary": "02-client-feature-engineering"
+    },
+    {
+      "id": "R-04",
+      "match": "api|database|sync|realtime|search|report_pipeline",
+      "primary": "03-platform-data-engineering"
+    },
+    {
+      "id": "R-05",
+      "match": "identity|auth|authorization|rls|security|privacy|youth_safety|legal|app_store_compliance",
+      "primary": "04-security-identity-compliance"
+    },
+    {
+      "id": "R-06",
+      "match": "test|performance|infrastructure|reliability|observability|release|incident",
+      "primary": "05-quality-infrastructure-release"
+    },
+    {
+      "id": "R-07",
+      "match": "billing|entitlement|cost|support|knowledge|ai_governance",
+      "primary": "06-business-operations-governance"
+    }
+  ],
+  "mandatory_collaboration": [
+    {
+      "when": "authorization or protected-data behavior is implemented",
+      "add": [
+        "04-security-identity-compliance"
+      ]
+    },
+    {
+      "when": "client implementation is required",
+      "add": [
+        "02-client-feature-engineering"
+      ]
+    },
+    {
+      "when": "server/data implementation is required",
+      "add": [
+        "03-platform-data-engineering"
+      ]
+    },
+    {
+      "when": "release candidate changes",
+      "add": [
+        "05-quality-infrastructure-release"
+      ]
+    },
+    {
+      "when": "commercial entitlement changes",
+      "add": [
+        "06-business-operations-governance"
+      ]
+    },
+    {
+      "when": "approved project semantics/workflow changes",
+      "add": [
+        "01-product-experience"
+      ]
+    }
+  ]
+}

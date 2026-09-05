@@ -1,0 +1,38 @@
+skill: web-engineering
+department: "02 Client & Feature Engineering"
+domain: web-client-platform
+
+core_dependencies:
+  - "information-architecture"
+  - "interaction-design"
+  - "visual-ui-design"
+  - "accessibility-design"
+
+complementary_skills:
+  required: []
+  optional:
+    - "client-engineering"
+    - "vercel:react-best-practices"
+    - "vercel:nextjs"
+    - "vercel:shadcn"
+    - "vercel:agent-browser-verify"
+
+consumes_artifacts:
+  - "web requirements"
+  - "design specifications"
+  - "API contracts"
+  - "authorization matrix"
+
+produces_artifacts:
+  - "web client changes"
+  - "browser test evidence"
+  - "web implementation record"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

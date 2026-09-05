@@ -1,0 +1,94 @@
+{
+  "cases": [
+    {
+      "id": "T01",
+      "request": "Define new workout planning workflow",
+      "primary": "01-product-experience",
+      "must_include": [
+        "G0",
+        "G1"
+      ]
+    },
+    {
+      "id": "T02",
+      "request": "Implement iPad analysis timeline from approved design",
+      "primary": "02-client-feature-engineering",
+      "collaborators": [
+        "05-quality-infrastructure-release"
+      ]
+    },
+    {
+      "id": "T03",
+      "request": "Design offline sync conflict resolution",
+      "primary": "03-platform-data-engineering",
+      "must_include": [
+        "G0",
+        "G2",
+        "G5"
+      ]
+    },
+    {
+      "id": "T04",
+      "request": "Change Event Coach access to athlete media",
+      "primary": "04-security-identity-compliance",
+      "collaborators": [
+        "02-client-feature-engineering",
+        "03-platform-data-engineering"
+      ],
+      "must_include": [
+        "G3"
+      ]
+    },
+    {
+      "id": "T05",
+      "request": "Prepare TestFlight candidate",
+      "primary": "05-quality-infrastructure-release",
+      "must_include": [
+        "G3",
+        "G5",
+        "G6",
+        "G7"
+      ]
+    },
+    {
+      "id": "T06",
+      "request": "Define Mid tier video limits",
+      "primary": "06-business-operations-governance",
+      "collaborators": [
+        "04-security-identity-compliance"
+      ]
+    },
+    {
+      "id": "T07",
+      "request": "Redesign navigation",
+      "primary": "01-product-experience",
+      "must_block_if": "approved workflows/information architecture missing"
+    },
+    {
+      "id": "T08",
+      "request": "Add new media processing microservice",
+      "primary": "03-platform-data-engineering",
+      "must_include": [
+        "G2"
+      ],
+      "human_approval": true
+    },
+    {
+      "id": "T09",
+      "request": "Implement RLS for Event Group scope",
+      "primary": "04-security-identity-compliance",
+      "collaborators": [
+        "03-platform-data-engineering"
+      ],
+      "must_include": [
+        "G3"
+      ]
+    },
+    {
+      "id": "T10",
+      "request": "Update project current state after verified release",
+      "primary": "06-business-operations-governance",
+      "must_require": "verified/approved release evidence"
+    }
+  ]
+}

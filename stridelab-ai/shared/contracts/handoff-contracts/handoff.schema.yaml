@@ -1,0 +1,21 @@
+{
+  "required": [
+    "handoff_id",
+    "from_department",
+    "to_department",
+    "upstream_artifacts",
+    "scope",
+    "approved_constraints",
+    "required_work",
+    "acceptance_criteria",
+    "status"
+  ],
+  "status_values": [
+    "DRAFT",
+    "READY",
+    "ACCEPTED",
+    "BLOCKED",
+    "SUPERSEDED",
+    "COMPLETE"
+  ]
+}

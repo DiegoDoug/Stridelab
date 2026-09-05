@@ -1,0 +1,37 @@
+skill: backend-api-engineering
+department: "03 Platform & Data Engineering"
+domain: application-services-and-apis
+
+core_dependencies:
+  - "domain-modeling"
+  - "workflow-architecture"
+
+complementary_skills:
+  required: []
+  optional:
+    - "backend-data-engineering"
+    - "software-architecture"
+    - "vercel:vercel-functions"
+    - "vercel:workflow"
+    - "vercel:vercel-queues"
+
+consumes_artifacts:
+  - "domain model"
+  - "workflow specification"
+  - "architecture decisions"
+  - "authorization requirements"
+
+produces_artifacts:
+  - "application-service implementation"
+  - "API/RPC contract"
+  - "job/worker contract"
+  - "integration evidence"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "05 Quality, Infrastructure & Release"

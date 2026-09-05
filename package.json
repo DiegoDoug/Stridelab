@@ -1,0 +1,19 @@
+{
+  "name": "stridelab",
+  "private": true,
+  "version": "0.0.0",
+  "packageManager": "npm@11",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "services/*"
+  ],
+  "scripts": {
+    "ai:validate": "node stridelab-ai/scripts/validate-scaffold.mjs && node stridelab-ai/scripts/validate-registry.mjs && node stridelab-ai/scripts/validate-links.mjs",
+    "ai:manifest": "node stridelab-ai/scripts/build-manifest.mjs"
+  },
+  "devDependencies": {
+    "turbo": "^2.0.0",
+    "typescript": "^5.0.0"
+  }
+}

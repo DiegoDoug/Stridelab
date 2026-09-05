@@ -1,0 +1,54 @@
+{
+  "cases": [
+    {
+      "id": "E2E-01",
+      "name": "new protected media sharing feature",
+      "sequence": [
+        "D01 workflow",
+        "D04 access/privacy/safety requirements",
+        "D02 client implementation",
+        "D03 platform implementation",
+        "D04 verification",
+        "D05 quality/readiness",
+        "D06 knowledge update"
+      ]
+    },
+    {
+      "id": "E2E-02",
+      "name": "offline workout logging change",
+      "sequence": [
+        "D01 workflow confirmation",
+        "D03 sync/data design",
+        "D02 client implementation",
+        "D05 offline-online equivalence verification",
+        "D06 knowledge update"
+      ]
+    },
+    {
+      "id": "E2E-03",
+      "name": "production release",
+      "sequence": [
+        "candidate freeze",
+        "G3",
+        "G5",
+        "G6",
+        "G7 human approval",
+        "stage rollout",
+        "G8",
+        "release record"
+      ]
+    },
+    {
+      "id": "E2E-04",
+      "name": "billing entitlement change",
+      "sequence": [
+        "D06 commercial rule",
+        "D04 authorization/privacy review",
+        "D03 entitlement implementation",
+        "D02 plan-aware UX",
+        "D05 verification",
+        "D06 documentation"
+      ]
+    }
+  ]
+}

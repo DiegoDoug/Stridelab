@@ -1,0 +1,33 @@
+skill: visual-ui-design
+department: "01 Product & Experience"
+domain: visual-system
+
+core_dependencies:
+  - "information-architecture"
+  - "interaction-design"
+
+complementary_skills:
+  required: []
+  optional:
+    - "evidence-based-ui-ux"
+
+consumes_artifacts:
+  - "product contract"
+  - "information architecture"
+  - "interaction specification"
+  - "brand and accessibility constraints"
+
+produces_artifacts:
+  - "visual system"
+  - "semantic tokens"
+  - "component and state specification"
+  - "rendered design evidence"
+  - "Design Memory update"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "02 Client & Feature Engineering"
+  - "05 Quality, Infrastructure & Release"

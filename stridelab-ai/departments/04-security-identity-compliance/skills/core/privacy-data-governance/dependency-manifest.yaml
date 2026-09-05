@@ -1,0 +1,39 @@
+skill: privacy-data-governance
+department: "04 Security, Identity & Compliance"
+domain: privacy-lifecycle
+
+core_dependencies:
+  - "domain-modeling"
+  - "authorization-tenancy"
+  - "security-engineering"
+
+complementary_skills:
+  required: []
+  optional:
+    - "security-identity"
+    - "deep-research-work:deep-research"
+
+consumes_artifacts:
+  - "data inventory"
+  - "data flows"
+  - "authorization and identity model"
+  - "legal/youth requirements"
+  - "vendor contracts"
+
+produces_artifacts:
+  - "data classification"
+  - "flow map"
+  - "retention/deletion requirements"
+  - "DSAR and vendor controls"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+
+downstream_departments:
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

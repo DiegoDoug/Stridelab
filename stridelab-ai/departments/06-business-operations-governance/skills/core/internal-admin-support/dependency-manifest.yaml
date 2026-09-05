@@ -1,0 +1,37 @@
+skill: internal-admin-support
+department: "06 Business Operations & Governance"
+domain: support-operations-and-tooling
+
+core_dependencies:
+  - "authorization-tenancy"
+  - "privacy-data-governance"
+  - "youth-safeguarding-trust-safety"
+  - "billing-entitlements"
+
+complementary_skills:
+  required: []
+  optional:
+    - "security-identity"
+    - "production-operations"
+    - "vercel:vercel-api"
+
+consumes_artifacts:
+  - "support policies and cases"
+  - "authorization/privacy/safety/billing requirements"
+  - "operational APIs"
+
+produces_artifacts:
+  - "support role model"
+  - "admin workflow/tool changes"
+  - "audit requirements"
+  - "support verification evidence"
+
+upstream_departments:
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+  - "06 Business Operations & Governance"
+
+downstream_departments:
+  - "04 Security, Identity & Compliance"
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

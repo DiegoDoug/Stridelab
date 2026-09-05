@@ -1,0 +1,33 @@
+skill: product-strategy
+department: "01 Product & Experience"
+domain: product-direction
+
+core_dependencies:
+  []
+
+complementary_skills:
+  required: []
+  optional:
+    - "deep-research-work:deep-research"
+
+consumes_artifacts:
+  - "user intent"
+  - "market or user evidence"
+  - "existing product decisions"
+
+produces_artifacts:
+  - "product contract"
+  - "release scope"
+  - "prioritized roadmap"
+  - "success-measure specification"
+
+upstream_departments:
+  []
+
+downstream_departments:
+  - "01 Product & Experience"
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

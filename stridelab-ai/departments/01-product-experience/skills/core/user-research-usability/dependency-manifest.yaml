@@ -1,0 +1,32 @@
+skill: user-research-usability
+department: "01 Product & Experience"
+domain: research-and-evaluation
+
+core_dependencies:
+  - "product-strategy"
+
+complementary_skills:
+  required: []
+  optional:
+    - "evidence-based-ui-ux"
+    - "deep-research-work:deep-research"
+
+consumes_artifacts:
+  - "product hypotheses"
+  - "workflow prototypes"
+  - "participant and ethics constraints"
+
+produces_artifacts:
+  - "research plan"
+  - "evidence register"
+  - "usability findings"
+  - "decision recommendations"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "01 Product & Experience"
+  - "02 Client & Feature Engineering"
+  - "05 Quality, Infrastructure & Release"

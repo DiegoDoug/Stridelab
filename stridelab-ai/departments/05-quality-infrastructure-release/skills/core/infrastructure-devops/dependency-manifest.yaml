@@ -1,0 +1,39 @@
+skill: infrastructure-devops
+department: "05 Quality, Infrastructure & Release"
+domain: environments-and-delivery-platform
+
+core_dependencies:
+  - "backend-api-engineering"
+  - "database-engineering"
+  - "security-engineering"
+
+complementary_skills:
+  required: []
+  optional:
+    - "platform-release"
+    - "production-operations"
+    - "vercel:deployments-cicd"
+    - "vercel:env-vars"
+    - "vercel:turborepo"
+    - "vercel:vercel-services"
+
+consumes_artifacts:
+  - "application architecture"
+  - "environment and security requirements"
+  - "deployable code"
+  - "provider constraints"
+
+produces_artifacts:
+  - "infrastructure/configuration changes"
+  - "CI/CD pipeline"
+  - "environment topology"
+  - "deployment evidence"
+
+upstream_departments:
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

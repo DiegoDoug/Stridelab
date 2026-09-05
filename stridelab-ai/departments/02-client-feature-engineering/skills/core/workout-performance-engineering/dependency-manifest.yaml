@@ -1,0 +1,37 @@
+skill: workout-performance-engineering
+department: "02 Client & Feature Engineering"
+domain: workout-execution-feature
+
+core_dependencies:
+  - "domain-modeling"
+  - "workflow-architecture"
+  - "training-planning-engineering"
+  - "ios-ipados-engineering"
+
+complementary_skills:
+  required: []
+  optional:
+    - "client-engineering"
+    - "backend-data-engineering"
+
+consumes_artifacts:
+  - "workout domain model"
+  - "execution workflow"
+  - "personal-workout policy"
+  - "sync and persistence contracts"
+
+produces_artifacts:
+  - "workout execution changes"
+  - "performed-record contract"
+  - "PB derivation rules"
+  - "golden correctness evidence"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+
+downstream_departments:
+  - "03 Platform & Data Engineering"
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

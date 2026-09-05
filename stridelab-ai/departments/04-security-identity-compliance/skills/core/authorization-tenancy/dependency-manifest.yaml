@@ -1,0 +1,36 @@
+skill: authorization-tenancy
+department: "04 Security, Identity & Compliance"
+domain: access-control-and-isolation
+
+core_dependencies:
+  - "domain-modeling"
+  - "workflow-architecture"
+
+complementary_skills:
+  required: []
+  optional:
+    - "security-identity"
+    - "backend-data-engineering"
+
+consumes_artifacts:
+  - "domain/workflow rules"
+  - "identity context"
+  - "resource ownership/share semantics"
+  - "entitlement inputs"
+
+produces_artifacts:
+  - "authorization decision model"
+  - "allow/deny matrix"
+  - "RLS/enforcement requirements"
+  - "isolation evidence"
+
+upstream_departments:
+  - "01 Product & Experience"
+  - "06 Business Operations & Governance"
+
+downstream_departments:
+  - "02 Client & Feature Engineering"
+  - "03 Platform & Data Engineering"
+  - "04 Security, Identity & Compliance"
+  - "05 Quality, Infrastructure & Release"
+  - "06 Business Operations & Governance"

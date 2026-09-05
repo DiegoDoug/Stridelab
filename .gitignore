@@ -1,0 +1,17 @@
+node_modules/
+dist/
+build/
+.next/
+.expo/
+.env
+.env.*
+!.env.example
+coverage/
+.DS_Store
+*.log
+*.tmp
+*.swp
+*.xcuserstate
+DerivedData/
+ios/Pods/
+android/.gradle/
