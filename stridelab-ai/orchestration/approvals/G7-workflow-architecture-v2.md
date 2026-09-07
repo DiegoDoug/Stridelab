@@ -9,19 +9,23 @@ identify the artifact/action, approver, scope, conditions, and date/version.
 | **Artifact** | Workflow Architecture **v2**. Canonical entry point: `docs/product/workflow-architecture.md`. Governed baseline: `docs/product/product-baseline.md`. Supporting spec: `stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md` + the 13 `stridelab-ai/knowledge/workflows/*/WORKFLOWS.md` files (86 workflows / 13 categories). Registry: `stridelab-ai/registry/`. Application map: `stridelab-ai/application-map/` (14 cross-context contract seams). |
 | **Approver** | Diego |
 | **Date** | 2026-09-07 |
-| **Version approved** | v2, at finalization-branch head `e3eded2fddd5e8895b562febecb6de5acb94f092` (the commit carrying this record and the `APPROVED` status flip), merged to `main` via PR #1 with a merge commit (no squash). |
+| **Version approved** | v2. Finalization branch `phase-1/finalize-workflow-architecture-v2`; the `APPROVED` status flip is commit `d449b3e7a9170fd3b63a92c3e968edc20db4993c`; merged to `main` via PR #1 as merge commit `3a770ea929b13b0f4362b09dd4dde618cc7a4a65` (no squash), merged by `DiegoDoug` 2026-09-07 19:44 UTC. |
 | **Prior on-`main` state** | Commit `393f60ce6ce59be23afd6c5290a7c39df7eb9ba7` (the v2 correction pass) was committed directly to `main` before any PR or gate. Per this approval it may remain on `main`. |
 
 ## Scope
 
-The Workflow Architecture v2 is **locked as the canonical product workflow
+The **Workflow Architecture v2** is **locked as the canonical product workflow
 baseline** for StrideLab. Downstream product, client, platform, security, and
 release work is validated against it.
 
-`docs/product/product-baseline.md` is approved as the governed product baseline
-alongside it, **except** its §6 commercial invariants: the Free / Mid / Top tier
-structure remains an accepted downstream Department 06 ratification condition
-(`OQ-BE-TIER-STRUCTURE`).
+**This approval is for the Workflow Architecture v2 only.** It does **not**
+independently approve `docs/product/product-baseline.md` (the governed
+product-baseline artifact the architecture was validated against) — that artifact
+remains `AWAITING_HUMAN_APPROVAL` as a **separate, still-open human decision**.
+The verbatim approval (below) named "Workflow Architecture v2"; nothing here
+should be read as approving the baseline artifact by extension. §6 of that
+baseline additionally carries the Department 06 tier-structure ratification
+condition (`OQ-BE-TIER-STRUCTURE`).
 
 ## Conditions (accepted at approval)
 

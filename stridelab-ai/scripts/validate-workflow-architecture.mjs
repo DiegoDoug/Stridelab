@@ -364,6 +364,16 @@ function declaredStatus(text) {
   if (/\bSUPERSEDED\b/i.test(tok)) return 'SUPERSEDED';
   return null;
 }
+// product-baseline is a separate artifact with its own lifecycle status — check
+// its header declaration against its own registry entry, not the architecture's.
+if (artifactsDoc && Array.isArray(artifactsDoc.artifacts) && exists('docs/product/product-baseline.md')) {
+  const pb = artifactsDoc.artifacts.find((a) => a && a.id === 'product-baseline');
+  const pbDeclared = declaredStatus(read('docs/product/product-baseline.md'));
+  if (pb && pbDeclared && pb.status && pbDeclared !== pb.status) {
+    errors.push(`docs/product/product-baseline.md: declared status "${pbDeclared}" != registry product-baseline.status "${pb.status}"`);
+  }
+}
+
 for (const f of STATUS_FILES) {
   if (!exists(f)) continue;
   const ds = declaredStatus(read(f));
