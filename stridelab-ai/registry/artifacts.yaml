@@ -1,0 +1,64 @@
+# StrideLab canonical artifact register
+# Created in the Workflow Architecture v2 correction pass (2026-09-06) — finding F-20.
+# Artifacts reference upstream versions/IDs rather than copying content.
+
+artifacts:
+  - id: product-baseline
+    type: governed-product-baseline
+    path: docs/product/product-baseline.md
+    status: AWAITING_HUMAN_APPROVAL
+    owner: 01-product-experience
+    contributors: [04-security-identity-compliance, 06-business-operations-governance]
+    supersedes: "embedded invariants list in Department agent prompts (ungoverned)"
+    notes: >
+      Single governed record of the product invariants the Workflow Architecture
+      is validated against. Proposed until a human approves it.
+
+  - id: workflow-architecture
+    type: workflow-architecture
+    version: v2
+    canonical_entry_point: docs/product/workflow-architecture.md
+    supporting_spec_index: stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md
+    supporting_spec_files: stridelab-ai/knowledge/workflows/*/WORKFLOWS.md
+    workflow_count: 86
+    category_count: 13
+    status: AWAITING_HUMAN_APPROVAL
+    owner: 01-product-experience
+    primary_specialist: domain-workflow-architect
+    reviewed_by: [product-experience-lead, architecture-reviewer, 04-security-identity-compliance, 06-business-operations-governance, cross-department-reviewer]
+    upstream: [product-baseline]
+    current_state_record: stridelab-ai/project-memory/current-state/workflow-architecture-v2.md
+    history:
+      - version: v1-draft
+        date: 2026-09-05
+        status: SUPERSEDED (uncommitted, never approved)
+      - version: v1-remediation
+        date: 2026-09-06
+        status: SUPERSEDED
+      - version: v2
+        date: 2026-09-06
+        status: AWAITING_HUMAN_APPROVAL
+
+  - id: domain-model
+    type: domain-model
+    path: docs/product/domain-model.md
+    status: STUB
+    owner: 01-product-experience
+    upstream: [workflow-architecture, product-baseline]
+    notes: "Domain model not yet authored as a separate artifact; concepts currently live in the Workflow Architecture. Tracked as a future work package."
+
+  - id: application-map
+    type: application-map
+    path: stridelab-ai/application-map/
+    status: MINIMUM_POPULATED
+    owner: 01-product-experience
+    contributors: [02-client-feature-engineering, 03-platform-data-engineering]
+    upstream: [workflow-architecture]
+    notes: "Bounded-context ownership + cross-context contract seams. No application code paths invented."
+
+  - id: architecture-decision
+    type: architecture-constraint
+    path: ARCHITECTURE.md
+    status: APPROVED
+    owner: architecture-reviewer
+    notes: "Domain-driven modular monolith; cross-domain access via public contracts."

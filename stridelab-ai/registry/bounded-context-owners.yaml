@@ -1,0 +1,105 @@
+# Bounded-context ownership register
+# Created in the Workflow Architecture v2 correction pass (2026-09-06) — finding F-20.
+# Maps each product bounded context to its owning Department/lead and its domains/* directory.
+# The domains/* directories already exist in the repo; no application code paths are invented here.
+
+bounded_contexts:
+  - context: identity
+    directory: domains/identity/
+    product_owner: 01-product-experience
+    policy_owner: 04-security-identity-compliance
+    workflow_ids: [IT-01, IT-02, IT-03, IT-04, IT-05, IT-06, IT-07, IT-08, IT-09]
+    implements: [02-client-feature-engineering, 03-platform-data-engineering]
+
+  - context: teams
+    directory: domains/teams/
+    product_owner: 01-product-experience
+    policy_owner: 04-security-identity-compliance
+    workflow_ids: [IT-02, IT-09, TA-01, TA-02, TA-03, TA-04, TA-05, TA-06, TA-07]
+    implements: [03-platform-data-engineering, 02-client-feature-engineering]
+
+  - context: profile
+    directory: domains/identity/   # profile is modeled as part of the identity context in v2
+    product_owner: 01-product-experience
+    policy_owner: 04-security-identity-compliance
+    workflow_ids: [PR-01, PR-02, PR-03]
+    notes: "Profile visibility resolution (PR-03) is a published contract consumed by every member-rendering surface; DOB/age never leaves this context except as a derived is_minor flag."
+
+  - context: training
+    directory: domains/training/
+    product_owner: 01-product-experience
+    workflow_ids: [TP-01, TP-02, TP-03, TP-04, TP-05, TP-06, TP-07, TP-08]
+    implements: [02-client-feature-engineering, 03-platform-data-engineering]
+
+  - context: sessions
+    directory: domains/sessions/
+    product_owner: 01-product-experience
+    workflow_ids: [SE-01, SE-02, SE-03, SE-04, SE-05, SE-06, SE-07, SE-08, SE-09, SE-10]
+    implements: [02-client-feature-engineering, 03-platform-data-engineering]
+    notes: "Owns reconciliation (SE-09) and post-finalization correction (SE-10); coach may never overwrite athlete-owned records."
+
+  - context: workouts
+    directory: domains/workouts/
+    product_owner: 01-product-experience
+    workflow_ids: [PW-01, PW-02, PW-03]
+    notes: "Structurally isolated from training/sessions; gated by TA-07."
+
+  - context: media
+    directory: domains/media/
+    product_owner: 01-product-experience
+    policy_owner: 04-security-identity-compliance
+    workflow_ids: [MD-01, MD-02, MD-03, MD-04, MD-05, MD-06, MD-07]
+    implements: [02-client-feature-engineering, services/media-worker]
+
+  - context: analysis
+    directory: domains/analysis/
+    product_owner: 01-product-experience
+    workflow_ids: [AN-01, AN-02, AN-03, AN-04, AN-05, AN-06, AN-07]
+    implements: [02-client-feature-engineering]
+
+  - context: vault
+    directory: domains/vault/
+    product_owner: 01-product-experience
+    policy_owner: 04-security-identity-compliance
+    workflow_ids: [VS-01, VS-02, VS-03, VS-04]
+    notes: "Authoritative enforcement point for Vault visibility; VS-01 grant is explicit and server-authoritative."
+
+  - context: messaging
+    directory: domains/messaging/
+    product_owner: 01-product-experience
+    policy_owner: 04-security-identity-compliance
+    workflow_ids: [MG-01, MG-02, MG-03, MG-04, MG-05, MG-06, MG-07]
+    implements: [03-platform-data-engineering, 02-client-feature-engineering]
+
+  - context: performance
+    directory: domains/performance/
+    product_owner: 01-product-experience
+    workflow_ids: [PF-01, PF-02, PF-03, PF-04]
+    notes: "Read/derived; consumes authorization scope from source contexts, never re-derives."
+
+  - context: reporting
+    directory: domains/reporting/
+    product_owner: 01-product-experience
+    policy_owner: 04-security-identity-compliance
+    workflow_ids: [PF-05, PF-06]
+    notes: "Export is a data-leaving-the-system transition; audited; never expands scope."
+
+  - context: billing
+    directory: domains/billing/
+    product_owner: 06-business-operations-governance
+    policy_owner: 04-security-identity-compliance   # payment != authorization rule
+    workflow_ids: [BE-01, BE-02, BE-03, BE-04, BE-05, BE-06]
+    notes: "BE-05 is the single entitlement-derivation point (ratified G2). No arrow into any authorization-sensitive context."
+
+  - context: governance
+    directory: domains/governance/
+    product_owner: 04-security-identity-compliance
+    workflow_ids: [PS-01, PS-02, PS-03, PS-04, PS-05, PS-06, PS-07, PS-08, PS-09]
+    notes: "Home of the Platform Safety Administrator actor; PS-03/07/09 route here."
+
+platform_actors:
+  - actor: Platform Safety Administrator
+    owner: 04-security-identity-compliance
+    least_privilege: true
+    authority: [PS-07 under-age determination, PS-09 illegal-content routing, MG-06 Head-Coach-implicated escalation, VS-03 moderation revocation]
+    open: [staffing model, SLA values, classification thresholds]
