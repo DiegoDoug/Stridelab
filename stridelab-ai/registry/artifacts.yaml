@@ -6,13 +6,19 @@ artifacts:
   - id: product-baseline
     type: governed-product-baseline
     path: docs/product/product-baseline.md
-    status: AWAITING_HUMAN_APPROVAL
+    status: APPROVED
+    approved_by: Diego
+    approved_date: 2026-09-07
+    approval_record: stridelab-ai/orchestration/approvals/G7-workflow-architecture-v2.md
     owner: 01-product-experience
     contributors: [04-security-identity-compliance, 06-business-operations-governance]
     supersedes: "embedded invariants list in Department agent prompts (ungoverned)"
     notes: >
       Single governed record of the product invariants the Workflow Architecture
-      is validated against. Proposed until a human approves it.
+      is validated against. Approved with the Workflow Architecture v2 at G7
+      (2026-09-07). §6 commercial invariants: the Free/Mid/Top tier structure is
+      an accepted downstream Department 06 ratification condition
+      (OQ-BE-TIER-STRUCTURE), not resolved by this approval.
 
   - id: workflow-architecture
     type: workflow-architecture
@@ -22,7 +28,15 @@ artifacts:
     supporting_spec_files: stridelab-ai/knowledge/workflows/*/WORKFLOWS.md
     workflow_count: 86
     category_count: 13
-    status: AWAITING_HUMAN_APPROVAL
+    status: APPROVED
+    approved_by: Diego
+    approved_date: 2026-09-07
+    approval_record: stridelab-ai/orchestration/approvals/G7-workflow-architecture-v2.md
+    approval_conditions: >
+      §9.2 OPEN register items accepted as downstream work under their named
+      owners; main branch protection + the configure_repository_administration
+      approval-matrix row ratified; commit 393f60c may remain on main; the
+      finalization PR merged with a merge commit (no squash).
     owner: 01-product-experience
     primary_specialist: domain-workflow-architect
     reviewed_by: [product-experience-lead, architecture-reviewer, 04-security-identity-compliance, 06-business-operations-governance, cross-department-reviewer]
@@ -38,14 +52,24 @@ artifacts:
       - version: v2
         date: 2026-09-06
         status: AWAITING_HUMAN_APPROVAL
+      - version: v2-finalization
+        date: 2026-09-07
+        status: APPROVED (G7 granted by Diego)
 
   - id: domain-model
     type: domain-model
     path: docs/product/domain-model.md
     status: STUB
     owner: 01-product-experience
+    downstream_owner: "01-product-experience/domain-workflow-architect (skill: domain-modeling); 03-platform-data-engineering/database-engineer for persistence-adjacent aggregate boundaries"
+    blocking_stage: "conservative default (offered for D01 ratification, not an approved decision): should exist before G4 (Implementation Integrity) sign-off for any bounded context — before a schema / API contract shape / client-feature design is approved for that context; does NOT block G7 approval of workflow-architecture v2, and does NOT block the 14 G2 seam identifications (only their shape design at G4)"
     upstream: [workflow-architecture, product-baseline]
-    notes: "Domain model not yet authored as a separate artifact; concepts currently live in the Workflow Architecture. Tracked as a future work package."
+    notes: >
+      Not a required Phase 01 deliverable per the workflow-architecture SKILL
+      output contract. Domain concepts, ownership rules, invariants, lifecycles,
+      and workflow states are fully present in workflow-architecture v2, the
+      product baseline, and the application map; this path marks where the
+      consolidated model will live. Not claimed complete.
 
   - id: application-map
     type: application-map

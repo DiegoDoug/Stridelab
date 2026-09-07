@@ -1,11 +1,17 @@
 # Current State — StrideLab Workflow Architecture v2
 
-**Status: `AWAITING HUMAN APPROVAL` (conditional — see gate table).**
+**Status: `APPROVED` — G7 granted by Diego on 2026-09-07.**
 
-Do not treat as approved. Do not implement application code, database schema,
-APIs, UI components, or navigation against this artifact until a human
-explicitly approves it and the remaining external policy/legal OPEN items are
-resolved by their owners.
+The Workflow Architecture v2 is the locked canonical product workflow baseline.
+Approval record: `stridelab-ai/orchestration/approvals/G7-workflow-architecture-v2.md`.
+
+The §9.2 OPEN register items are **accepted downstream conditions** owned by their
+named owners; each still gates its specific implementation sub-area but not this
+artifact. Before implementing application code / schema / APIs / UI / navigation
+for a bounded context: resolve the §9.2 items that gate it, obtain a separate
+approved Department 06 entitlement artifact before any BE-05 work, and author the
+consolidated domain model (`docs/product/domain-model.md`) before D02/D03
+implementation-design for that context.
 
 ## Source artifacts
 
@@ -23,11 +29,23 @@ resolved by their owners.
 
 - v1 draft (2026-09-05) — 76 workflows. Uncommitted; never approved. Superseded.
 - v1 remediation pass (2026-09-06) — findings F-01…F-12; 84 workflows. Superseded.
-- **v2 correction pass (2026-09-06)** — this record. Findings F-13…F-24 completed; authorized product decisions made normative; SE-10 + MG-07 added (86); canonical entry point + governed baseline + registry + application-map created; G2 completed by `architecture-reviewer`; independent Department 06 review run. The v1-named master and current-state files were renamed to v2 (plain rename — the files were never committed; version history is preserved in the v2 documents).
+- **v2 correction pass (2026-09-06)** — this record. Findings F-13…F-24 completed; authorized product decisions made normative; SE-10 + MG-07 added (86); canonical entry point + governed baseline + registry + application-map created; G2 completed by `architecture-reviewer`; independent Department 06 review run. The v1-era working files were superseded in place; no v1 file was ever committed, so there is no v1 blob in version history — the v1 → v2 lineage is preserved as prose in the v2 documents, not as a git rename.
+- **v2 finalization pass (2026-09-07)** — this record advanced. No workflow content, count, invariant, gate disposition (of G0–G3/G-D06), or OPEN item changed. Work done: (1) Repository/VCS state reconciled (see *Repository state* below); (2) automated documentation verification added — `stridelab-ai/scripts/validate-workflow-architecture.mjs`, run via `npm run ai:validate` and by `.github/workflows/workflow-architecture-validation.yml`; the validator does **real structural YAML parsing** (`yaml` devDependency) of all five machine-readable files (registry ×2, gates, routing, approvals) and fails closed on malformed input (negative-tested, exit 1); (3) MG-07 given an explicit authorization block (anchored to invariants #9/#15); (4) `docs/product/domain-model.md` sequencing self-contradiction removed and reframed as a conservative default offered for D01 ratification; (5) G4 (Implementation Integrity) executed by an **independent** Department 05 reviewer against the finalization tooling diff — `PASS_WITH_CONDITIONS`, conditions applied; (6) `main` branch protection configured: PR + `validate` check required, `enforce_admins: true`, no force-push/deletion; a `configure_repository_administration` row added to `approval-matrix.yaml`; (7) the broken `ai:manifest` script removed and the previously-broken `ai:validate` (referenced three non-existent scripts) repaired to run the four real validators; (8) CI actions pinned to commit SHAs; (9) **seven fresh independent reviews** (D01, architecture, D04, D06, documentation, D05 quality/GitHub-readiness = the G4 execution, adversarial cross-department) run against the finalization diff — no BLOCKING; one MAJOR (branch-protection admin bypass) fixed; MINOR/LOW items applied. At the end of this pass the artifact was still awaiting human approval.
+- **G7 approval (2026-09-07)** — **Diego** granted G7. Status → `APPROVED`. Workflow Architecture v2 is the locked canonical product workflow baseline. §9.2 items accepted as downstream conditions under their named owners; `main` branch protection + the `configure_repository_administration` approval-matrix row ratified; `393f60c` may remain on `main`; the finalization PR (#1), which carries the `APPROVED` status flip, merged into `main` with a merge commit (no squash). Approval record: `stridelab-ai/orchestration/approvals/G7-workflow-architecture-v2.md`.
+
+## Repository state (2026-09-07 reconciliation)
+
+- Commit `393f60ce6ce59be23afd6c5290a7c39df7eb9ba7` (the v2 correction pass) is present on **both** `main` and the (now-deleted) v1-named phase branch. It was committed directly — **there was no pull request and no G7 gate behind it**.
+- Its presence on `main` was a version-control fact that did not itself constitute G7 approval. **G7 was granted by Diego on 2026-09-07** through the gated finalization PR; per that approval `393f60c` may remain on `main`. Downstream implementation is now permitted per the constraints in the Status section at the top of this record (resolve the §9.2 items that gate a context, a separate approved D06 entitlement artifact before BE-05, the consolidated domain model before D02/D03 implementation-design).
+- The default branch is `main` (correct). The stale branch `phase-1/workflow-architecture-v1` held no unique commits (identical SHA to `main`) and its name contradicted the v2 version; it was **deleted** after the finalization PR was opened (recoverable — same SHA is on `main`).
+- `main` branch protection: a pull request and the `validate` status check are **required** before merge; `enforce_admins: true` (no admin bypass — closes the exact route by which `393f60c` reached `main` ungated); force-pushes and branch deletion disabled; conversation resolution required. `required_approving_review_count` is `0` — **accepted risk for the solo-maintainer phase** (the owner cannot self-approve a PR on GitHub); compensating controls: the required `validate` check, mandatory human G7, PR-required, no admin bypass.
+- This branch-protection configuration and the earlier stale-branch deletion were performed under the maintainer's **explicit in-session instruction**. `stridelab-ai/orchestration/approvals/approval-matrix.yaml` now carries a `configure_repository_administration` action (`human_approval: true`) so future agent VCS-governance changes are gated; the current configuration is recorded here for the maintainer's ratification.
+- Pre-existing tooling defect repaired: the `npm run ai:validate` script previously pointed at three scripts that have never existed in any commit (`validate-scaffold/registry/links.mjs`); it now runs the four validators that do exist. The equally-broken `ai:manifest` entry (`build-manifest.mjs` absent) was removed.
+- The finalization pass ran on `phase-1/finalize-workflow-architecture-v2` (from `origin/main`) as PR #1 into `main`. Per Diego's G7 approval it is merged into `main` with a merge commit (no squash).
 
 ## Gate record (post independent review)
 
-Per the continuation instruction, the interim record was set conservatively (G1/G3 `FAIL — REVISION REQUIRED`, G2 `PENDING — REQUIRED`, G-D06 `PENDING VALIDATION`, overall `REVISE`) and held there until independent-review evidence supported advancing it. **Four independent reviews have now returned**, each citing inspected-artifact evidence; their conditions are folded into the artifacts. The gate record is advanced to:
+Per the continuation instruction, the interim record was set conservatively (G1/G3 `FAIL — REVISION REQUIRED`, G2 `PENDING — REQUIRED`, G-D06 `PENDING VALIDATION`, overall `REVISE`) and held there until independent-review evidence supported advancing it. **Four independent reviews** returned for the v2 correction pass (G0–G3, G-D06), each citing inspected-artifact evidence; their conditions are folded into the artifacts. The **v2 finalization pass (2026-09-07)** then ran **seven further independent reviews** against the finalization diff (D01, architecture, D04, D06, documentation, D05 quality/GitHub-readiness = the G4 execution, adversarial cross-department) — no BLOCKING finding, one MAJOR (branch-protection admin bypass) fixed, MINOR/LOW items applied; per-review verdicts + dispositions are recorded in `WORKFLOW-ARCHITECTURE-v2.md` §8d. The gate record is:
 
 | Gate | Disposition | Reviewer & evidence |
 |---|---|---|
@@ -36,10 +54,11 @@ Per the continuation instruction, the interim record was set conservatively (G1/
 | G2 — Architecture / Contracts | `PASS_WITH_CONDITIONS`, register **COMPLETE** (not `PENDING`) | Independent `architecture-reviewer` (`WORKFLOW-ARCHITECTURE-v2.md` §8c). Architectural judgement sound (no boundary change, dependency direction preserved on every seam, BE-05 defensible, no service extraction). The reviewer's register defects — 6 rows missing mandated fields, 4 unregistered seams, a broken pointer — were fixed: `stridelab-ai/application-map/cross-context-contracts.md` now has **14 contracts × 8 fields**. Conditions: contract *shapes* by D02/D03; `OQ-MEDIA-CACHE-INVALIDATION` (D03); BE-05 flag-interface shape; separate approved D06 entitlement artifact before BE-05 implementation. |
 | G3 — Security / Privacy / Compliance | `PASS_WITH_CONDITIONS` | Independent Department 04 re-review (`WORKFLOW-ARCHITECTURE-v2.md` §8a.2). **No hard youth-safety / privacy / authorization boundary violated.** All ten targeted checks passed (tag≠access; comm-reach≠scope; DOB/age never to coaches/peers; profile not discoverable; multi-subject media blocked by default; PS-07 restricted-first; canonical Platform Safety Administrator; blocking does all seven behaviours; no surviving "guaranteed delivery"; coach cannot edit athlete performed-work truth). Conditions are external policy/legal/D03 (`OQ-MEDIA-CACHE-INVALIDATION`, `OQ-VS02-MULTISUBJECT` mechanism, `OQ-MG-OVERSIGHT`, jurisdiction items, retention durations, moderation staffing/SLA, `OQ-PF-MINOR-EXPORT`), each with a conservative default in force. |
 | G-D06 — Commercial / Governance | `PASS_WITH_CONDITIONS` | **Independent** Department 06 review by a separate non-authoring reviewer (`WORKFLOW-ARCHITECTURE-v2.md` §8b). `payment ≠ authorization` confirmed intact — no `BE-*` arrow into any authorization-sensitive category, authority flows into billing only, BE-05 keeps authorization code off raw billing state. provider/prices/taxes/refunds/IAP/plan-limits/trial/grace **not approved by this artifact** — each now its own §9.2 row (`OQ-BE-PROVIDER/PRICING/TAX/IAP/TRIAL/…`). Additional conditions: `OQ-BE-TIER-STRUCTURE` (D06 ratification of Free/Mid/Top), `OQ-BE-BILLING-OWNER`, broadened `OQ-IT09-REFUND` (refund/dunning/cancellation policy). |
-| G4 / G5 / G6 / G8 | `NOT_APPLICABLE` | no code/config/data change; not a release candidate; no production change. |
-| G7 — Human Approval | `PENDING` | Cannot be self-approved by an AI agent. G7 was not executed; no merge was performed. |
+| G4 — Implementation Integrity | `PASS_WITH_CONDITIONS` (finalization tooling only) | v2 workflow content = no code/config/data change. The finalization pass added `stridelab-ai/scripts/validate-workflow-architecture.mjs`, a read-only CI workflow, and `package.json`/`package-lock.json` (`yaml` devDependency); an **independent** Department 05 reviewer (2026-09-07, not the author) executed G4 — validator implements its stated contract, real structural YAML parsing of all five machine-readable files, fails closed (exit 1 on malformed YAML, tree clean after), `npm ci` lockfile-clean, `npm audit` 0 vulnerabilities, CI runs `npm run ai:validate` under least privilege, no boundary/decision/gate change. Conditions applied: `enforce_admins: true` on `main`; CI actions pinned to SHAs; dead `ai:manifest` removed. |
+| G5 / G6 / G8 | `NOT_APPLICABLE` | not a material feature/platform change or release candidate; no production change. |
+| G7 — Human Approval | `APPROVED` | Granted by **Diego** on **2026-09-07**. Scope: Workflow Architecture v2 locked as the canonical product workflow baseline. Conditions: §9.2 OPEN items accepted as downstream work under their named owners; `main` branch protection + the `configure_repository_administration` approval-matrix row ratified; `393f60c` may remain on `main`; finalization PR merged with a merge commit (no squash). Record: `stridelab-ai/orchestration/approvals/G7-workflow-architecture-v2.md`. |
 
-**Overall recommendation:** `AWAITING HUMAN APPROVAL`. G1, G2, G3, and G-D06 have each independently passed with conditions that are genuinely external policy / legal / commercial-governance / D02-D03 implementation-design matters, each protected by a conservative safe default; G2's contract register is complete and not `PENDING`; no reviewer found a hard boundary violation. The acceptable-final-state criteria for this continuation are met. G7 (human approval) remains outstanding.
+**Overall recommendation:** **`APPROVED`** — G7 granted 2026-09-07 by Diego. G0–G4 and G-D06 each independently passed with conditions that are external policy / legal / commercial-governance / D02–D03 implementation-design matters or now-applied finalization fixes, each protected by a conservative safe default; G2's contract register is complete. Across the v2 continuation's four independent reviews and the finalization pass's seven, no reviewer found a hard boundary violation and no BLOCKING finding was open.
 
 ## Findings F-01…F-24 — closure matrix
 
@@ -82,10 +101,12 @@ All external policy / legal / implementation matters, each with a stable ID, own
 
 ## Blockers
 
-- No BLOCKING or MAJOR independent-review finding remains open — F-01…F-24 all closed, and each of the four independent reviews returned PASS_WITH_CONDITIONS (or *APPROVE-WITH-CONDITIONS-recommendable*) with the conditions folded in.
-- The remaining conditions on G1/G2/G3/G-D06 are external policy/legal/commercial-governance/D02-D03 implementation-design decisions with conservative safe defaults; they gate specific implementation sub-areas, not this artifact's approval.
-- G7 (human approval) is the only remaining approval blocker and cannot be self-granted; no merge was performed.
+- **None for this artifact.** F-01…F-24 all closed; the four v2-continuation reviews and the seven finalization-pass reviews all returned PASS or PASS_WITH_CONDITIONS with conditions folded in or applied; G7 granted 2026-09-07.
+- The §9.2 register items remain open as **accepted downstream conditions** under their named owners — each gates a specific implementation sub-area, not this artifact.
 
-## Next action
+## Next action (post-approval)
 
-Present `docs/product/workflow-architecture.md` (canonical), `docs/product/product-baseline.md`, and the supporting spec for explicit human approval (G7). On approval: update this record to `APPROVED`; resolve the §9.2 OPEN register with the named owners as separate work packages; hand the §8c contract register to Departments 02/03 for contract-shape design; require a separate approved Department 06 commercial artifact before any billing implementation.
+1. Resolve the §9.2 OPEN register with its named owners as separate work packages (each has a conservative safe default in force meanwhile).
+2. Hand the §8c / `cross-context-contracts.md` 14-seam register to Departments 02/03 for contract-*shape* design.
+3. Require a separate approved Department 06 entitlement artifact (provider, prices, taxes, refunds, IAP, plan limits, trial, grace) before any BE-05 / billing implementation; D06 to ratify the Free/Mid/Top tier structure (`OQ-BE-TIER-STRUCTURE`) as part of `product-baseline.md` §6.
+4. Author the consolidated domain model (`docs/product/domain-model.md`, D01 `domain-workflow-architect` + D03 `database-engineer`) before D02/D03 implementation-design begins for any bounded context.

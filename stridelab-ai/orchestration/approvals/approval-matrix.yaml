@@ -13,6 +13,11 @@
       "human_approval": true
     },
     {
+      "action": "configure_repository_administration",
+      "human_approval": true,
+      "note": "branch protection, default-branch change, branch deletion, and other GitHub repo settings. An AI agent may apply a control-strengthening, recoverable change when a human has explicitly instructed it in-session, and must record the instruction and the resulting configuration for ratification."
+    },
+    {
       "action": "accept_security_exception",
       "human_approval": true
     },
