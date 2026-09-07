@@ -318,6 +318,8 @@ likewise **disabled in v1** (VS-02).
 
 **Preconditions:** Account is `active`.
 
+**Authorization assumptions (normative v2):** A member may read and change **only their own** notification-preference record — no coach, Head Coach, administrator, or platform actor can set, view, or override another member's preferences. The safety class is not member-configurable: no actor (including the account owner) can disable, mute, or quiet-hours a safety-class notification, and the preference store refuses to persist such a state. Preference state grants no Team-scoped authority and is never an input to any authorization or entitlement check.
+
 **Notification classes (normative v2):**
 - **Safety** — report-receipt acknowledgement, moderation/escalation status (MG-06, PS-03, PS-09), tag / Vault-access notice to a tagged athlete (MD-05, VS-01), tagged-minor notice on Team publication (MD-06), under-age review outcome (PS-07), block-related safety telemetry outcomes. **Cannot be disabled or placed under quiet hours.** Backed by the F-12 delivery-state model (transactional in-app state, durable retry, idempotent processing, delivery+ack state, audited terminal failure, human escalation on unresolved safety-critical failure). Push/email are secondary and fallible; the authoritative state is always in-app.
 - **Operational** — session started/modified/cancelled, assignment changes, plan modifications close to practice, entitlement/billing status to the Head Coach, DSR/closure status. The member may change *channel* (e.g., disable push) but the notification still lands **in-app**; it cannot be fully suppressed.

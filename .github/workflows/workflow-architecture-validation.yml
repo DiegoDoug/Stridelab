@@ -1,0 +1,46 @@
+name: workflow-architecture-validation
+
+# Documentation-phase verification for the StrideLab Workflow Architecture (Phase 01).
+# Scope: structural consistency of the workflow-architecture documents only.
+# Broader application CI remains Department 05's to define.
+
+on:
+  pull_request:
+    paths:
+      - "docs/product/**"
+      - "stridelab-ai/knowledge/workflows/**"
+      - "stridelab-ai/application-map/**"
+      - "stridelab-ai/registry/**"
+      - "stridelab-ai/project-memory/current-state/**"
+      - "stridelab-ai/scripts/**"
+      - ".github/workflows/workflow-architecture-validation.yml"
+  push:
+    branches: [main]
+    paths:
+      - "docs/product/**"
+      - "stridelab-ai/knowledge/workflows/**"
+      - "stridelab-ai/application-map/**"
+      - "stridelab-ai/registry/**"
+      - "stridelab-ai/project-memory/current-state/**"
+      - "stridelab-ai/scripts/**"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Validate workflow-architecture documents
+        run: node stridelab-ai/scripts/validate-workflow-architecture.mjs
+      - name: Validate AI system scaffold
+        run: node stridelab-ai/scripts/validate-ai-system.mjs
+      - name: Validate orchestration
+        run: node stridelab-ai/scripts/validate-orchestration.mjs
+      - name: Validate routing cases
+        run: node stridelab-ai/scripts/validate-routing-cases.mjs

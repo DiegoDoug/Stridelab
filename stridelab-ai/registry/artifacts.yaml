@@ -44,8 +44,15 @@ artifacts:
     path: docs/product/domain-model.md
     status: STUB
     owner: 01-product-experience
+    downstream_owner: "01-product-experience/domain-workflow-architect (skill: domain-modeling); 03-platform-data-engineering/database-engineer for persistence-adjacent aggregate boundaries"
+    blocking_stage: "before Department 02/03 implementation-design (G4) begins for any bounded context; does NOT block G7 approval of workflow-architecture v2"
     upstream: [workflow-architecture, product-baseline]
-    notes: "Domain model not yet authored as a separate artifact; concepts currently live in the Workflow Architecture. Tracked as a future work package."
+    notes: >
+      Not a required Phase 01 deliverable per the workflow-architecture SKILL
+      output contract. Domain concepts, ownership rules, invariants, lifecycles,
+      and workflow states are fully present in workflow-architecture v2, the
+      product baseline, and the application map; this path marks where the
+      consolidated model will live. Not claimed complete.
 
   - id: application-map
     type: application-map

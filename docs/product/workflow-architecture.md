@@ -16,6 +16,7 @@ Owning Department: 01 Product & Experience. Last advanced: 2026-09-06 (v2 correc
 | Application map | `stridelab-ai/application-map/` |
 | Current state record | `stridelab-ai/project-memory/current-state/workflow-architecture-v2.md` |
 | Domain model (companion, stub) | `docs/product/domain-model.md` |
+| Automated documentation verification | `stridelab-ai/scripts/validate-workflow-architecture.mjs` (CI: `.github/workflows/workflow-architecture-validation.yml`) |
 
 Where wording differs, **this file governs**, then `product-baseline.md`, then the supporting spec. The supporting spec carries the full per-workflow detail (actors, capability/trigger, preconditions, authorization assumptions, states, transitions, happy/alternate paths, errors/recovery, offline behaviour, sync implications, notifications, audit, exit condition, downstream artifacts, open questions). Do **not** duplicate that detail here.
 
@@ -24,6 +25,7 @@ Where wording differs, **this file governs**, then `product-baseline.md`, then t
 - **v1 draft (2026-09-05)** — 76 workflows / 12 categories. Uncommitted; never approved. Superseded.
 - **v1 remediation pass (2026-09-06)** — findings F-01…F-12 applied; `profile/` + IT-09/SE-09/PS-07/PS-08/PS-09 added (84 workflows). Superseded.
 - **v2 correction pass (2026-09-06)** — this version. Authorized product decisions made normative; findings F-13…F-24 completed; SE-10 + MG-07 added (86 workflows); canonical entry point, governed baseline, registry and application-map created; **four independent reviews run** (architecture-reviewer/G2, Department 04/G3, Department 06/billing, final cross-department + workflow-owner completeness), their conditions folded in, the cross-context contract register completed to 14 seams.
+- **v2 finalization pass (2026-09-07)** — no workflow content changed. Repository/VCS state reconciled (commit `393f60c` documented as present on `main` without a gate — a VCS fact, not a G7 approval); automated documentation verification added (`stridelab-ai/scripts/validate-workflow-architecture.mjs`, run in CI by `.github/workflows/workflow-architecture-validation.yml`); MG-07 given an explicit authorization block. Status unchanged: `AWAITING HUMAN APPROVAL`, G7 `PENDING`.
 
 ## Scope constraint
 
@@ -145,9 +147,9 @@ Four **independent** reviews were run for the v2 continuation (each by a separat
 | G3 — Security / Privacy / Compliance | 04-security-identity-compliance | `PASS_WITH_CONDITIONS` | Independent re-review (`WORKFLOW-ARCHITECTURE-v2.md` §8a.2). No hard youth-safety/privacy/authorization boundary violated; every safe default is protective; residual OPEN items are genuine external policy/legal (retention durations, jurisdiction duties, moderation staffing/SLA, the multi-subject consent *mechanism*), each defaulted conservatively (e.g. multi-subject re-share **blocked** by default). |
 | G-D06 — Commercial / Governance | 06-business-operations-governance (independent) | `PASS_WITH_CONDITIONS` | Independent review (`WORKFLOW-ARCHITECTURE-v2.md` §8b) by a separate non-authoring reviewer. `payment ≠ authorization` confirmed intact (no BE-* arrow into any authorization-sensitive context; authority flows into billing only). provider/prices/taxes/refunds/IAP/plan limits/trial/grace explicitly **not approved** — each now its own §9.2 register row, deferred to a separate approved D06 artifact. Additional conditions: explicit D06 ratification of the Free/Mid/Top structure; billing-owner decision; consolidated refund/dunning policy. |
 | G4 / G5 / G6 / G8 | 02–05 | `NOT_APPLICABLE` | no code/config/data change; not a release candidate; no production change. |
-| G7 — Human Approval | human | `PENDING` | Cannot be self-approved by an AI agent. |
+| G7 — Human Approval | human | `PENDING` | Cannot be self-approved by an AI agent. Not executed. Commit `393f60c` is present on `main` and the phase branch as a version-control fact only — this is **not** a G7 approval; no release/merge gate was run, and the finalization pull request into `main` must not be merged until a human grants G7. |
 
-**Overall recommendation:** `AWAITING HUMAN APPROVAL`. All four independently-reviewed gates (G1, G2, G3, G-D06) pass with conditions that are genuinely external policy / legal / commercial-governance / D02-D03 implementation-design matters, each protected by a conservative safe default; G2's register is complete (not `PENDING`); no hard boundary is violated. Human approval (G7) remains outstanding; G7 was not executed and no merge was performed.
+**Overall recommendation:** `AWAITING HUMAN APPROVAL`. All four independently-reviewed gates (G1, G2, G3, G-D06) pass with conditions that are genuinely external policy / legal / commercial-governance / D02-D03 implementation-design matters, each protected by a conservative safe default; G2's register is complete (not `PENDING`); no hard boundary is violated. Human approval (G7) remains outstanding. The v2 commit already living on `main` reflects how it was committed, not an approval — nothing downstream may be built against this artifact until G7 is granted.
 
 ---
 

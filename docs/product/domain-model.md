@@ -14,4 +14,11 @@
 
 ## Follow-up (not blocking Workflow Architecture v2 approval)
 
-A dedicated domain model at this path — aggregate boundaries, entity/value-object catalogue, an explicit ubiquitous-language glossary, and the invariant-to-aggregate mapping — is recommended before implementation begins (Department 01 `domain-workflow-architect`, with Department 03 for the persistence-adjacent parts). It is tracked as a distinct future work package.
+A dedicated domain model at this path — aggregate boundaries, entity/value-object catalogue, an explicit ubiquitous-language glossary, and the invariant-to-aggregate mapping — is a distinct future work package.
+
+| Attribute | Value |
+|---|---|
+| **Downstream owner** | Department 01 `domain-workflow-architect` (skill: `domain-modeling`), with Department 03 (`database-engineer`) for the persistence-adjacent parts (aggregate/transaction boundaries). |
+| **Precise blocking stage** | Required before **Department 02/03 implementation-design (G4) begins for any bounded context** — i.e. before schema design, API contracts, or client feature work is started against this architecture. It does **not** block G7 approval of Workflow Architecture v2, and it does not block the contract-*shape* design that the G2 register already hands to D02/D03. |
+| **Why it is a stub, not a gap** | Per the `workflow-architecture` SKILL output contract, lifecycle-scale work must produce `docs/product/workflow-architecture.md`; a separate `domain-model.md` is not a required Phase 01 deliverable. The domain concepts, ownership rules, invariants, lifecycles, and workflow states exist in full in the artifacts listed above — this file marks where the *consolidated* model will live, and is not claimed as complete. |
+| **Evidence to close** | An authored domain model at this path covering the four items above, reviewed by Department 01 and (for persistence-adjacent boundaries) Department 03. |

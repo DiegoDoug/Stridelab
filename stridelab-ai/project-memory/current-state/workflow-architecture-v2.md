@@ -23,7 +23,15 @@ resolved by their owners.
 
 - v1 draft (2026-09-05) — 76 workflows. Uncommitted; never approved. Superseded.
 - v1 remediation pass (2026-09-06) — findings F-01…F-12; 84 workflows. Superseded.
-- **v2 correction pass (2026-09-06)** — this record. Findings F-13…F-24 completed; authorized product decisions made normative; SE-10 + MG-07 added (86); canonical entry point + governed baseline + registry + application-map created; G2 completed by `architecture-reviewer`; independent Department 06 review run. The v1-named master and current-state files were renamed to v2 (plain rename — the files were never committed; version history is preserved in the v2 documents).
+- **v2 correction pass (2026-09-06)** — this record. Findings F-13…F-24 completed; authorized product decisions made normative; SE-10 + MG-07 added (86); canonical entry point + governed baseline + registry + application-map created; G2 completed by `architecture-reviewer`; independent Department 06 review run. The v1-era working files were superseded in place; no v1 file was ever committed, so there is no v1 blob in version history — the v1 → v2 lineage is preserved as prose in the v2 documents, not as a git rename.
+- **v2 finalization pass (2026-09-07)** — this record advanced. Repository/VCS state reconciled (see *Repository state* below); automated documentation verification added (`stridelab-ai/scripts/validate-workflow-architecture.mjs` + GitHub Actions); MG-07 given an explicit authorization block; "no merge was performed" wording corrected to distinguish a VCS fact from a G7 approval. No workflow content, count, invariant, gate disposition, or OPEN item changed. Still `AWAITING HUMAN APPROVAL`; G7 still `PENDING`.
+
+## Repository state (2026-09-07 reconciliation)
+
+- Commit `393f60ce6ce59be23afd6c5290a7c39df7eb9ba7` (the v2 correction pass) is present on **both** `main` and the phase branch. It was committed directly — **there is no pull request and no G7 gate behind it**.
+- **Its presence on `main` is a version-control fact only. It does NOT constitute G7 approval.** The Workflow Architecture v2 remains `AWAITING HUMAN APPROVAL` until a human explicitly approves it; nothing downstream (application code, schema, API, UI, navigation) may be built against it before then.
+- The default branch is `main` (correct). The stale branch `phase-1/workflow-architecture-v1` holds no unique commits (identical SHA to `main`); its name contradicts the v2 artifact version and it is scheduled for deletion once the finalization PR is open.
+- The finalization pass runs on `phase-1/finalize-workflow-architecture-v2` (from `origin/main`) and is offered as a pull request into `main`. That PR is **not** to be merged until G7 is granted.
 
 ## Gate record (post independent review)
 
@@ -37,7 +45,7 @@ Per the continuation instruction, the interim record was set conservatively (G1/
 | G3 — Security / Privacy / Compliance | `PASS_WITH_CONDITIONS` | Independent Department 04 re-review (`WORKFLOW-ARCHITECTURE-v2.md` §8a.2). **No hard youth-safety / privacy / authorization boundary violated.** All ten targeted checks passed (tag≠access; comm-reach≠scope; DOB/age never to coaches/peers; profile not discoverable; multi-subject media blocked by default; PS-07 restricted-first; canonical Platform Safety Administrator; blocking does all seven behaviours; no surviving "guaranteed delivery"; coach cannot edit athlete performed-work truth). Conditions are external policy/legal/D03 (`OQ-MEDIA-CACHE-INVALIDATION`, `OQ-VS02-MULTISUBJECT` mechanism, `OQ-MG-OVERSIGHT`, jurisdiction items, retention durations, moderation staffing/SLA, `OQ-PF-MINOR-EXPORT`), each with a conservative default in force. |
 | G-D06 — Commercial / Governance | `PASS_WITH_CONDITIONS` | **Independent** Department 06 review by a separate non-authoring reviewer (`WORKFLOW-ARCHITECTURE-v2.md` §8b). `payment ≠ authorization` confirmed intact — no `BE-*` arrow into any authorization-sensitive category, authority flows into billing only, BE-05 keeps authorization code off raw billing state. provider/prices/taxes/refunds/IAP/plan-limits/trial/grace **not approved by this artifact** — each now its own §9.2 row (`OQ-BE-PROVIDER/PRICING/TAX/IAP/TRIAL/…`). Additional conditions: `OQ-BE-TIER-STRUCTURE` (D06 ratification of Free/Mid/Top), `OQ-BE-BILLING-OWNER`, broadened `OQ-IT09-REFUND` (refund/dunning/cancellation policy). |
 | G4 / G5 / G6 / G8 | `NOT_APPLICABLE` | no code/config/data change; not a release candidate; no production change. |
-| G7 — Human Approval | `PENDING` | Cannot be self-approved by an AI agent. G7 was not executed; no merge was performed. |
+| G7 — Human Approval | `PENDING` | Cannot be self-approved by an AI agent. G7 has not been executed. Commit `393f60c` sits on `main` and the phase branch as a VCS fact only — that is not a G7 approval and no release/merge gate was run; the finalization PR into `main` must not be merged until a human grants G7. |
 
 **Overall recommendation:** `AWAITING HUMAN APPROVAL`. G1, G2, G3, and G-D06 have each independently passed with conditions that are genuinely external policy / legal / commercial-governance / D02-D03 implementation-design matters, each protected by a conservative safe default; G2's contract register is complete and not `PENDING`; no reviewer found a hard boundary violation. The acceptable-final-state criteria for this continuation are met. G7 (human approval) remains outstanding.
 
@@ -84,7 +92,7 @@ All external policy / legal / implementation matters, each with a stable ID, own
 
 - No BLOCKING or MAJOR independent-review finding remains open — F-01…F-24 all closed, and each of the four independent reviews returned PASS_WITH_CONDITIONS (or *APPROVE-WITH-CONDITIONS-recommendable*) with the conditions folded in.
 - The remaining conditions on G1/G2/G3/G-D06 are external policy/legal/commercial-governance/D02-D03 implementation-design decisions with conservative safe defaults; they gate specific implementation sub-areas, not this artifact's approval.
-- G7 (human approval) is the only remaining approval blocker and cannot be self-granted; no merge was performed.
+- G7 (human approval) is the only remaining approval blocker and cannot be self-granted. Commit `393f60c` being present on `main` is a version-control fact, not an approval; no G7/release gate was run and the finalization PR must not be merged until a human grants G7.
 
 ## Next action
 
