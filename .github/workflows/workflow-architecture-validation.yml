@@ -12,7 +12,10 @@ on:
       - "stridelab-ai/application-map/**"
       - "stridelab-ai/registry/**"
       - "stridelab-ai/project-memory/current-state/**"
+      - "stridelab-ai/orchestration/**"
       - "stridelab-ai/scripts/**"
+      - "package.json"
+      - "package-lock.json"
       - ".github/workflows/workflow-architecture-validation.yml"
   push:
     branches: [main]
@@ -22,7 +25,10 @@ on:
       - "stridelab-ai/application-map/**"
       - "stridelab-ai/registry/**"
       - "stridelab-ai/project-memory/current-state/**"
+      - "stridelab-ai/orchestration/**"
       - "stridelab-ai/scripts/**"
+      - "package.json"
+      - "package-lock.json"
   workflow_dispatch: {}
 
 permissions:
@@ -35,12 +41,11 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: "20"
-      - name: Validate workflow-architecture documents
-        run: node stridelab-ai/scripts/validate-workflow-architecture.mjs
-      - name: Validate AI system scaffold
-        run: node stridelab-ai/scripts/validate-ai-system.mjs
-      - name: Validate orchestration
-        run: node stridelab-ai/scripts/validate-orchestration.mjs
-      - name: Validate routing cases
-        run: node stridelab-ai/scripts/validate-routing-cases.mjs
+          node-version: "22"
+          cache: npm
+      # Dev dependencies only (the `yaml` parser the validator uses).
+      # --ignore-scripts: no package lifecycle scripts execute during install.
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+      - name: Run ai:validate (the real npm entry point)
+        run: npm run ai:validate

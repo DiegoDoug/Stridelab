@@ -8,7 +8,7 @@
  *   - the 13 category files exist and parse
  *   - all workflow IDs are unique and contiguous within their category
  *   - the stated inventory count (86) reconciles across the canonical entry point,
- *     the supporting spec, and the registry
+ *     the supporting spec, and the registry (parsed, not text-matched)
  *   - every workflow section carries the required workflow-artifact contract fields
  *   - the cross-context contract register has 14 seams, each with its 8 fields
  *   - internal repo paths referenced by the canonical documents resolve
@@ -17,21 +17,41 @@
  *   - the 16 cross-workflow invariants are all present
  *   - the DD-DEPARTED-CONTENT decision is back-referenced from every workflow that
  *     claims it
- *   - the registry / gate / routing machine-readable files parse
+ *   - the registry / gate / routing machine-readable files parse as YAML and carry
+ *     the expected top-level shape
  *
  * Exit code 0 = PASS, 1 = FAIL. Warnings never fail the build.
  */
 
 import fs from 'node:fs';
 import path from 'node:path';
+import YAML from 'yaml';
 
 const root = process.cwd();
 const errors = [];
 const warnings = [];
 
-const rel = (p) => path.relative(root, p).replaceAll('\\', '/');
 const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
 const exists = (p) => fs.existsSync(path.join(root, p));
+
+/** Parse a YAML (or JSON-in-.yaml) file; record a hard error and return null on failure. */
+function parseYaml(file) {
+  if (!exists(file)) {
+    errors.push(`Missing machine-readable file: ${file}`);
+    return null;
+  }
+  try {
+    const doc = YAML.parse(read(file), { prettyErrors: true });
+    if (doc === undefined || doc === null) {
+      errors.push(`${file}: parsed to an empty document`);
+      return null;
+    }
+    return doc;
+  } catch (e) {
+    errors.push(`${file}: YAML parse error — ${e.message.split('\n')[0]}`);
+    return null;
+  }
+}
 
 // ---------------------------------------------------------------------------
 // 1. Canonical artifact set
@@ -111,7 +131,6 @@ for (const cat of CATEGORIES) {
   }
   const text = read(file);
 
-  // Split into workflow sections on "## XX-NN — ..." headers.
   const headerRe = new RegExp(`^## (${cat.prefix}-\\d{2}) [—-]`, 'gm');
   const headers = [...text.matchAll(headerRe)];
   const nums = [];
@@ -153,7 +172,6 @@ for (const cat of CATEGORIES) {
       `${cat.dir}: expected ${cat.count} workflows, found ${headers.length} (${nums.map((n) => cat.prefix + '-' + String(n).padStart(2, '0')).join(', ')})`
     );
   }
-  // Contiguity 1..count
   const sorted = [...nums].sort((a, b) => a - b);
   for (let k = 0; k < sorted.length; k++) {
     if (sorted[k] !== k + 1) {
@@ -168,9 +186,78 @@ if (countedTotal !== EXPECTED_TOTAL) {
 }
 
 // ---------------------------------------------------------------------------
-// 3. Count reconciliation across documents
+// 3. Registry — parsed, structural, and reconciled against the 86 IDs
 // ---------------------------------------------------------------------------
 
+const artifactsDoc = parseYaml('stridelab-ai/registry/artifacts.yaml');
+let waArtifact = null;
+if (artifactsDoc) {
+  if (!Array.isArray(artifactsDoc.artifacts)) {
+    errors.push('artifacts.yaml: top-level "artifacts" is not a list');
+  } else {
+    waArtifact = artifactsDoc.artifacts.find((a) => a && a.id === 'workflow-architecture');
+    if (!waArtifact) {
+      errors.push('artifacts.yaml: no artifact with id "workflow-architecture"');
+    } else {
+      if (waArtifact.workflow_count !== EXPECTED_TOTAL) {
+        errors.push(`artifacts.yaml: workflow-architecture.workflow_count = ${JSON.stringify(waArtifact.workflow_count)}, expected ${EXPECTED_TOTAL}`);
+      }
+      if (waArtifact.category_count !== CATEGORIES.length) {
+        errors.push(`artifacts.yaml: workflow-architecture.category_count = ${JSON.stringify(waArtifact.category_count)}, expected ${CATEGORIES.length}`);
+      }
+      if (waArtifact.status !== 'AWAITING_HUMAN_APPROVAL') {
+        errors.push(`artifacts.yaml: workflow-architecture.status = ${JSON.stringify(waArtifact.status)}, expected "AWAITING_HUMAN_APPROVAL" (G7 pending)`);
+      }
+      if (waArtifact.canonical_entry_point !== 'docs/product/workflow-architecture.md') {
+        errors.push(`artifacts.yaml: workflow-architecture.canonical_entry_point = ${JSON.stringify(waArtifact.canonical_entry_point)}`);
+      }
+    }
+    // every referenced path key on every artifact must resolve
+    for (const a of artifactsDoc.artifacts) {
+      for (const key of ['path', 'canonical_entry_point', 'supporting_spec_index', 'current_state_record']) {
+        const v = a && a[key];
+        if (typeof v === 'string' && !v.includes('*') && !exists(v.replace(/\/$/, ''))) {
+          errors.push(`artifacts.yaml: ${a.id}.${key} -> "${v}" does not resolve`);
+        }
+      }
+    }
+  }
+}
+
+const ownersDoc = parseYaml('stridelab-ai/registry/bounded-context-owners.yaml');
+if (ownersDoc) {
+  if (!Array.isArray(ownersDoc.bounded_contexts)) {
+    errors.push('bounded-context-owners.yaml: top-level "bounded_contexts" is not a list');
+  } else {
+    const regIds = new Set();
+    for (const bc of ownersDoc.bounded_contexts) {
+      if (!bc || typeof bc.context !== 'string') {
+        errors.push(`bounded-context-owners.yaml: a bounded_contexts entry has no "context" key`);
+        continue;
+      }
+      if (!bc.product_owner) errors.push(`bounded-context-owners.yaml: ${bc.context} has no product_owner`);
+      if (typeof bc.directory === 'string') {
+        const d = bc.directory.split('#')[0].trim().replace(/\/$/, '');
+        if (d && !exists(d)) errors.push(`bounded-context-owners.yaml: ${bc.context}.directory "${bc.directory}" does not resolve`);
+      }
+      if (Array.isArray(bc.workflow_ids)) {
+        for (const id of bc.workflow_ids) regIds.add(String(id));
+      }
+    }
+    for (const id of allIds) {
+      if (!regIds.has(id)) errors.push(`bounded-context-owners.yaml: workflow ${id} is not mapped to any bounded context`);
+    }
+    for (const id of regIds) {
+      if (!/^[A-Z]{2}-\d{2}$/.test(id)) {
+        errors.push(`bounded-context-owners.yaml: malformed workflow id "${id}"`);
+      } else if (!allIds.has(id)) {
+        errors.push(`bounded-context-owners.yaml: references unknown workflow ${id}`);
+      }
+    }
+  }
+}
+
+// Prose reconciliation in the two narrative documents.
 function assertMentions(file, needle, label) {
   if (!exists(file)) return;
   if (!read(file).includes(needle)) {
@@ -179,20 +266,6 @@ function assertMentions(file, needle, label) {
 }
 assertMentions('docs/product/workflow-architecture.md', '86 workflows, 13 categories', 'inventory 86/13');
 assertMentions('stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md', '86 workflows, 13 categories', 'inventory 86/13');
-assertMentions('stridelab-ai/registry/artifacts.yaml', 'workflow_count: 86', 'registry workflow_count');
-assertMentions('stridelab-ai/registry/artifacts.yaml', 'category_count: 13', 'registry category_count');
-
-// Registry union of workflow_ids must cover exactly the 86 IDs.
-if (exists('stridelab-ai/registry/bounded-context-owners.yaml')) {
-  const y = read('stridelab-ai/registry/bounded-context-owners.yaml');
-  const regIds = new Set([...y.matchAll(/\b([A-Z]{2}-\d{2})\b/g)].map((m) => m[1]));
-  for (const id of allIds) {
-    if (!regIds.has(id)) errors.push(`bounded-context-owners.yaml: workflow ${id} not mapped to any bounded context`);
-  }
-  for (const id of regIds) {
-    if (!allIds.has(id)) errors.push(`bounded-context-owners.yaml: references unknown workflow ${id}`);
-  }
-}
 
 // ---------------------------------------------------------------------------
 // 4. Cross-context contract register — 14 seams, 8 fields each
@@ -215,8 +288,8 @@ if (exists(CC)) {
     }
     if (!/consumers?:/i.test(body)) errors.push(`${CC}: contract ${n} missing "Consumers"`);
   });
-  if (!text.includes('**fourteen**') && !text.includes('14 contract') && !text.includes('fourteen')) {
-    warnings.push(`${CC}: prose does not state the seam count in words`);
+  if (!/fourteen|14 contract/.test(text)) {
+    warnings.push(`${CC}: prose does not state the seam count`);
   }
 }
 
@@ -247,18 +320,12 @@ for (const doc of DOCS_WITH_PATHS) {
     let p = m[1].replace(/[.,:;)]+$/, '');
     if (seen.has(p)) continue;
     seen.add(p);
-    // normalise: strip trailing slash, strip a glob tail, strip a #anchor
     let probe = p.replace(/#.*$/, '');
     if (probe.endsWith('/')) probe = probe.slice(0, -1);
     if (probe.endsWith('/*')) probe = probe.slice(0, -2);
-    if (probe.includes('*')) {
-      // glob like stridelab-ai/knowledge/workflows/*/WORKFLOWS.md — check the fixed prefix dir
-      probe = probe.split('*')[0].replace(/\/$/, '');
-    }
+    if (probe.includes('*')) probe = probe.split('*')[0].replace(/\/$/, '');
     if (!probe) continue;
-    if (!exists(probe)) {
-      errors.push(`${doc}: unresolved path reference "${p}"`);
-    }
+    if (!exists(probe)) errors.push(`${doc}: unresolved path reference "${p}"`);
   }
 }
 
@@ -278,22 +345,8 @@ for (const f of STATUS_FILES) {
   if (!/AWAITING[ _]HUMAN[ _]APPROVAL/i.test(t)) {
     errors.push(`${f}: canonical status "AWAITING HUMAN APPROVAL" not found`);
   }
-  if (/\bstatus\b[^\n]*\bAPPROVED\b/i.test(t) && !/AWAITING[ _]HUMAN[ _]APPROVAL/i.test(t)) {
-    errors.push(`${f}: status appears to read APPROVED before G7`);
-  }
-}
-// registry yaml must not say APPROVED for the workflow-architecture artifact
-if (exists('stridelab-ai/registry/artifacts.yaml')) {
-  const y = read('stridelab-ai/registry/artifacts.yaml');
-  const waBlock = y.slice(y.indexOf('id: workflow-architecture'));
-  const waStatus = (waBlock.match(/status:\s*(\S+)/) || [])[1];
-  if (waStatus && waStatus !== 'AWAITING_HUMAN_APPROVAL') {
-    errors.push(`artifacts.yaml: workflow-architecture status is "${waStatus}", expected AWAITING_HUMAN_APPROVAL (G7 pending)`);
-  }
 }
 
-// A live pointer to a superseded v1 filename is a defect. Prose that documents
-// the rename ("was renamed", "v1-named ... renamed to v2") is allowed.
 const V1_PTR_FILES = [
   ...CANONICAL,
   'stridelab-ai/application-map/README.md',
@@ -359,32 +412,42 @@ for (const [file, ids] of DD_REFS) {
 }
 
 // ---------------------------------------------------------------------------
-// 9. Machine-readable orchestration files parse
+// 9. Machine-readable orchestration files parse as YAML with the expected shape
 // ---------------------------------------------------------------------------
 
-for (const jf of [
-  'stridelab-ai/orchestration/phase-gates/gates.yaml',
-  'stridelab-ai/orchestration/routing/routing-table.yaml',
-  'stridelab-ai/orchestration/approvals/approval-matrix.yaml',
-]) {
-  if (!exists(jf)) continue;
-  try {
-    JSON.parse(read(jf));
-  } catch (e) {
-    errors.push(`${jf}: not valid JSON (${e.message})`);
+const gates = parseYaml('stridelab-ai/orchestration/phase-gates/gates.yaml');
+if (gates) {
+  if (!Array.isArray(gates.gates)) {
+    errors.push('gates.yaml: top-level "gates" is not a list');
+  } else {
+    const ids = gates.gates.map((g) => g && g.id);
+    for (const need of ['G0', 'G1', 'G2', 'G3', 'G4', 'G7']) {
+      if (!ids.includes(need)) errors.push(`gates.yaml: gate ${need} not defined`);
+    }
+    const g7 = gates.gates.find((g) => g && g.id === 'G7');
+    if (g7 && g7.owner !== 'human') errors.push(`gates.yaml: G7.owner = ${JSON.stringify(g7.owner)}, expected "human"`);
+    const g4 = gates.gates.find((g) => g && g.id === 'G4');
+    if (g4 && !/code|configuration|data/i.test(String(g4.required_when))) {
+      warnings.push('gates.yaml: G4.required_when no longer mentions code/configuration/data');
+    }
   }
 }
 
-// Light YAML sanity for the registry files (no full parser dependency): no tabs,
-// no trailing whitespace on key lines, top-level key present.
-for (const yf of ['stridelab-ai/registry/artifacts.yaml', 'stridelab-ai/registry/bounded-context-owners.yaml']) {
-  if (!exists(yf)) continue;
-  const lines = read(yf).split('\n');
-  lines.forEach((ln, i) => {
-    if (ln.includes('\t')) errors.push(`${yf}:${i + 1}: tab character in YAML`);
-  });
-  const topKeys = lines.filter((l) => /^[A-Za-z_][\w-]*:/.test(l));
-  if (topKeys.length === 0) errors.push(`${yf}: no top-level mapping key found`);
+const routing = parseYaml('stridelab-ai/orchestration/routing/routing-table.yaml');
+if (routing && !Array.isArray(routing.rules)) {
+  errors.push('routing-table.yaml: top-level "rules" is not a list');
+}
+
+const approvals = parseYaml('stridelab-ai/orchestration/approvals/approval-matrix.yaml');
+if (approvals) {
+  if (!Array.isArray(approvals.actions)) {
+    errors.push('approval-matrix.yaml: top-level "actions" is not a list');
+  } else {
+    const lock = approvals.actions.find((a) => a && a.action === 'approve_product_or_architecture_lock');
+    if (!lock || lock.human_approval !== true) {
+      errors.push('approval-matrix.yaml: "approve_product_or_architecture_lock" must require human_approval: true');
+    }
+  }
 }
 
 // ---------------------------------------------------------------------------
@@ -397,6 +460,7 @@ const result = {
   workflows_found: countedTotal,
   unique_ids: allIds.size,
   categories: CATEGORIES.length,
+  registry_workflow_count: waArtifact ? waArtifact.workflow_count : null,
   errors,
   warnings,
 };
