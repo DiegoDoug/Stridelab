@@ -434,8 +434,17 @@ if (gates) {
 }
 
 const routing = parseYaml('stridelab-ai/orchestration/routing/routing-table.yaml');
-if (routing && !Array.isArray(routing.rules)) {
-  errors.push('routing-table.yaml: top-level "rules" is not a list');
+if (routing) {
+  if (!Array.isArray(routing.rules) || routing.rules.length === 0) {
+    errors.push('routing-table.yaml: top-level "rules" is not a non-empty list');
+  } else {
+    routing.rules.forEach((r, i) => {
+      if (!r || typeof r.id !== 'string') errors.push(`routing-table.yaml: rules[${i}] has no string "id"`);
+      if (!r || typeof r.primary !== 'string' || !/^0\d-[a-z-]+$/.test(r.primary)) {
+        errors.push(`routing-table.yaml: rules[${i}].primary = ${JSON.stringify(r && r.primary)} is not a department slug`);
+      }
+    });
+  }
 }
 
 const approvals = parseYaml('stridelab-ai/orchestration/approvals/approval-matrix.yaml');
@@ -443,9 +452,11 @@ if (approvals) {
   if (!Array.isArray(approvals.actions)) {
     errors.push('approval-matrix.yaml: top-level "actions" is not a list');
   } else {
-    const lock = approvals.actions.find((a) => a && a.action === 'approve_product_or_architecture_lock');
-    if (!lock || lock.human_approval !== true) {
-      errors.push('approval-matrix.yaml: "approve_product_or_architecture_lock" must require human_approval: true');
+    for (const need of ['approve_product_or_architecture_lock', 'configure_repository_administration']) {
+      const row = approvals.actions.find((a) => a && a.action === need);
+      if (!row || row.human_approval !== true) {
+        errors.push(`approval-matrix.yaml: "${need}" must be present with human_approval: true`);
+      }
     }
   }
 }

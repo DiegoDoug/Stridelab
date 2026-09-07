@@ -45,7 +45,7 @@ artifacts:
     status: STUB
     owner: 01-product-experience
     downstream_owner: "01-product-experience/domain-workflow-architect (skill: domain-modeling); 03-platform-data-engineering/database-engineer for persistence-adjacent aggregate boundaries"
-    blocking_stage: "blocks G4 (Implementation Integrity) sign-off for any bounded context — no schema / API contract shape / client-feature design may be approved for a context until this exists; does NOT block G7 approval of workflow-architecture v2, and does NOT block the 14 G2 seam identifications (only their shape design at G4)"
+    blocking_stage: "conservative default (offered for D01 ratification, not an approved decision): should exist before G4 (Implementation Integrity) sign-off for any bounded context — before a schema / API contract shape / client-feature design is approved for that context; does NOT block G7 approval of workflow-architecture v2, and does NOT block the 14 G2 seam identifications (only their shape design at G4)"
     upstream: [workflow-architecture, product-baseline]
     notes: >
       Not a required Phase 01 deliverable per the workflow-architecture SKILL
