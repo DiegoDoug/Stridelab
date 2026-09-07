@@ -28,7 +28,7 @@ states:
 
 | Artifact | Status | File |
 |---|---|---|
-| StrideLab Workflow Architecture v2 (canonical: `docs/product/workflow-architecture.md`) | `AWAITING HUMAN APPROVAL` (conditional) | `workflow-architecture-v2.md` |
+| StrideLab Workflow Architecture v2 (canonical: `docs/product/workflow-architecture.md`) | `APPROVED` (G7 granted by Diego, 2026-09-07; §9.2 items are accepted downstream conditions) | `workflow-architecture-v2.md` |
 
 The v1 record was renamed to v2 in the 2026-09-06 correction pass (the file was
 never committed; version history is preserved in the v2 documents).

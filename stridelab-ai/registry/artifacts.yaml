@@ -6,13 +6,19 @@ artifacts:
   - id: product-baseline
     type: governed-product-baseline
     path: docs/product/product-baseline.md
-    status: AWAITING_HUMAN_APPROVAL
+    status: APPROVED
+    approved_by: Diego
+    approved_date: 2026-09-07
+    approval_record: stridelab-ai/orchestration/approvals/G7-workflow-architecture-v2.md
     owner: 01-product-experience
     contributors: [04-security-identity-compliance, 06-business-operations-governance]
     supersedes: "embedded invariants list in Department agent prompts (ungoverned)"
     notes: >
       Single governed record of the product invariants the Workflow Architecture
-      is validated against. Proposed until a human approves it.
+      is validated against. Approved with the Workflow Architecture v2 at G7
+      (2026-09-07). §6 commercial invariants: the Free/Mid/Top tier structure is
+      an accepted downstream Department 06 ratification condition
+      (OQ-BE-TIER-STRUCTURE), not resolved by this approval.
 
   - id: workflow-architecture
     type: workflow-architecture
@@ -22,7 +28,15 @@ artifacts:
     supporting_spec_files: stridelab-ai/knowledge/workflows/*/WORKFLOWS.md
     workflow_count: 86
     category_count: 13
-    status: AWAITING_HUMAN_APPROVAL
+    status: APPROVED
+    approved_by: Diego
+    approved_date: 2026-09-07
+    approval_record: stridelab-ai/orchestration/approvals/G7-workflow-architecture-v2.md
+    approval_conditions: >
+      §9.2 OPEN register items accepted as downstream work under their named
+      owners; main branch protection + the configure_repository_administration
+      approval-matrix row ratified; commit 393f60c may remain on main; the
+      finalization PR merged with a merge commit (no squash).
     owner: 01-product-experience
     primary_specialist: domain-workflow-architect
     reviewed_by: [product-experience-lead, architecture-reviewer, 04-security-identity-compliance, 06-business-operations-governance, cross-department-reviewer]
@@ -38,6 +52,9 @@ artifacts:
       - version: v2
         date: 2026-09-06
         status: AWAITING_HUMAN_APPROVAL
+      - version: v2-finalization
+        date: 2026-09-07
+        status: APPROVED (G7 granted by Diego)
 
   - id: domain-model
     type: domain-model

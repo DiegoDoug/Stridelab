@@ -205,8 +205,20 @@ if (artifactsDoc) {
       if (waArtifact.category_count !== CATEGORIES.length) {
         errors.push(`artifacts.yaml: workflow-architecture.category_count = ${JSON.stringify(waArtifact.category_count)}, expected ${CATEGORIES.length}`);
       }
-      if (waArtifact.status !== 'AWAITING_HUMAN_APPROVAL') {
-        errors.push(`artifacts.yaml: workflow-architecture.status = ${JSON.stringify(waArtifact.status)}, expected "AWAITING_HUMAN_APPROVAL" (G7 pending)`);
+      // Post-G7: the workflow-architecture artifact is APPROVED. If it is ever
+      // moved back to AWAITING_HUMAN_APPROVAL the docs must agree — see the
+      // canonical-status cross-check below.
+      const VALID_STATUS = ['AWAITING_HUMAN_APPROVAL', 'APPROVED', 'SUPERSEDED'];
+      if (!VALID_STATUS.includes(waArtifact.status)) {
+        errors.push(`artifacts.yaml: workflow-architecture.status = ${JSON.stringify(waArtifact.status)}, expected one of ${VALID_STATUS.join(' / ')}`);
+      }
+      if (waArtifact.status === 'APPROVED') {
+        for (const k of ['approved_by', 'approved_date', 'approval_record']) {
+          if (!waArtifact[k]) errors.push(`artifacts.yaml: workflow-architecture is APPROVED but "${k}" is missing`);
+        }
+        if (typeof waArtifact.approval_record === 'string' && !exists(waArtifact.approval_record)) {
+          errors.push(`artifacts.yaml: workflow-architecture.approval_record -> "${waArtifact.approval_record}" does not resolve`);
+        }
       }
       if (waArtifact.canonical_entry_point !== 'docs/product/workflow-architecture.md') {
         errors.push(`artifacts.yaml: workflow-architecture.canonical_entry_point = ${JSON.stringify(waArtifact.canonical_entry_point)}`);
@@ -214,7 +226,7 @@ if (artifactsDoc) {
     }
     // every referenced path key on every artifact must resolve
     for (const a of artifactsDoc.artifacts) {
-      for (const key of ['path', 'canonical_entry_point', 'supporting_spec_index', 'current_state_record']) {
+      for (const key of ['path', 'canonical_entry_point', 'supporting_spec_index', 'current_state_record', 'approval_record']) {
         const v = a && a[key];
         if (typeof v === 'string' && !v.includes('*') && !exists(v.replace(/\/$/, ''))) {
           errors.push(`artifacts.yaml: ${a.id}.${key} -> "${v}" does not resolve`);
@@ -333,17 +345,32 @@ for (const doc of DOCS_WITH_PATHS) {
 // 6. Status consistency + no live v1 filename pointer
 // ---------------------------------------------------------------------------
 
+// The three narrative docs each declare a status on/near their first "Status"
+// line. That declared status must match the registry's workflow-architecture
+// status (single source of truth) — so an approval, or a roll-back, can never
+// leave the documents disagreeing with the register.
+const registryStatus = waArtifact && typeof waArtifact.status === 'string' ? waArtifact.status : null;
 const STATUS_FILES = [
   'docs/product/workflow-architecture.md',
-  'docs/product/product-baseline.md',
   'stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md',
   'stridelab-ai/project-memory/current-state/workflow-architecture-v2.md',
 ];
+function declaredStatus(text) {
+  const line = text.split('\n').find((l) => /status[:*\s]/i.test(l) && /`[^`]+`|AWAITING HUMAN APPROVAL|APPROVED|SUPERSEDED/i.test(l));
+  if (!line) return null;
+  const tok = (line.match(/`([^`]+)`/) || [])[1] || line;
+  if (/AWAITING[ _]HUMAN[ _]APPROVAL/i.test(tok)) return 'AWAITING_HUMAN_APPROVAL';
+  if (/\bAPPROVED\b/i.test(tok)) return 'APPROVED';
+  if (/\bSUPERSEDED\b/i.test(tok)) return 'SUPERSEDED';
+  return null;
+}
 for (const f of STATUS_FILES) {
   if (!exists(f)) continue;
-  const t = read(f);
-  if (!/AWAITING[ _]HUMAN[ _]APPROVAL/i.test(t)) {
-    errors.push(`${f}: canonical status "AWAITING HUMAN APPROVAL" not found`);
+  const ds = declaredStatus(read(f));
+  if (!ds) {
+    errors.push(`${f}: could not find a declared status on its first "Status" line`);
+  } else if (registryStatus && ds !== registryStatus) {
+    errors.push(`${f}: declared status "${ds}" != registry workflow-architecture.status "${registryStatus}"`);
   }
 }
 

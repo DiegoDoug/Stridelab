@@ -1,10 +1,10 @@
 # StrideLab Governed Product Baseline
 
-**Status:** `AWAITING HUMAN APPROVAL`.
+**Status:** `APPROVED` — with the Workflow Architecture v2 at G7 (Diego, 2026-09-07; record `stridelab-ai/orchestration/approvals/G7-workflow-architecture-v2.md`). **Exception:** §6 commercial invariants — the Free / Mid / Top tier structure is an accepted downstream Department 06 ratification condition (`OQ-BE-TIER-STRUCTURE`), not resolved by this approval.
 **Owning Department:** 01 Product & Experience, with Department 04 (safety/privacy/legal invariants) and Department 06 (commercial invariants).
 **Purpose:** the single governed record of the product invariants the Workflow Architecture (and all downstream work) is validated against. Created in the v2 correction pass to close independent-review finding **F-20** — previously these invariants lived only inside Department agent prompts, which is not a governed source.
 
-Until a human approves this file, it is a *proposed* baseline: it records what the Workflow Architecture v2 was validated against, not an approved decision set. On approval, this becomes authoritative over historical discussion, chat transcripts, and superseded artifacts, per `stridelab-ai/agents/project-memory-manager.md`.
+This baseline is now authoritative over historical discussion, chat transcripts, and superseded artifacts, per `stridelab-ai/agents/project-memory-manager.md` — except §6 as noted above.
 
 ## 1. Product summary
 
