@@ -7,7 +7,7 @@ identify the artifact/action, approver, scope, conditions, and date/version.
 |---|---|
 | **Action** | `approve_product_or_architecture_lock` — G7 (Human Approval) for the StrideLab Workflow Architecture. |
 | **Artifact approved** | Workflow Architecture **v2**. Canonical entry point: `docs/product/workflow-architecture.md`. Supporting spec: `stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md` + the 13 `stridelab-ai/knowledge/workflows/*/WORKFLOWS.md` files (86 workflows / 13 categories). Registry: `stridelab-ai/registry/`. Application map: `stridelab-ai/application-map/` (14 cross-context contract seams). |
-| **Validated against — NOT approved by this record** | `docs/product/product-baseline.md` (the governed product baseline the architecture was validated against) remains `AWAITING_HUMAN_APPROVAL` — a separate, still-open human decision. See §Scope. |
+| **Validated against — NOT approved by this record** | `docs/product/product-baseline.md` (the governed product baseline the architecture was validated against). This 2026-09-07 record did not approve it; it was approved as a standalone governed artifact by a separate human decision on 2026-09-08 — record `stridelab-ai/orchestration/approvals/G7-product-baseline.md`. See §Scope. |
 | **Approver** | Diego |
 | **Date** | 2026-09-07 |
 | **Version approved** | v2. Finalization branch `phase-1/finalize-workflow-architecture-v2`; the `APPROVED` status flip is commit `d449b3e7a9170fd3b63a92c3e968edc20db4993c`; merged to `main` via PR #1 as merge commit `3a770ea929b13b0f4362b09dd4dde618cc7a4a65` (no squash), merged by `DiegoDoug` 2026-09-07 19:44 UTC. |
@@ -19,14 +19,18 @@ The **Workflow Architecture v2** is **locked as the canonical product workflow
 baseline** for StrideLab. Downstream product, client, platform, security, and
 release work is validated against it.
 
-**This approval is for the Workflow Architecture v2 only.** It does **not**
+**This approval is for the Workflow Architecture v2 only.** It did **not**
 independently approve `docs/product/product-baseline.md` (the governed
-product-baseline artifact the architecture was validated against) — that artifact
-remains `AWAITING_HUMAN_APPROVAL` as a **separate, still-open human decision**.
-The verbatim approval (below) named "Workflow Architecture v2"; nothing here
-should be read as approving the baseline artifact by extension. §6 of that
-baseline additionally carries the Department 06 tier-structure ratification
-condition (`OQ-BE-TIER-STRUCTURE`).
+product-baseline artifact the architecture was validated against). The verbatim
+approval (below) named "Workflow Architecture v2"; nothing here should be read as
+approving the baseline artifact by extension.
+
+The product baseline was subsequently approved as a **standalone governed
+artifact** by a separate human decision on **2026-09-08** — record
+`stridelab-ai/orchestration/approvals/G7-product-baseline.md`. §6B of that baseline
+(the Free / Mid / Top tier structure, `OQ-BE-TIER-STRUCTURE`) and its §8 /
+`WORKFLOW-ARCHITECTURE-v2.md` §9.2 items remain accepted downstream conditions
+under their named owners, not resolved by either approval.
 
 ## Conditions (accepted at approval)
 

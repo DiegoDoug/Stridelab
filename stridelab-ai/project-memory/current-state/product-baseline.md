@@ -1,13 +1,14 @@
 # Current State — StrideLab Governed Product Baseline
 
-**Status: `AWAITING_HUMAN_APPROVAL`** — a separate, still-open human decision. The
-2026-09-07 G7 approval (Diego) was for the **Workflow Architecture v2** only; it
-did **not** independently approve this baseline. See
-`stridelab-ai/orchestration/approvals/G7-workflow-architecture-v2.md` §Scope.
+**Status: `APPROVED`** — G7 granted by Diego on 2026-09-08 as a standalone
+governed artifact, pinned to `main` at `0ac7483`. The 2026-09-07 G7 approval
+(Diego) was for the **Workflow Architecture v2** only and did **not** independently
+approve this baseline; this artifact's own approval was a separate human decision.
+Record: `stridelab-ai/orchestration/approvals/G7-product-baseline.md`.
 
 Canonical artifact: `docs/product/product-baseline.md` (one canonical location).
 Registry entry: `stridelab-ai/registry/artifacts.yaml` → `product-baseline`
-(`status: AWAITING_HUMAN_APPROVAL`). Header, registry, and this record agree.
+(`status: APPROVED`). Header, registry, and this record agree.
 
 ## What this artifact is
 
@@ -16,8 +17,8 @@ all downstream work) is validated against — created in the v2 correction pass 
 close independent-review finding **F-20** (previously the invariants lived only
 inside Department agent prompts, which is not a governed source). The normative
 force of each invariant comes from **Workflow Architecture v2 §9.1** (G7-approved);
-this file consolidates and restates them. It is a *proposed* baseline until a
-human approves it.
+this file consolidates and restates them. It was approved as a standalone
+governed baseline by Diego on 2026-09-08.
 
 ## Ownership, dependencies, downstream consumers
 
@@ -82,6 +83,14 @@ human approves it.
     (missing / unrecognised header status, missing registry entry, invalid
     registry status, and `APPROVED` without approval-record fields are now
     errors); this current-state record added to the status-agreement set.
+- **G7 approval (2026-09-08)** — **Diego** granted G7 for this artifact as a
+  standalone governed baseline. Header, registry entry, and this record flipped
+  `AWAITING_HUMAN_APPROVAL` → `APPROVED`; approval record
+  `stridelab-ai/orchestration/approvals/G7-product-baseline.md` created; the
+  `G7-workflow-architecture-v2.md` "validated against" row updated to point here.
+  Pinned to `main` at `0ac7483` (the commit named in the approval statement).
+  The Workflow Architecture v2 remains separately approved. §6B and the
+  §8 / §9.2 items remain accepted downstream conditions under their named owners.
 
 ## Gate posture (advisory — not human approval)
 
@@ -93,16 +102,15 @@ human approves it.
 | Commercial / governance (D06) | PASS WITH CONDITIONS | no false approval; `OQ-BE-TIER-STRUCTURE` remains D06-owned and unresolved |
 | Documentation / traceability | content consistent; governance-infra conditions applied in this pass | one canonical location; header/registry/current-state agree; validator now fail-closed |
 | Adversarial cross-department | revise-first items applied this pass; no BLOCKING | 16 invariants walked one-by-one — no contradiction with a locked decision |
-| **G7 — Human Approval** | **PENDING** | not granted; only Diego can grant it |
+| **G7 — Human Approval** | **`APPROVED`** | granted by Diego, 2026-09-08 (`stridelab-ai/orchestration/approvals/G7-product-baseline.md`) |
 
-## Blockers / open human decision
+## Blockers / accepted downstream conditions
 
-- **Open human decision:** whether to approve `docs/product/product-baseline.md`
-  as the canonical governed product baseline. Not granted. Nothing in this repo
-  impersonates or substitutes for it.
-- **Accepted downstream conditions (owners named; not resolved by approving this
-  file):** `OQ-BE-TIER-STRUCTURE` (D06 ratification of the Free/Mid/Top tier
-  structure into §6); the §8 / §9.2 external policy/legal register; a separate
+- **Human decision:** resolved — Diego granted G7 on 2026-09-08. No blockers for
+  this artifact.
+- **Accepted downstream conditions (owners named; not resolved by this
+  approval):** `OQ-BE-TIER-STRUCTURE` (D06 ratification of the Free/Mid/Top tier
+  structure into §6B); the §8 / §9.2 external policy/legal register; a separate
   approved Department 06 entitlement artifact before any BE-05 implementation.
 - Conservative safe defaults remain in force for every open item.
 
