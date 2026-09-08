@@ -21,9 +21,11 @@ Approval record: `stridelab-ai/orchestration/approvals/G7-product-baseline.md`.
   `AWAITING_HUMAN_APPROVAL`; its approval as a standalone governed artifact
   recorded as a separate, still-open human decision.
 - **2026-09-08:** **Diego granted G7** for this artifact as a standalone governed
-  baseline. Status → `APPROVED`. Pinned to `main` merge commit `3a770ea` (the
-  approval statement's `0ac7483…` reference is not reachable in this repo; pinned
-  to current `main` per the maintainer's in-session direction). The Workflow
+  baseline. Status → `APPROVED`, landed on `main` via **PR #4**
+  (`phase-1/approve-product-baseline`, squash-merged; folds in the `9552651`
+  scope-correction). Pinned to `main` merge commit `3a770ea` (the approval
+  statement's `0ac7483…` reference is not reachable in this repo; pinned to
+  current `main` per the maintainer's in-session direction). The Workflow
   Architecture v2 remains separately approved.
 
 ## Accepted downstream conditions (not resolved by this approval)
