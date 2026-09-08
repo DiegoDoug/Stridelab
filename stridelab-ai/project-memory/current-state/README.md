@@ -30,7 +30,7 @@ states:
 | Artifact | Status | File |
 |---|---|---|
 | StrideLab Workflow Architecture v2 (canonical: `docs/product/workflow-architecture.md`) | `APPROVED` (G7 granted by Diego, 2026-09-07; §9.2 items are accepted downstream conditions) | `workflow-architecture-v2.md` |
-| StrideLab Governed Product Baseline (canonical: `docs/product/product-baseline.md`) | `AWAITING_HUMAN_APPROVAL` (separate human decision; the 2026-09-07 G7 approved Workflow Architecture v2 only; §6 carries the `OQ-BE-TIER-STRUCTURE` D06 condition) | `product-baseline.md` |
+| StrideLab Governed Product Baseline (canonical: `docs/product/product-baseline.md`) | `APPROVED` (G7 granted by Diego, 2026-09-08 — separate from the 2026-09-07 Workflow Architecture v2 G7; §6B tier structure + §8/§9.2 items are accepted downstream conditions) | `product-baseline.md` |
 
 The v1 record was renamed to v2 in the 2026-09-06 correction pass (the file was
 never committed; version history is preserved in the v2 documents).

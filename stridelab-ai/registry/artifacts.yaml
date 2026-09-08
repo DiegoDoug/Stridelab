@@ -6,7 +6,10 @@ artifacts:
   - id: product-baseline
     type: governed-product-baseline
     path: docs/product/product-baseline.md
-    status: AWAITING_HUMAN_APPROVAL
+    status: APPROVED
+    approved_by: Diego
+    approved_date: 2026-09-08
+    approval_record: stridelab-ai/orchestration/approvals/G7-product-baseline.md
     owner: 01-product-experience
     contributors: [04-security-identity-compliance, 06-business-operations-governance]
     supersedes: "embedded invariants list in Department agent prompts (ungoverned)"
@@ -16,16 +19,18 @@ artifacts:
       Governed record of the product invariants the Workflow Architecture v2 was
       validated against; normative force of each invariant comes from Workflow
       Architecture v2 §9.1 (G7-approved). The 2026-09-07 G7 approval was for the
-      Workflow Architecture v2 and did NOT independently approve this baseline —
-      that is a separate, still-open human decision (G7 for this artifact is
-      PENDING). §6B is Department-06-owned working defaults NOT resolved by
-      approving this baseline: tier structure (OQ-BE-TIER-STRUCTURE, owner D06),
-      billing owner (OQ-BE-BILLING-OWNER), and provider/pricing/tax/refund/IAP/
-      plan-limit/trial/grace/over-limit (OQ-BE-*), plus a separate approved D06
-      entitlement artifact before any BE-05 implementation. §6A payment !=
-      authorization and downgrade-preserves-data are D04-owned hard rules
-      (invariant #9). If this artifact is ever set to APPROVED it must carry
-      approved_by / approved_date / approval_record.
+      Workflow Architecture v2 and did NOT independently approve this baseline;
+      this artifact was approved as a standalone governed baseline by Diego on
+      2026-09-08 (separate human decision — record G7-product-baseline.md). §6B is
+      Department-06-owned working defaults NOT resolved by that approval: tier
+      structure (OQ-BE-TIER-STRUCTURE, owner D06), billing owner
+      (OQ-BE-BILLING-OWNER), and provider/pricing/tax/refund/IAP/plan-limit/
+      trial/grace/over-limit (OQ-BE-*), plus a separate approved D06 entitlement
+      artifact before any BE-05 implementation. §6A payment != authorization and
+      downgrade-preserves-data are D04-owned hard rules (invariant #9). The §8 /
+      WORKFLOW-ARCHITECTURE-v2.md §9.2 external policy/legal and open product
+      items likewise remain accepted downstream conditions under their named
+      owners.
 
   - id: workflow-architecture
     type: workflow-architecture
