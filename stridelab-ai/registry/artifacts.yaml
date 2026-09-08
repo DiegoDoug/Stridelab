@@ -6,16 +6,23 @@ artifacts:
   - id: product-baseline
     type: governed-product-baseline
     path: docs/product/product-baseline.md
-    status: AWAITING_HUMAN_APPROVAL
+    status: APPROVED
+    approved_by: Diego
+    approved_date: 2026-09-08
+    approval_record: stridelab-ai/orchestration/approvals/G7-product-baseline.md
     owner: 01-product-experience
     contributors: [04-security-identity-compliance, 06-business-operations-governance]
     supersedes: "embedded invariants list in Department agent prompts (ungoverned)"
     notes: >
       Single governed record of the product invariants the Workflow Architecture
-      v2 was validated against. The 2026-09-07 G7 approval was for the Workflow
-      Architecture v2 and did NOT independently approve this baseline — that is a
-      separate, still-open human decision. §6 additionally carries the D06
-      tier-structure ratification condition (OQ-BE-TIER-STRUCTURE).
+      v2 was validated against. Approved as a standalone governed baseline by
+      Diego on 2026-09-08 — a separate human decision from the 2026-09-07
+      Workflow Architecture v2 G7 (which did NOT independently approve this
+      baseline). Downstream conditions NOT resolved by this approval: §6's
+      Free/Mid/Top tier structure (OQ-BE-TIER-STRUCTURE) and the identified
+      commercial, legal, policy, and implementation-design items
+      (WORKFLOW-ARCHITECTURE-v2.md §9.2) remain accepted downstream conditions
+      under their named owners.
 
   - id: workflow-architecture
     type: workflow-architecture

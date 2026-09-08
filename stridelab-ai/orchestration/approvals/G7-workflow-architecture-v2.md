@@ -18,14 +18,18 @@ The **Workflow Architecture v2** is **locked as the canonical product workflow
 baseline** for StrideLab. Downstream product, client, platform, security, and
 release work is validated against it.
 
-**This approval is for the Workflow Architecture v2 only.** It does **not**
+**This approval is for the Workflow Architecture v2 only.** It did **not**
 independently approve `docs/product/product-baseline.md` (the governed
-product-baseline artifact the architecture was validated against) — that artifact
-remains `AWAITING_HUMAN_APPROVAL` as a **separate, still-open human decision**.
-The verbatim approval (below) named "Workflow Architecture v2"; nothing here
-should be read as approving the baseline artifact by extension. §6 of that
-baseline additionally carries the Department 06 tier-structure ratification
-condition (`OQ-BE-TIER-STRUCTURE`).
+product-baseline artifact the architecture was validated against). The verbatim
+approval (below) named "Workflow Architecture v2"; nothing here should be read as
+approving the baseline artifact by extension.
+
+The product baseline was subsequently approved as a **standalone governed
+artifact** by a separate human decision on **2026-09-08** — record
+`stridelab-ai/orchestration/approvals/G7-product-baseline.md`. §6 of that baseline
+(the Free / Mid / Top tier structure, `OQ-BE-TIER-STRUCTURE`) and the identified
+commercial, legal, policy, and implementation-design items remain accepted
+downstream conditions under their named owners, not resolved by either approval.
 
 ## Conditions (accepted at approval)
 

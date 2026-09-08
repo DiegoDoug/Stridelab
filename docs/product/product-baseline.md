@@ -1,10 +1,10 @@
 # StrideLab Governed Product Baseline
 
-**Status:** `AWAITING_HUMAN_APPROVAL`.
+**Status:** `APPROVED` — as the canonical governed product baseline (Diego, 2026-09-08; record `stridelab-ai/orchestration/approvals/G7-product-baseline.md`; approved at `main` merge commit `3a770ea`). The Workflow Architecture v2 remains separately approved. **Downstream conditions — not resolved by this approval:** §6's Free / Mid / Top tier structure (`OQ-BE-TIER-STRUCTURE`) and the identified commercial, legal, policy, and implementation-design items (`WORKFLOW-ARCHITECTURE-v2.md` §9.2; §8 of this file) remain accepted downstream conditions under their named owners.
 **Owning Department:** 01 Product & Experience, with Department 04 (safety/privacy/legal invariants) and Department 06 (commercial invariants).
 **Purpose:** the single governed record of the product invariants the Workflow Architecture (and all downstream work) is validated against. Created in the v2 correction pass to close independent-review finding **F-20** — previously these invariants lived only inside Department agent prompts, which is not a governed source.
 
-The G7 approval of 2026-09-07 (`stridelab-ai/orchestration/approvals/G7-workflow-architecture-v2.md`) was for the **Workflow Architecture v2** — it did **not** independently approve this baseline. This file records what the Workflow Architecture v2 was validated against; its own approval as a standalone governed artifact is a **separate, still-open human decision**. §6 commercial invariants additionally carry the Department 06 tier-structure ratification condition (`OQ-BE-TIER-STRUCTURE`). Until a human approves this file, it is a *proposed* baseline.
+This baseline is authoritative over historical discussion, chat transcripts, and superseded artifacts, per `stridelab-ai/agents/project-memory-manager.md`. The 2026-09-07 G7 approval of the Workflow Architecture v2 (`stridelab-ai/orchestration/approvals/G7-workflow-architecture-v2.md`) did **not** itself approve this artifact; it was approved as a **standalone governed baseline** by a separate human decision on 2026-09-08 (`stridelab-ai/orchestration/approvals/G7-product-baseline.md`). The downstream conditions named in the Status line above remain open under their named owners and are not resolved by this approval.
 
 ## 1. Product summary
 

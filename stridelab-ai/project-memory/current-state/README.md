@@ -28,6 +28,7 @@ states:
 
 | Artifact | Status | File |
 |---|---|---|
+| StrideLab Governed Product Baseline (`docs/product/product-baseline.md`) | `APPROVED` (G7 granted by Diego, 2026-09-08; §6 tier structure + identified commercial/legal/policy/implementation-design items are accepted downstream conditions) | `product-baseline.md` |
 | StrideLab Workflow Architecture v2 (canonical: `docs/product/workflow-architecture.md`) | `APPROVED` (G7 granted by Diego, 2026-09-07; §9.2 items are accepted downstream conditions) | `workflow-architecture-v2.md` |
 
 The v1 record was renamed to v2 in the 2026-09-06 correction pass (the file was
