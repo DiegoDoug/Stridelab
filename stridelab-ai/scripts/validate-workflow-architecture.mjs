@@ -365,10 +365,13 @@ const KNOWN_STATUSES = ['AWAITING_HUMAN_APPROVAL', 'APPROVED', 'SUPERSEDED'];
 function declaredStatusInfo(text) {
   const line = text.split('\n').find((l) => /status[:*\s]/i.test(l) && /`[^`]+`|AWAITING[ _]HUMAN[ _]APPROVAL|AWAITING APPROVAL|APPROVED|SUPERSEDED/i.test(l));
   if (!line) return { line: null, value: null };
-  const tok = (line.match(/`([^`]+)`/) || [])[1] || line;
-  if (/AWAITING[ _]HUMAN[ _]APPROVAL|AWAITING APPROVAL/i.test(tok)) return { line, value: 'AWAITING_HUMAN_APPROVAL' };
-  if (/\bAPPROVED\b/i.test(tok)) return { line, value: 'APPROVED' };
-  if (/\bSUPERSEDED\b/i.test(tok)) return { line, value: 'SUPERSEDED' };
+  // Require a back-ticked status token — the convention in every status file.
+  // Falling back to the whole line would misread e.g. "Status: not yet approved".
+  const tok = (line.match(/`([^`]+)`/) || [])[1];
+  if (!tok) return { line, value: null };
+  if (/^AWAITING[ _]HUMAN[ _]APPROVAL$|^AWAITING APPROVAL$/i.test(tok.trim())) return { line, value: 'AWAITING_HUMAN_APPROVAL' };
+  if (/^APPROVED$/i.test(tok.trim())) return { line, value: 'APPROVED' };
+  if (/^SUPERSEDED$/i.test(tok.trim())) return { line, value: 'SUPERSEDED' };
   return { line, value: null };
 }
 function declaredStatus(text) {
