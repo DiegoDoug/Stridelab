@@ -6,7 +6,8 @@ identify the artifact/action, approver, scope, conditions, and date/version.
 | Field | Value |
 |---|---|
 | **Action** | `approve_product_or_architecture_lock` — G7 (Human Approval) for the StrideLab Workflow Architecture. |
-| **Artifact** | Workflow Architecture **v2**. Canonical entry point: `docs/product/workflow-architecture.md`. Governed baseline: `docs/product/product-baseline.md`. Supporting spec: `stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md` + the 13 `stridelab-ai/knowledge/workflows/*/WORKFLOWS.md` files (86 workflows / 13 categories). Registry: `stridelab-ai/registry/`. Application map: `stridelab-ai/application-map/` (14 cross-context contract seams). |
+| **Artifact approved** | Workflow Architecture **v2**. Canonical entry point: `docs/product/workflow-architecture.md`. Supporting spec: `stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md` + the 13 `stridelab-ai/knowledge/workflows/*/WORKFLOWS.md` files (86 workflows / 13 categories). Registry: `stridelab-ai/registry/`. Application map: `stridelab-ai/application-map/` (14 cross-context contract seams). |
+| **Validated against — NOT approved by this record** | `docs/product/product-baseline.md` (the governed product baseline the architecture was validated against) remains `AWAITING_HUMAN_APPROVAL` — a separate, still-open human decision. See §Scope. |
 | **Approver** | Diego |
 | **Date** | 2026-09-07 |
 | **Version approved** | v2. Finalization branch `phase-1/finalize-workflow-architecture-v2`; the `APPROVED` status flip is commit `d449b3e7a9170fd3b63a92c3e968edc20db4993c`; merged to `main` via PR #1 as merge commit `3a770ea929b13b0f4362b09dd4dde618cc7a4a65` (no squash), merged by `DiegoDoug` 2026-09-07 19:44 UTC. |

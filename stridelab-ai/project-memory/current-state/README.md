@@ -17,7 +17,8 @@ registry indexes artifacts and their owners. See
 
 One file per tracked artifact/initiative, named for the artifact. Each file
 states:
-- current status (`PROPOSED` / `AWAITING APPROVAL` / `APPROVED` / `SUPERSEDED`);
+- current status (`PROPOSED` / `AWAITING_HUMAN_APPROVAL` / `APPROVED` / `SUPERSEDED`
+  — the registry vocabulary; older records may read `AWAITING APPROVAL`);
 - work completed;
 - review results and gate statuses;
 - blockers;
@@ -29,6 +30,7 @@ states:
 | Artifact | Status | File |
 |---|---|---|
 | StrideLab Workflow Architecture v2 (canonical: `docs/product/workflow-architecture.md`) | `APPROVED` (G7 granted by Diego, 2026-09-07; §9.2 items are accepted downstream conditions) | `workflow-architecture-v2.md` |
+| StrideLab Governed Product Baseline (canonical: `docs/product/product-baseline.md`) | `AWAITING_HUMAN_APPROVAL` (separate human decision; the 2026-09-07 G7 approved Workflow Architecture v2 only; §6 carries the `OQ-BE-TIER-STRUCTURE` D06 condition) | `product-baseline.md` |
 
 The v1 record was renamed to v2 in the 2026-09-06 correction pass (the file was
 never committed; version history is preserved in the v2 documents).

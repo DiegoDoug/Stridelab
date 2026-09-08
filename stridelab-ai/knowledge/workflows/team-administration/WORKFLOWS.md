@@ -214,7 +214,7 @@
 
 **State transitions:** `unassigned → assigned` / `assigned → unassigned`, Head-Coach-driven.
 
-**Happy path:** Head Coach selects an Event Coach → selects target group(s) → confirms → Event Coach gains management scope over Athletes assigned to that group (per TA-04) and communication reach unaffected (Event Coaches can already message any Team athlete per the approved baseline — this assignment governs *management*, not messaging reach).
+**Happy path:** Head Coach selects an Event Coach → selects target group(s) → confirms → Event Coach gains management scope over Athletes assigned to that group (per TA-04) and communication reach unaffected (Event Coaches can already message any Team athlete per the governed product baseline (Workflow Architecture v2 §9.1) — this assignment governs *management*, not messaging reach).
 
 **Alternate paths:** Reassigning an Event Coach from one group to another — prior group loses that coach's management scope immediately.
 
@@ -234,7 +234,7 @@
 
 **Downstream artifacts:** Feeds TA-04 scope, TP-07, SE-*, all Event-Coach-authorization checks.
 
-**Open questions:** None material; this is a stable invariant per the approved baseline.
+**Open questions:** None material; this is a stable invariant per the governed product baseline (Workflow Architecture v2 §9.1).
 
 ---
 

@@ -158,7 +158,7 @@ likewise **disabled in v1** (VS-02).
 **Preconditions:** Both parties are active members of the same Team; no active block between them (MG-06).
 
 **Authorization assumptions:**
-- Per the approved baseline, Event Coaches may **communicate** with any athlete on the Team — private-chat initiation authority is Team-wide for coaches, distinct from and broader than their group-management scope. **This communication reach does not widen tagging, Vault sharing, structured feedback, analysis, profile, or management scope** (v2 cross-cutting rule).
+- Per the governed product baseline (Workflow Architecture v2 §9.1), Event Coaches may **communicate** with any athlete on the Team — private-chat initiation authority is Team-wide for coaches, distinct from and broader than their group-management scope. **This communication reach does not widen tagging, Vault sharing, structured feedback, analysis, profile, or management scope** (v2 cross-cutting rule).
 - A Head Coach may message any Team athlete.
 - Either party may start the thread; it is exactly one coach and one athlete, never a group.
 - A block (MG-06) stops all DM/mention/tag/share/discovery between the two parties; an existing thread becomes read-only for the remaining party per `OQ-MG-RETENTION`.

@@ -18,7 +18,7 @@ Owning Department: 01 Product & Experience. Last advanced: 2026-09-07 (G7 approv
 | Domain model (companion, stub) | `docs/product/domain-model.md` |
 | Automated documentation verification | `stridelab-ai/scripts/validate-workflow-architecture.mjs` (CI: `.github/workflows/workflow-architecture-validation.yml`) |
 
-Where wording differs, **this file governs**, then `product-baseline.md`, then the supporting spec. The supporting spec carries the full per-workflow detail (actors, capability/trigger, preconditions, authorization assumptions, states, transitions, happy/alternate paths, errors/recovery, offline behaviour, sync implications, notifications, audit, exit condition, downstream artifacts, open questions). Do **not** duplicate that detail here.
+Where wording differs, **this file governs**, then `product-baseline.md` (proposed — `AWAITING_HUMAN_APPROVAL`; invariant context, normative via §9.1), then the supporting spec. The supporting spec carries the full per-workflow detail (actors, capability/trigger, preconditions, authorization assumptions, states, transitions, happy/alternate paths, errors/recovery, offline behaviour, sync implications, notifications, audit, exit condition, downstream artifacts, open questions). Do **not** duplicate that detail here.
 
 ## Version history
 

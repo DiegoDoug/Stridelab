@@ -67,6 +67,7 @@ const CANONICAL = [
   'stridelab-ai/registry/artifacts.yaml',
   'stridelab-ai/registry/bounded-context-owners.yaml',
   'stridelab-ai/project-memory/current-state/workflow-architecture-v2.md',
+  'stridelab-ai/project-memory/current-state/product-baseline.md',
 ];
 for (const p of CANONICAL) {
   if (!exists(p)) errors.push(`Missing canonical artifact: ${p}`);
@@ -321,6 +322,7 @@ const DOCS_WITH_PATHS = [
   'stridelab-ai/registry/bounded-context-owners.yaml',
   'stridelab-ai/project-memory/current-state/workflow-architecture-v2.md',
   'stridelab-ai/project-memory/current-state/README.md',
+  'stridelab-ai/project-memory/current-state/product-baseline.md',
 ];
 const PATH_RE = /`?((?:docs|stridelab-ai|domains|platform|services|packages|apps|infrastructure|\.github)\/[A-Za-z0-9_.\/-]+)`?/g;
 
@@ -355,22 +357,64 @@ const STATUS_FILES = [
   'stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md',
   'stridelab-ai/project-memory/current-state/workflow-architecture-v2.md',
 ];
-function declaredStatus(text) {
-  const line = text.split('\n').find((l) => /status[:*\s]/i.test(l) && /`[^`]+`|AWAITING HUMAN APPROVAL|APPROVED|SUPERSEDED/i.test(l));
-  if (!line) return null;
-  const tok = (line.match(/`([^`]+)`/) || [])[1] || line;
-  if (/AWAITING[ _]HUMAN[ _]APPROVAL/i.test(tok)) return 'AWAITING_HUMAN_APPROVAL';
-  if (/\bAPPROVED\b/i.test(tok)) return 'APPROVED';
-  if (/\bSUPERSEDED\b/i.test(tok)) return 'SUPERSEDED';
-  return null;
+const KNOWN_STATUSES = ['AWAITING_HUMAN_APPROVAL', 'APPROVED', 'SUPERSEDED'];
+// Returns { line: string|null, value: 'AWAITING_HUMAN_APPROVAL'|'APPROVED'|'SUPERSEDED'|null }.
+// `line` is null only when no "Status" line exists at all; `value` is null when a
+// Status line exists but carries no recognised token (both are hard errors for
+// artifacts that must fail closed).
+function declaredStatusInfo(text) {
+  const line = text.split('\n').find((l) => /status[:*\s]/i.test(l) && /`[^`]+`|AWAITING[ _]HUMAN[ _]APPROVAL|AWAITING APPROVAL|APPROVED|SUPERSEDED/i.test(l));
+  if (!line) return { line: null, value: null };
+  // Require a back-ticked status token — the convention in every status file.
+  // Falling back to the whole line would misread e.g. "Status: not yet approved".
+  const tok = (line.match(/`([^`]+)`/) || [])[1];
+  if (!tok) return { line, value: null };
+  if (/^AWAITING[ _]HUMAN[ _]APPROVAL$|^AWAITING APPROVAL$/i.test(tok.trim())) return { line, value: 'AWAITING_HUMAN_APPROVAL' };
+  if (/^APPROVED$/i.test(tok.trim())) return { line, value: 'APPROVED' };
+  if (/^SUPERSEDED$/i.test(tok.trim())) return { line, value: 'SUPERSEDED' };
+  return { line, value: null };
 }
-// product-baseline is a separate artifact with its own lifecycle status — check
-// its header declaration against its own registry entry, not the architecture's.
-if (artifactsDoc && Array.isArray(artifactsDoc.artifacts) && exists('docs/product/product-baseline.md')) {
-  const pb = artifactsDoc.artifacts.find((a) => a && a.id === 'product-baseline');
-  const pbDeclared = declaredStatus(read('docs/product/product-baseline.md'));
-  if (pb && pbDeclared && pb.status && pbDeclared !== pb.status) {
-    errors.push(`docs/product/product-baseline.md: declared status "${pbDeclared}" != registry product-baseline.status "${pb.status}"`);
+function declaredStatus(text) {
+  return declaredStatusInfo(text).value;
+}
+// product-baseline is a separate governed artifact with its own lifecycle status.
+// This check must FAIL CLOSED: a missing Status line, an unrecognised token, a
+// missing/invalid registry entry, or APPROVED without approval-record fields are
+// all errors — not silent passes. (Negative-tested; see the corrective PR.)
+{
+  const PB_DOC = 'docs/product/product-baseline.md';
+  const PB_STATE = 'stridelab-ai/project-memory/current-state/product-baseline.md';
+  const pb = artifactsDoc && Array.isArray(artifactsDoc.artifacts)
+    ? artifactsDoc.artifacts.find((a) => a && a.id === 'product-baseline')
+    : null;
+
+  if (!pb) {
+    errors.push('artifacts.yaml: no artifact with id "product-baseline"');
+  } else if (typeof pb.status !== 'string' || !KNOWN_STATUSES.includes(pb.status)) {
+    errors.push(`artifacts.yaml: product-baseline.status = ${JSON.stringify(pb.status)}, expected one of ${KNOWN_STATUSES.join(' / ')}`);
+  } else if (pb.status === 'APPROVED') {
+    for (const k of ['approved_by', 'approved_date', 'approval_record']) {
+      if (!pb[k]) errors.push(`artifacts.yaml: product-baseline is APPROVED but "${k}" is missing`);
+    }
+    if (typeof pb.approval_record === 'string' && !exists(pb.approval_record)) {
+      errors.push(`artifacts.yaml: product-baseline.approval_record -> "${pb.approval_record}" does not resolve`);
+    }
+  }
+
+  const pbRegStatus = pb && KNOWN_STATUSES.includes(pb.status) ? pb.status : null;
+  for (const f of [PB_DOC, PB_STATE]) {
+    if (!exists(f)) {
+      errors.push(`Missing product-baseline status file: ${f}`);
+      continue;
+    }
+    const info = declaredStatusInfo(read(f));
+    if (info.line === null) {
+      errors.push(`${f}: could not find a declared status on a "Status" line`);
+    } else if (info.value === null) {
+      errors.push(`${f}: "Status" line carries no recognised status token (expected one of ${KNOWN_STATUSES.join(' / ')})`);
+    } else if (pbRegStatus && info.value !== pbRegStatus) {
+      errors.push(`${f}: declared status "${info.value}" != registry product-baseline.status "${pbRegStatus}"`);
+    }
   }
 }
 

@@ -6,7 +6,7 @@
 **Skills applied:** domain-modeling, workflow-architecture
 **Cross-department dependency:** Department 04 review mandatory — this category involves youth media, tagging, and visibility scope (risk-sensitive routing per ORCHESTRATOR.md).
 
-**Governing invariant (approved baseline):** Recording, tagging, explicit sharing,
+**Governing invariant (governed product baseline — normative via Workflow Architecture v2 §9.1):** Recording, tagging, explicit sharing,
 Vault visibility, and Team publication are five separate transitions. Tagging
 never implies publication. Media capture defaults to private/draft; broader
 visibility is always an explicit, subsequent, attributable act.

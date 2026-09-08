@@ -143,7 +143,7 @@ or a Team is closed:
 
 **Downstream artifacts:** Team record consumed by TA-01–TA-07, IT-03/IT-04, all training-planning/session/media/messaging/billing workflows (everything is Team-scoped).
 
-**Open questions:** None material — this is a stable invariant per the approved baseline.
+**Open questions:** None material — this is a stable invariant per the governed product baseline (Workflow Architecture v2 §9.1).
 
 ---
 

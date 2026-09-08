@@ -40,7 +40,7 @@ their own state machines.
 
 **Alternate paths:** N/A beyond IT-01's own alternate paths.
 
-**Errors/failures:** Age assertion below 13 → hard rejection (IT-01 `rejected_underage`); no workaround path (e.g., parental-consent-based under-13 accounts) exists in the approved baseline — if such a path is ever desired, it is a new product decision requiring explicit approval, not an extension of this workflow.
+**Errors/failures:** Age assertion below 13 → hard rejection (IT-01 `rejected_underage`); no workaround path (e.g., parental-consent-based under-13 accounts) exists in the governed product baseline — if such a path is ever desired, it is a new product decision requiring explicit approval, not an extension of this workflow.
 
 **Recovery:** N/A — rejection is by design, not a defect requiring recovery.
 
@@ -201,7 +201,7 @@ their own state machines.
 
 **Preconditions:** Same as MG-04.
 
-**Authorization assumptions:** Restated for emphasis: Event Coaches' Team-wide private-messaging reach (broader than their Event Group management scope) is an approved baseline invariant, but it is precisely this breadth that makes MG-04's open questions (oversight/visibility, retention policy) safety-material rather than cosmetic. This workflow does not resolve those open questions; it exists to ensure they cannot be silently dropped during implementation because they live only inside a "messaging feature" document.
+**Authorization assumptions:** Restated for emphasis: Event Coaches' Team-wide private-messaging reach (broader than their Event Group management scope) is a governed product baseline invariant (Workflow Architecture v2 §9.1), but it is precisely this breadth that makes MG-04's open questions (oversight/visibility, retention policy) safety-material rather than cosmetic. This workflow does not resolve those open questions; it exists to ensure they cannot be silently dropped during implementation because they live only inside a "messaging feature" document.
 
 **Owned resources:** N/A directly (cross-cutting framing over MG-04's owned resources).
 

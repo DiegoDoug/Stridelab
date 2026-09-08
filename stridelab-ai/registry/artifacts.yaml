@@ -10,12 +10,22 @@ artifacts:
     owner: 01-product-experience
     contributors: [04-security-identity-compliance, 06-business-operations-governance]
     supersedes: "embedded invariants list in Department agent prompts (ungoverned)"
+    current_state_record: stridelab-ai/project-memory/current-state/product-baseline.md
+    downstream_consumers: [workflow-architecture, domain-model, application-map]
     notes: >
-      Single governed record of the product invariants the Workflow Architecture
-      v2 was validated against. The 2026-09-07 G7 approval was for the Workflow
-      Architecture v2 and did NOT independently approve this baseline — that is a
-      separate, still-open human decision. §6 additionally carries the D06
-      tier-structure ratification condition (OQ-BE-TIER-STRUCTURE).
+      Governed record of the product invariants the Workflow Architecture v2 was
+      validated against; normative force of each invariant comes from Workflow
+      Architecture v2 §9.1 (G7-approved). The 2026-09-07 G7 approval was for the
+      Workflow Architecture v2 and did NOT independently approve this baseline —
+      that is a separate, still-open human decision (G7 for this artifact is
+      PENDING). §6B is Department-06-owned working defaults NOT resolved by
+      approving this baseline: tier structure (OQ-BE-TIER-STRUCTURE, owner D06),
+      billing owner (OQ-BE-BILLING-OWNER), and provider/pricing/tax/refund/IAP/
+      plan-limit/trial/grace/over-limit (OQ-BE-*), plus a separate approved D06
+      entitlement artifact before any BE-05 implementation. §6A payment !=
+      authorization and downgrade-preserves-data are D04-owned hard rules
+      (invariant #9). If this artifact is ever set to APPROVED it must carry
+      approved_by / approved_date / approval_record.
 
   - id: workflow-architecture
     type: workflow-architecture
