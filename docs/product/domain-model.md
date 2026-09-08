@@ -6,7 +6,7 @@
 
 | Concern | Location |
 |---|---|
-| Entities, ownership rules, invariants | `docs/product/product-baseline.md` §2–§6, and `stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md` §5 (cross-workflow invariants) |
+| Entities, ownership rules, invariants | `docs/product/product-baseline.md` §2–§6 (proposed — `AWAITING_HUMAN_APPROVAL`; normative via Workflow Architecture v2 §9.1), and `stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md` §5 (cross-workflow invariants) |
 | Lifecycles | `WORKFLOW-ARCHITECTURE-v2.md` §4 (major lifecycle relationships) |
 | Workflow states / transitions / failure paths | the 13 `stridelab-ai/knowledge/workflows/*/WORKFLOWS.md` category files |
 | Bounded-context ownership | `stridelab-ai/application-map/bounded-contexts.md` |

@@ -10,7 +10,7 @@
 Per the task instructions, this section models only the workflow boundary —
 no exact prices or plan limits are defined or implied.
 
-**Governing invariant (approved baseline / ORCHESTRATOR.md cross-department rule):** D06 may define commercial entitlements but cannot treat payment status as authorization. A Team's tier state may gate *feature availability* (e.g., how many Event Groups, storage limits, media/analysis feature depth) but must never be the mechanism that determines whether a specific role can perform a specific authorization-sensitive action (e.g., Event Coach management scope, Vault visibility) — those remain governed entirely by identity-team/team-administration/vault-sharing.
+**Governing invariant (governed product baseline §6A — normative via Workflow Architecture v2 §9.1 / ORCHESTRATOR.md cross-department rule):** D06 may define commercial entitlements but cannot treat payment status as authorization. A Team's tier state may gate *feature availability* (e.g., how many Event Groups, storage limits, media/analysis feature depth) but must never be the mechanism that determines whether a specific role can perform a specific authorization-sensitive action (e.g., Event Coach management scope, Vault visibility) — those remain governed entirely by identity-team/team-administration/vault-sharing.
 
 ---
 
@@ -30,7 +30,7 @@ no exact prices or plan limits are defined or implied.
 
 **States:** `no_tier_selected (default Free) → tier_selected(Free|Mid|Top)`.
 
-**State transitions:** Head Coach selects/changes tier; a new Team defaults to Free per the approved baseline's tiered-architecture requirement.
+**State transitions:** Head Coach selects/changes tier; a new Team defaults to Free per the working Free/Mid/Top tier skeleton (`OQ-BE-TIER-STRUCTURE` — Department 06-owned, not yet ratified).
 
 **Happy path:** Head Coach reviews tier options and selects one appropriate for the Team's needs.
 
