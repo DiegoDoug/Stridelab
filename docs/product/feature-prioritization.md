@@ -1,10 +1,10 @@
 # StrideLab MVP Feature Prioritization
 
-**Status:** `AWAITING_HUMAN_APPROVAL` — Department 01 Step 2, Phase A. Authored 2026-09-10 by Department 01 Product & Experience (`product-strategist`, skills `product-strategy` + `user-research-usability`), orchestrated per `stridelab-ai/commands/orchestrate/orchestrate-task.md` and executed per `stridelab-ai/departments/01-product-experience/commands/strategy/prioritize-features.md`.
+**Status:** `APPROVED` — G7 granted by Diego on 2026-09-10 for Department 01 Step 2, pinned to commit `9893c1d4dd0166fd0c55f1950e601e5f8737946c`. Approval record: `stridelab-ai/orchestration/approvals/G7-mvp-feature-prioritization-release-scope.md`. Authored 2026-09-10 by Department 01 Product & Experience (`product-strategist`, skills `product-strategy` + `user-research-usability`), orchestrated per `stridelab-ai/commands/orchestrate/orchestrate-task.md` and executed per `stridelab-ai/departments/01-product-experience/commands/strategy/prioritize-features.md`.
 **Owning Department:** 01 Product & Experience. **Primary specialist:** `product-strategist`. **Department lead:** `product-experience-lead`.
 **Companion artifact (Phase B):** `docs/product/mvp-release-scope.md` (translates this prioritization into one governed MVP release scope).
 
-This artifact **prioritizes candidate capabilities** for the first StrideLab release. It is a **proposal**, not an approved decision. No `OQ-*` / `CD-*` item in `stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md` §9.2 is resolved, converted, or created here; every conservative safe default remains in force. No product invariant is changed or contradicted. No navigation is designed (invariant #11; `ORCHESTRATOR.md` authority order).
+This artifact is the **approved governed prioritization** of capabilities for the first StrideLab release and the Phase A input to the approved MVP release scope. No `OQ-*` / `CD-*` item in `stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md` §9.2 is resolved, converted, or created by this approval; every conservative safe default remains in force. No product invariant is changed or contradicted. No navigation is designed (invariant #11; `ORCHESTRATOR.md` authority order).
 
 ---
 
@@ -15,6 +15,7 @@ This artifact **prioritizes candidate capabilities** for the first StrideLab rel
 | Registry id | `feature-prioritization` (`stridelab-ai/registry/artifacts.yaml`) |
 | Canonical path | `docs/product/feature-prioritization.md` (this file — one canonical location) |
 | Lifecycle record | `stridelab-ai/project-memory/current-state/feature-prioritization.md` |
+| G7 approval | Diego, 2026-09-10; approved version `9893c1d4dd0166fd0c55f1950e601e5f8737946c`; record `stridelab-ai/orchestration/approvals/G7-mvp-feature-prioritization-release-scope.md` |
 | Upstream (approved) | `product-baseline` (APPROVED, Diego 2026-09-08), `workflow-architecture` v2 (APPROVED, Diego 2026-09-07), `domain-model` (APPROVED, Diego 2026-09-10 — `stridelab-ai/orchestration/approvals/G7-domain-model.md`; published on `main` at commit `5db47f1`), `architecture-decision` (`ARCHITECTURE.md`, APPROVED) |
 | Application map consumed | `stridelab-ai/application-map/bounded-contexts.md`, `stridelab-ai/application-map/cross-context-contracts.md` |
 | Downstream consumers | `mvp-release-scope` (Phase B); Departments 02, 03, 04, 05, 06; `architecture-reviewer` |
@@ -999,7 +1000,7 @@ Per the command contract, Phase A is reviewed by Department 01 before Phase B. T
 | A-05 | The Step-1 domain-model status needed confirmation from governed sources, and an earlier draft had noticed a lifecycle-record sync gap. | §1.2 confirms APPROVED from three agreeing sources; the lifecycle-record sync (registry flip, current-state record, companion-pointer refresh, commit pin) was completed on `main` at commit `5db47f1` before this artifact was authored — no residual finding. |
 | A-06 | F-10 (templates) as "MVP required" is the weakest necessity claim in the required set. | **Superseded by the independent D01 review (finding N-1) — F-10 reclassified `MVP conditional` (§6.3, DR-A5).** |
 
-- **Conditions:** (1) **discharged** — the independent specialist reviews (recorded in `stridelab-ai/orchestration/reviews/step2-dept01/`, synthesised in `mvp-release-scope.md` §13.11, condition **C-IND** now `closed`) confirmed the classification: the independent D01 lens drove the F-10 / F-42 reclassification (DR-A5), D03/D04/D06/architecture returned `PASS_WITH_CONDITIONS` with no boundary crossed, and D02/D05/cross-department `FAIL` findings were remediated and re-verified closed; (2) the human **G7 product-scope decision** is the final governance step (it is **not** a legal review or a launch authorization — `mvp-release-scope.md` §11.4); (3) `user-research-usability` follow-ups (`OQ-MG07-DEFAULTS`, `OQ-SE-RECONCILE-UX` presentation, `OQ-MG-BLOCK-SAFE-COLLAPSE` classifier) are named, not resolved.
+- **Conditions:** (1) **discharged** — the independent specialist reviews (recorded in `stridelab-ai/orchestration/reviews/step2-dept01/`, synthesised in `mvp-release-scope.md` §13.11, condition **C-IND** now `closed`) confirmed the classification: the independent D01 lens drove the F-10 / F-42 reclassification (DR-A5), D03/D04/D06/architecture returned `PASS_WITH_CONDITIONS` with no boundary crossed, and D02/D05/cross-department `FAIL` findings were remediated and re-verified closed; (2) **discharged** — Diego granted the human G7 product-scope decision on 2026-09-10; it is **not** a legal review or a launch authorization (`mvp-release-scope.md` §11.4); (3) `user-research-usability` follow-ups (`OQ-MG07-DEFAULTS`, `OQ-SE-RECONCILE-UX` presentation, `OQ-MG-BLOCK-SAFE-COLLAPSE` classifier) remain named and open.
 - **Disposition:** **PASS WITH CONDITIONS** (`product-strategy` production assessment: PASS WITH CONDITIONS — usable; named external/environmental limits remain and their effect is explicit).
 - **Reviewer identity:** Department 01 `product-experience-lead` lens, orchestrator-executed (this §6.1 pass). The **independent** D01 specialist review is `stridelab-ai/orchestration/reviews/step2-dept01/01-d01-product.md` (`PASS_WITH_CONDITIONS`; findings N-1…N-4 applied — F-10 and F-42 reclassified, §7.1 matrix aligned).
 - **Downstream effect:** this artifact is the input to `docs/product/mvp-release-scope.md` (Phase B) and to the cross-department + independent specialist reviews recorded there (§13).
@@ -1019,9 +1020,9 @@ Per the review mandate ("do not rubber-stamp 'smallest coherent MVP'; a capabili
 | **F-34 Data export (athlete self-export)** | **Kept `MVP required`.** | Baseline §5 names self-service export (PF-06) as a **data-subject right** alongside self-service deletion. Removing it contradicts baseline §5 and a data-subject-rights obligation. |
 | **F-39 Platform Safety Administrator role + tooling** | **Kept `MVP required` — not circular.** | Required because F-29 (report/block) needs a recipient — and F-29 is itself required by baseline §5 ("report/block available to every member") + invariant #14, which apply the moment any UGC/media reaches minors (F-20, F-26). A real safety dependency chain rooted in baseline §5, not in an optional capability. Staffing/SLA (`OQ-PS-MOD-STAFFING`) is a separate production-launch condition. |
 
-**Alternative recorded for the human (F-42 / F-40).** *Option A (adopted, recommended):* ship the Free-default tier-state field (F-40) + the S-02 build-time rule in v1; defer the BE-05 interface (F-42) to the paid-billing release. *Option B:* defer **all** commercial/entitlement concept (no tier-state field, no BE-05, no flag type) to the paid-billing release — invariant #9 then holds vacuously in v1. Baseline §6B / IT-02 ("a new Team defaults to Free") leans toward Option A, so A is adopted; Option B is a legitimate Diego decision (DR-A5).
+**DR-A5 commercial-scaffold decision (F-42 / F-40): Option A approved.** Ship the Free-default Team tier-state field (F-40) and enforce the S-02 build-time authorization-isolation rule in v1; defer the BE-05 interface (F-42) until tier gating is activated through a separately approved Department 06 entitlement artifact. Option B (deferring every commercial/entitlement concept) was not selected. This does not ratify a tier map, plan limits, pricing, billing mechanics, or any Department 06 `OQ-*` / `CD-*` item; no feature is tier-gated in v1.
 
-No `OQ-*` / `CD-*` item is resolved by any of the above. The reclassifications are pre-approval draft-state changes made by the owning Department's review and are put to the human in **DR-A5**.
+No `OQ-*` / `CD-*` item is resolved by any of the above. Diego approved the reclassifications and selected Option A under **DR-A5** on 2026-09-10; the decision is recorded in `stridelab-ai/orchestration/approvals/G7-mvp-feature-prioritization-release-scope.md`.
 
 ---
 
@@ -1049,21 +1050,21 @@ Per the task: "If prioritization reveals a real contradiction, register it as a 
 | G2 — Architecture / Contracts | `PASS_WITH_CONDITIONS` | No bounded-context boundary changed; no new deployable service beyond the already-approved `services/media-worker`; every feature mapped to its aggregates + contract seams; the F-42 scope-creep concern (P-F-05) is **resolved** — F-42 reclassified `MVP conditional`, the contract-6-C-5 rule now carried by S-02 (§6.3). |
 | G3 — Security / Privacy / Youth safeguarding (D04) | `PASS_WITH_CONDITIONS` | Every safety/authz/privacy/media/messaging feature carries a D04-mandatory-reviewer note and its `§9.2` safe default; F-22/F-34-cond reclassified conditional where a D04 policy is open; `OQ-PS-MOD-STAFFING` routed as a launch-gate condition (P-F-01). Conditions = the D04-owned OPEN items, each defaulted conservatively. |
 | Department 03 — persistence / sync / media feasibility | `PASS_WITH_CONDITIONS` | Features reference the domain-model aggregates + the D03-reviewed §10 remediations; F-17/F-23/S-03/S-07 flagged as the D03-critical items; residual = already-open D03 items (`OQ-MEDIA-CACHE-INVALIDATION`, `OQ-PF-AGG-METHOD`, `OQ-SE-OFFLINE-P2P`, `OQ-PF-REPORT-OFFLINE`). |
-| **G7 — Human Approval** | **PENDING** | Requested after Phase B, the full cross-department review, and remediation — see `mvp-release-scope.md` §decision package. |
+| **G7 — Human Approval** | **`APPROVED`** | Diego, 2026-09-10; both Step-2 artifacts pinned to `9893c1d4dd0166fd0c55f1950e601e5f8737946c`; record `stridelab-ai/orchestration/approvals/G7-mvp-feature-prioritization-release-scope.md`. |
 
 ---
 
-## 9. Decisions requiring human approval (deferred to the Phase B decision package)
+## 9. Human decision outcomes
 
-This artifact proposes; it does not decide. The following are put to a human at G7 **together with** `docs/product/mvp-release-scope.md`:
+Diego approved the following at G7 on 2026-09-10 **together with** `docs/product/mvp-release-scope.md`:
 
-- **DR-A1** — Adopt this feature prioritization (the §3/§3.1 inventory and the §4/§5 classification) as the governed input to the MVP release scope.
-- **DR-A2** — Accept the stated prioritization **method** (§2): invariant-and-dependency-driven necessity with the C1→C5 lexicographic tie-break, given the absence of user research / market evidence / engineering estimates.
-- **DR-A3** — Accept the **nine MVP conditional** activation conditions in §4 / §6.3 (F-10 ← INC-2 G4 confirms an author-private template slice does not extend the critical path, else Post-MVP; F-19 ← F-06; F-22 ← D04 consent mechanism; F-33 ← `OQ-PF-AGG-METHOD`; F-34-cond ← `OQ-PF-MINOR-EXPORT`; F-40 gating ← D06 entitlement artifact; F-42 ← F-40 gating activated (D06 entitlement artifact defines `OQ-BE-TIER-MAP`); S-09 ← automated fan-out design; S-10 ← realtime transport selection).
-- **DR-A4** — Confirm the **Excluded** list (§4, F-EX-1…F-EX-10) as out of scope for the current release, noting each is invariant-mandated or requires a separate new product decision.
-- **DR-A5** — Confirm the **review-driven reclassifications** (§6.3, from the independent D01 specialist review): **F-10 templates** and **F-42 entitlement interface** move from `MVP required` to `MVP conditional` (the one load-bearing v1 rule of F-42 is absorbed into S-02). Net effect: MVP-required = **35 user-facing + 11 supporting = 46** (was 48); MVP-conditional = **9** (was 7). Optionally decide **Option A vs Option B** for the v1 commercial scaffold (§6.3): A (adopted) ships a Free-default tier-state field + the S-02 rule; B defers all commercial/entitlement concept to the paid-billing release.
+- **DR-A1 — APPROVED.** Adopt this feature prioritization (the §3/§3.1 inventory and the §4/§5 classification) as the governed input to the MVP release scope.
+- **DR-A2 — APPROVED.** Accept the stated prioritization **method** (§2): invariant-and-dependency-driven necessity with the C1→C5 lexicographic tie-break, given the absence of user research / market evidence / engineering estimates.
+- **DR-A3 — APPROVED.** Accept the **nine MVP conditional** activation conditions in §4 / §6.3 (F-10 ← INC-2 G4 confirms an author-private template slice does not extend the critical path, else Post-MVP; F-19 ← F-06; F-22 ← D04 consent mechanism; F-33 ← `OQ-PF-AGG-METHOD`; F-34-cond ← `OQ-PF-MINOR-EXPORT`; F-40 gating ← D06 entitlement artifact; F-42 ← F-40 gating activated (D06 entitlement artifact defines `OQ-BE-TIER-MAP`); S-09 ← automated fan-out design; S-10 ← realtime transport selection).
+- **DR-A4 — APPROVED.** Confirm the **Excluded** list (§4, F-EX-1…F-EX-10) as out of scope for the current release, noting each is invariant-mandated or requires a separate new product decision.
+- **DR-A5 — APPROVED; Option A selected.** Confirm the **review-driven reclassifications** (§6.3, from the independent D01 specialist review): **F-10 templates** and **F-42 entitlement interface** move from `MVP required` to `MVP conditional` (the one load-bearing v1 rule of F-42 is absorbed into S-02). Net effect: MVP-required = **35 user-facing + 11 supporting = 46** (was 48); MVP-conditional = **9** (was 7). Ship the Free-default Team tier-state field and enforce S-02's build-time authorization-isolation rule in v1; keep F-42 / BE-05 deferred until tier gating is activated through a separately approved Department 06 entitlement artifact.
 
-No `OQ-*` / `CD-*` item is resolved by any of the above. DR-A5 is a pre-approval scope adjustment by the owning Department's review; the human confirms or reverts it.
+No `OQ-*` / `CD-*` item is resolved, converted, or created by any of these approved decisions. The approval is a product-scope lock for implementation-design only; it is not legal/compliance sign-off and does not authorise production release.
 
 ---
 
@@ -1074,5 +1075,5 @@ No `OQ-*` / `CD-*` item is resolved by any of the above. DR-A5 is a pre-approval
 - Lifecycle record: `stridelab-ai/project-memory/current-state/feature-prioritization.md`
 - Upstream: `docs/product/product-baseline.md`, `docs/product/workflow-architecture.md` (+ `stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md` §5/§9.1/§9.2), `docs/product/domain-model.md`, `ARCHITECTURE.md`
 - Application map: `stridelab-ai/application-map/bounded-contexts.md`, `stridelab-ai/application-map/cross-context-contracts.md`
-- Approvals: `stridelab-ai/orchestration/approvals/G7-product-baseline.md`, `G7-workflow-architecture-v2.md`, `G7-domain-model.md`
+- Approvals: `stridelab-ai/orchestration/approvals/G7-product-baseline.md`, `G7-workflow-architecture-v2.md`, `G7-domain-model.md`, `G7-mvp-feature-prioritization-release-scope.md`
 - Registry: `stridelab-ai/registry/artifacts.yaml`, `stridelab-ai/registry/bounded-context-owners.yaml`

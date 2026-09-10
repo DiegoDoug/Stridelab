@@ -1,6 +1,9 @@
 # Current State — StrideLab MVP Release Scope
 
-**Status: `AWAITING_HUMAN_APPROVAL`** — Department 01 Step 2, Phase B. Authored 2026-09-10
+**Status: `APPROVED`** — G7 granted by Diego on 2026-09-10 for Department 01 Step 2,
+pinned to commit `9893c1d4dd0166fd0c55f1950e601e5f8737946c`. Approval record:
+`stridelab-ai/orchestration/approvals/G7-mvp-feature-prioritization-release-scope.md`.
+Authored 2026-09-10
 by Department 01 Product & Experience (`product-strategist`, skills `product-strategy` +
 `user-research-usability`) under
 `stridelab-ai/departments/01-product-experience/commands/strategy/scope-release.md`,
@@ -8,7 +11,7 @@ orchestrated per `stridelab-ai/commands/orchestrate/orchestrate-task.md`.
 
 Canonical artifact: `docs/product/mvp-release-scope.md` (one canonical location).
 Registry entry: `stridelab-ai/registry/artifacts.yaml` → `mvp-release-scope`
-(`status: AWAITING_HUMAN_APPROVAL`). Header, registry, and this record agree.
+(`status: APPROVED`). Header, registry, approval record, and this record agree.
 
 ## What this artifact is
 
@@ -16,8 +19,8 @@ One governed MVP release scope + an ordered implementation sequence, translating
 Phase A **42-feature** prioritization (`docs/product/feature-prioritization.md`) into a
 definition of what the first StrideLab release delivers: **35 user-facing + 11 supporting
 = 46** MVP-required capabilities, **9** MVP-conditional, the Post-MVP deferrals, and the
-F-EX-1…F-EX-10 exclusions. It is a **proposal**, not an approved decision. It resolves,
-converts, or creates **no** `OQ-*` / `CD-*` item; changes **no** invariant; designs **no**
+F-EX-1…F-EX-10 exclusions. It is the approved governed MVP release scope. Its approval
+resolves, converts, or creates **no** `OQ-*` / `CD-*` item; changes **no** invariant; designs **no**
 navigation, schema, API, or UI.
 
 Contents: the MVP objective; target users + supported roles (Head Coach, Event Coach,
@@ -41,9 +44,9 @@ the G7 decision package (§15).
 
 - **Owner:** Department 01 Product & Experience (`product-strategist`). **Department
   lead:** `product-experience-lead`.
-- **Upstream (approved):** `product-baseline`, `workflow-architecture` v2, `domain-model`
-  (all APPROVED), `architecture-decision`. **Upstream (proposed):** `feature-prioritization`
-  (`AWAITING_HUMAN_APPROVAL`).
+- **Upstream (approved):** `product-baseline`, `workflow-architecture` v2, `domain-model`,
+  `architecture-decision`, and `feature-prioritization` (all APPROVED; the latter under the
+  same joint Step-2 G7).
 - **Downstream consumers:** Departments 02, 03, 04, 05, 06; `architecture-reviewer`;
   `cross-department-reviewer`; every implementation work package for a v1 bounded context
   (each increment INC-0…INC-11 is a handoff boundary per
@@ -82,6 +85,11 @@ the G7 decision package (§15).
     correction), with INC-3a not externally exposed until INC-3b passes.
 - **Open BLOCKING findings after remediation: zero.** Every non-blocking condition has a
   named owner (§13.10).
+- **G7 approval (2026-09-10):** Diego approved DR-A1…DR-A5 and selected DR-A5 Option A.
+  The Free-default Team tier-state field and S-02 build-time authorization-isolation rule
+  ship in v1; F-42 / BE-05 remains deferred until tier gating is activated through a
+  separately approved Department 06 entitlement artifact. Approved version:
+  `9893c1d4dd0166fd0c55f1950e601e5f8737946c`.
 
 ## Reviews and gate posture (advisory — not human approval)
 
@@ -95,11 +103,11 @@ the G7 decision package (§15).
 | Department 06 — entitlement + operational implications (billing ≠ authorization) | `PASS_WITH_CONDITIONS` (`payment ≠ authorization` preserved structurally) |
 | Root architecture reviewer — boundaries / dependency direction / deployable-service implications | `PASS_WITH_CONDITIONS` (no boundary change; `services/media-worker` the only new workload) |
 | Cross-department reviewer — contradictions / missing dependencies / hidden assumptions / incomplete journeys | `PASS_WITH_CONDITIONS` (after CDR-B1 remediation) |
-| **G7 — Human Approval** | **PENDING** — decision package `docs/product/mvp-release-scope.md` §15 |
+| **G7 — Human Approval** | **`APPROVED`** — Diego, 2026-09-10; joint Step-2 record `stridelab-ai/orchestration/approvals/G7-mvp-feature-prioritization-release-scope.md`; approved version `9893c1d4dd0166fd0c55f1950e601e5f8737946c` |
 
-## Decisions requiring human approval
+## Human decision outcome
 
-The single G7 decision package (`docs/product/mvp-release-scope.md` §15) covers both
+The single G7 approval record (`stridelab-ai/orchestration/approvals/G7-mvp-feature-prioritization-release-scope.md`) covers both
 Step-2 artifacts: the **35 user-facing + 11 supporting = 46** MVP-required capabilities;
 the **9** conditional capabilities + activation conditions; the Post-MVP deferrals; the
 F-EX-1…F-EX-10 exclusions; the C1→C5 method; **DR-A5** (the independent-D01-review
@@ -112,11 +120,18 @@ are recorded in `stridelab-ai/orchestration/reviews/step2-dept01/`; D01/D03/D04/
 returned `PASS_WITH_CONDITIONS`, and D02/D05/cross-department returned `FAIL`, were remediated
 in-artifact, and were re-verified closed (`09-reverify.md`: validator green, independent
 recount matching, no upstream-artifact drift, no new BLOCKING finding). The package is
-presented as **final** for the human G7 product-scope decision.
+approved by Diego on 2026-09-10 for implementation-design. DR-A1…DR-A5 are APPROVED;
+DR-A5 explicitly selects Option A: ship the Free-default Team tier-state field and enforce
+the S-02 build-time authorization-isolation rule in v1, while keeping F-42 / BE-05 deferred
+until tier gating is activated through a separately approved Department 06 entitlement
+artifact. No `OQ-*` / `CD-*` item is resolved, converted, or created.
 
 ## Blockers / accepted conditions
 
-- **Human decision pending:** the G7 product-scope decision is the remaining governance step. Zero open BLOCKING findings. Pre-G7 conditions tracked in `docs/product/mvp-release-scope.md` §13.10 (independent specialist review C-IND; the §11.2 production-launch legal sign-offs are separate and out of scope of the product-scope decision — §11.4).
+- **Human decision complete:** the Department 01 Step-2 product-scope G7 was granted by
+  Diego on 2026-09-10. Zero open BLOCKING findings. This approval authorises
+  implementation-design only; it is not legal/compliance sign-off and does not authorise
+  launch or production release (§11.4).
 - **C-IND (independent specialist review per Department + architecture + cross-department) —
   closed** 2026-09-10 (`docs/product/mvp-release-scope.md` §13.10 / §13.11;
   `stridelab-ai/orchestration/reviews/step2-dept01/`).
@@ -128,7 +143,7 @@ presented as **final** for the human G7 product-scope decision.
   G2 / G4 / G5 / G6 stage under its safe default.
 - **Production-launch legal sign-offs** (`OQ-IT01-AGE-VERIFY`, `OQ-PS07-JURISDICTION`,
   `OQ-PS08-JURISDICTION`, `OQ-PS09-EXTERNAL`) and `OQ-PS-MOD-STAFFING` remain named
-  conditions on G6/G7 for the eventual production launch — safe defaults in force meanwhile.
+  conditions on G6 and the future production-release G7 — safe defaults in force meanwhile.
 - **No `§9.2` item is resolved, converted, or created.** The complete OPEN register is
   `WORKFLOW-ARCHITECTURE-v2.md` §9.2 with every safe default in force
   (`docs/product/mvp-release-scope.md` §14).
@@ -145,6 +160,7 @@ presented as **final** for the human G7 product-scope decision.
   `stridelab-ai/application-map/cross-context-contracts.md`
 - Governance: `stridelab-ai/orchestration/ORCHESTRATOR.md`,
   `stridelab-ai/orchestration/phase-gates/gates.yaml`,
-  `stridelab-ai/orchestration/approvals/` (`approval-policy.md`, `approval-matrix.yaml`),
+  `stridelab-ai/orchestration/approvals/` (`approval-policy.md`, `approval-matrix.yaml`,
+  `G7-mvp-feature-prioritization-release-scope.md`),
   `stridelab-ai/shared/contracts/REVIEW-CONTRACT.md`
 - Registry: `stridelab-ai/registry/artifacts.yaml`

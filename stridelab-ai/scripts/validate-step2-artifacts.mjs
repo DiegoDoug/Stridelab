@@ -26,7 +26,8 @@
  *   - every MVP-required capability is assigned to an implementation increment
  *     and the increment dependency graph is acyclic and references real INCs;
  *   - header status, registry status, lifecycle-record status and the
- *     current-state index agree on AWAITING_HUMAN_APPROVAL;
+ *     current-state index agree on APPROVED, with one joint G7 record pinned to
+ *     the reviewed commit;
  *   - the "no OQ/CD resolved" assertion is present in both artifacts;
  *   - the C-IND independent-review condition is only claimed closed when the
  *     durable review-evidence directory actually exists and is linked.
@@ -52,9 +53,11 @@ const CS_FP = 'stridelab-ai/project-memory/current-state/feature-prioritization.
 const CS_MRS = 'stridelab-ai/project-memory/current-state/mvp-release-scope.md';
 const CS_README = 'stridelab-ai/project-memory/current-state/README.md';
 const REGISTRY = 'stridelab-ai/registry/artifacts.yaml';
+const APPROVAL = 'stridelab-ai/orchestration/approvals/G7-mvp-feature-prioritization-release-scope.md';
 const REVIEW_DIR = 'stridelab-ai/orchestration/reviews/step2-dept01';
+const APPROVED_COMMIT = '9893c1d4dd0166fd0c55f1950e601e5f8737946c';
 
-for (const f of [FP, MRS, CS_FP, CS_MRS, CS_README, REGISTRY]) {
+for (const f of [FP, MRS, CS_FP, CS_MRS, CS_README, REGISTRY, APPROVAL]) {
   if (!exists(f)) err(`Missing required file: ${f}`);
 }
 if (errors.length) { report(); process.exit(1); }
@@ -373,7 +376,7 @@ if (cyclic) err('MRS §10: the increment dependency graph contains a cycle');
 // --------------------------------------------------------------------------
 // 8. Status agreement across header / registry / lifecycle / index
 // --------------------------------------------------------------------------
-const STATUS = 'AWAITING_HUMAN_APPROVAL';
+const STATUS = 'APPROVED';
 function headerStatus(text) {
   const line = text.split('\n').find((l) => /(^|\s)\*?\*?Status:?\*?\*?/i.test(l) && /`[^`]+`/.test(l));
   return line ? (line.match(/`([^`]+)`/) || [])[1] : null;
@@ -389,6 +392,10 @@ if (regDoc && Array.isArray(regDoc.artifacts)) {
     const a = regDoc.artifacts.find((x) => x && x.id === id);
     if (!a) { err(`${REGISTRY}: no artifact entry with id "${id}"`); continue; }
     if (a.status !== STATUS) err(`${REGISTRY}: ${id}.status = ${JSON.stringify(a.status)}, expected ${STATUS}`);
+    if (a.approved_by !== 'Diego') err(`${REGISTRY}: ${id}.approved_by = ${JSON.stringify(a.approved_by)}, expected Diego`);
+    if (String(a.approved_date) !== '2026-09-10') err(`${REGISTRY}: ${id}.approved_date = ${JSON.stringify(a.approved_date)}, expected 2026-09-10`);
+    if (a.approved_commit !== APPROVED_COMMIT) err(`${REGISTRY}: ${id}.approved_commit = ${JSON.stringify(a.approved_commit)}, expected ${APPROVED_COMMIT}`);
+    if (a.approval_record !== APPROVAL) err(`${REGISTRY}: ${id}.approval_record = ${JSON.stringify(a.approval_record)}, expected ${APPROVAL}`);
     for (const k of ['path', 'current_state_record']) {
       if (typeof a[k] !== 'string' || !exists(a[k])) err(`${REGISTRY}: ${id}.${k} -> ${JSON.stringify(a[k])} does not resolve`);
     }
@@ -400,6 +407,39 @@ for (const label of ['feature-prioritization.md', 'mvp-release-scope.md']) {
   const row = idx.split('\n').find((l) => l.includes(`\`${label}\``) || l.endsWith(`| \`${label}\` |`) || l.includes(label));
   if (!row) err(`${CS_README}: index has no row for ${label}`);
   else if (!row.includes(STATUS)) err(`${CS_README}: index row for ${label} does not carry status ${STATUS}: ${row.trim().slice(0, 140)}`);
+}
+
+// Joint G7 record: exact pin, decision outcomes, Option A, and approval boundary.
+const approval = read(APPROVAL);
+for (const rel of [FP, MRS, CS_FP, CS_MRS, CS_README, REGISTRY, APPROVAL]) {
+  const t = read(rel);
+  if (!t.includes(APPROVED_COMMIT)) err(`${rel}: missing approved Step-2 commit pin ${APPROVED_COMMIT}`);
+}
+for (const id of ['DR-A1', 'DR-A2', 'DR-A3', 'DR-A4', 'DR-A5']) {
+  if (!new RegExp(`${id}[^\\n]{0,80}APPROVED`, 'i').test(approval))
+    err(`${APPROVAL}: missing explicit ${id} APPROVED outcome`);
+}
+for (const [label, re] of [
+  ['Option A', /Option A/],
+  ['Free-default Team tier-state field', /Free-default Team tier-state field/],
+  ['S-02 build-time authorization-isolation rule', /S-02 build-time\s+authorization-isolation rule/],
+  ['F-42 / BE-05', /F-42\s*\/\s*BE-05/],
+  ['separately approved Department 06 entitlement artifact', /separately approved\s+Department 06 entitlement artifact/],
+]) {
+  if (!re.test(approval)) err(`${APPROVAL}: missing DR-A5 Option A term "${label}"`);
+}
+if (!/implementation-design only/i.test(approval) ||
+    !/not legal or compliance sign-off/i.test(approval) ||
+    !/(not launch authorization|does not authorise any production release)/i.test(approval))
+  err(`${APPROVAL}: approval boundary must exclude legal/compliance, launch, and production-release authorization`);
+if (!/Every `OQ-\*` \/ `CD-\*` item remains open/.test(approval) ||
+    !/resolves, converts, or creates none/.test(approval))
+  err(`${APPROVAL}: must preserve every OQ-*/CD-* item as open under existing ownership/defaults`);
+for (const [name, text] of [[FP, fp], [MRS, mrs], [CS_FP, read(CS_FP)], [CS_MRS, read(CS_MRS)]]) {
+  if (/AWAITING_HUMAN_APPROVAL/.test(text))
+    err(`${name}: stale AWAITING_HUMAN_APPROVAL remains after G7 approval`);
+  if (/G7[^\n|]{0,60}\bPENDING\b/i.test(text))
+    err(`${name}: stale G7 PENDING claim remains after G7 approval`);
 }
 
 // --------------------------------------------------------------------------

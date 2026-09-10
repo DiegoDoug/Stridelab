@@ -123,7 +123,11 @@ artifacts:
   - id: feature-prioritization
     type: feature-prioritization
     path: docs/product/feature-prioritization.md
-    status: AWAITING_HUMAN_APPROVAL
+    status: APPROVED
+    approved_by: Diego
+    approved_date: 2026-09-10
+    approved_commit: 9893c1d4dd0166fd0c55f1950e601e5f8737946c
+    approval_record: stridelab-ai/orchestration/approvals/G7-mvp-feature-prioritization-release-scope.md
     owner: 01-product-experience
     primary_specialist: product-strategist
     reviewed_by: [product-experience-lead, "independent D01 specialist review (stridelab-ai/orchestration/reviews/step2-dept01/01-d01-product.md)"]
@@ -154,8 +158,14 @@ artifacts:
       (wired into npm run ai:validate + CI). No OQ-*/CD-* item is resolved,
       converted, or created; every WORKFLOW-ARCHITECTURE-v2.md §9.2 safe default
       remains in force. No invariant changed; no navigation designed. G7
-      (product-scope) pending — decision package in
-      docs/product/mvp-release-scope.md §15. Condition C-IND (independent
+      (product-scope) granted by Diego on 2026-09-10, pinned to
+      9893c1d4dd0166fd0c55f1950e601e5f8737946c. DR-A1..DR-A5 APPROVED; DR-A5
+      explicitly selects Option A: the Free-default Team tier-state field and
+      S-02 build-time authorization-isolation rule ship in v1, while F-42/BE-05
+      stays deferred until tier gating is activated through a separately
+      approved Department 06 entitlement artifact. This is implementation-design
+      authority only, not legal/compliance, launch, or production-release
+      authorization. Condition C-IND (independent
       specialist review pass — D01..D06 + architecture + cross-department) is
       CLOSED (2026-09-10): all eight lenses recorded in
       stridelab-ai/orchestration/reviews/step2-dept01/; the three FAIL lenses
@@ -165,7 +175,11 @@ artifacts:
   - id: mvp-release-scope
     type: release-scope
     path: docs/product/mvp-release-scope.md
-    status: AWAITING_HUMAN_APPROVAL
+    status: APPROVED
+    approved_by: Diego
+    approved_date: 2026-09-10
+    approved_commit: 9893c1d4dd0166fd0c55f1950e601e5f8737946c
+    approval_record: stridelab-ai/orchestration/approvals/G7-mvp-feature-prioritization-release-scope.md
     owner: 01-product-experience
     primary_specialist: product-strategist
     reviewed_by: [product-experience-lead, client-feature-lead, platform-data-lead, security-compliance-lead, quality-release-lead, operations-governance-reviewer, architecture-reviewer, cross-department-reviewer, "independent specialist review pass — stridelab-ai/orchestration/reviews/step2-dept01/"]
@@ -213,10 +227,11 @@ artifacts:
       created; every §9.2 safe default remains in force. Production-launch legal
       sign-offs (OQ-IT01-AGE-VERIFY, OQ-PS07-JURISDICTION, OQ-PS08-JURISDICTION,
       OQ-PS09-EXTERNAL) and OQ-PS-MOD-STAFFING remain named conditions on G6 and
-      a future G7 release decision. G7 (product-scope) pending — the human
-      decision by Diego is the sole remaining governance step; decision package
-      §15. Recording the §15 approval statement locks the MVP scope for
-      implementation-design only — it does not merge the PR, authorise a
+      a future G7 release decision. G7 (product-scope) granted by Diego on
+      2026-09-10, pinned to 9893c1d4dd0166fd0c55f1950e601e5f8737946c;
+      DR-A1..DR-A5 APPROVED and DR-A5 Option A explicitly selected. The approval
+      locks the MVP scope for implementation-design only — it does not merge PR
+      #9, authorise a
       production release, or substitute for legal/compliance review. The
       Workflow Architecture v2, the governed product baseline, and the
       consolidated domain model remain separately approved and unchanged.
