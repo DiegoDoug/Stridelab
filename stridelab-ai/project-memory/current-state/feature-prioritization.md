@@ -22,7 +22,7 @@ Contents: a five-criterion prioritization method (C1 invariant-completion necess
 core-value necessity → C3 dependency position → C4 risk/uncertainty → C5 relative
 complexity, applied in that lexicographic tie-break order); a 40-feature master table
 plus 13 cross-cutting supporting capabilities (`S-01…S-13`); per-feature records covering
-the ~20 required fields; a classification into **MVP required** (30 user-facing + 12
+the ~20 required fields; a classification into **MVP required** (36 user-facing + 12
 supporting), **MVP conditional** (7, each with a named activation condition), **Post-MVP**
 (F-41 + F-P-1…F-P-16), and **Excluded from the current release** (F-EX-1…F-EX-10); a
 Department 01 review + remediation log; and a findings register (P-F-01…P-F-06).

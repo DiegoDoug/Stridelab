@@ -960,7 +960,7 @@ Shared conventions (stated once; per-feature entries note only deviations):
 
 | Class | Count | Feature IDs |
 |---|---|---|
-| **MVP required** | 30 user-facing features + 12 supporting capabilities | F-01…F-18 (except F-19), F-20, F-21, F-23, F-24, F-25, F-26, F-27, F-28, F-29, F-30, F-31, F-32, F-34 (athlete self), F-35, F-36, F-37 (assisted), F-38, F-39, F-42; S-01, S-02, S-03, S-04, S-05, S-06, S-07, S-08, S-11, S-12, S-13 |
+| **MVP required** | 36 user-facing features + 12 supporting capabilities (11 `S-*` + F-42) = 48 | F-01…F-18, F-20, F-21, F-23, F-24, F-25, F-26, F-27, F-28, F-29, F-30, F-31, F-32, F-34 (athlete self), F-35, F-36, F-37 (assisted), F-38, F-39 (36 user-facing); F-42, S-01, S-02, S-03, S-04, S-05, S-06, S-07, S-08, S-11, S-12, S-13 (12 supporting) |
 | **MVP conditional** | 7 | F-19 (gated by F-06), F-22 (D04 consent mechanism), F-33 (`OQ-PF-AGG-METHOD`), F-34-cond (`OQ-PF-MINOR-EXPORT`), F-40 (tier gating → D06 artifact), S-09 (automated fan-out), S-10 (realtime) |
 | **Post-MVP** | F-41 + F-P-1…F-P-16 (+ the S-09 / S-10 automated/realtime layers) | see §4 table |
 | **Excluded from current release** | 10 | F-EX-1…F-EX-10 |

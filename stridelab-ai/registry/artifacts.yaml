@@ -140,7 +140,7 @@ artifacts:
       C4 risk/uncertainty → C5 relative complexity, applied in that lexicographic
       tie-break order); a 40-feature master table + 13 cross-cutting supporting
       capabilities (S-01..S-13); per-feature records; and a classification into
-      MVP required (30 user-facing + 12 supporting), MVP conditional (7, each
+      MVP required (36 user-facing + 12 supporting), MVP conditional (7, each
       with a named activation condition), Post-MVP (F-41 + F-P-1..F-P-16), and
       Excluded from the current release (F-EX-1..F-EX-10). Department 01 review
       (product-experience-lead lens): PASS WITH CONDITIONS; six non-blocking

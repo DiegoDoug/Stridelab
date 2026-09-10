@@ -97,7 +97,7 @@ the G7 decision package (§15).
 ## Decisions requiring human approval
 
 The single G7 decision package (`docs/product/mvp-release-scope.md` §15) covers both
-Step-2 artifacts: the 30 user-facing + 12 supporting MVP-required capabilities; the 7
+Step-2 artifacts: the 36 user-facing + 12 supporting MVP-required capabilities; the 7
 conditional capabilities + activation conditions; the Post-MVP deferrals; the
 F-EX-1…F-EX-10 exclusions; the C1→C5 method; and the INC-0…INC-11 implementation sequence
 including the hard INC-9-before-media/messaging-exposure gate and the INC-3a/INC-3b
