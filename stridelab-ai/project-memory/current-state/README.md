@@ -31,6 +31,9 @@ states:
 |---|---|---|
 | StrideLab Workflow Architecture v2 (canonical: `docs/product/workflow-architecture.md`) | `APPROVED` (G7 granted by Diego, 2026-09-07; §9.2 items are accepted downstream conditions) | `workflow-architecture-v2.md` |
 | StrideLab Governed Product Baseline (canonical: `docs/product/product-baseline.md`) | `APPROVED` (G7 granted by Diego, 2026-09-08 — separate from the 2026-09-07 Workflow Architecture v2 G7; §6B tier structure + §8/§9.2 items are accepted downstream conditions) | `product-baseline.md` |
+| StrideLab Consolidated Domain Model (canonical: `docs/product/domain-model.md`) | `APPROVED` (G7 granted by Diego, 2026-09-10; DR-1 APPROVED, DR-2 APPROVED AS-IS, DR-3 CONFIRMED; consolidation only — no `OQ-*`/`CD-*` item resolved) | `domain-model.md` |
+| StrideLab MVP Feature Prioritization (canonical: `docs/product/feature-prioritization.md`) | `AWAITING_HUMAN_APPROVAL` (Department 01 Step 2, Phase A; D01 review PASS WITH CONDITIONS; no `OQ-*`/`CD-*` item resolved) | `feature-prioritization.md` |
+| StrideLab MVP Release Scope (canonical: `docs/product/mvp-release-scope.md`) | `AWAITING_HUMAN_APPROVAL` (Department 01 Step 2, Phase B; cross-department review PASS WITH CONDITIONS, zero open BLOCKING findings; no `OQ-*`/`CD-*` item resolved) | `mvp-release-scope.md` |
 
 The v1 record was renamed to v2 in the 2026-09-06 correction pass (the file was
 never committed; version history is preserved in the v2 documents).
