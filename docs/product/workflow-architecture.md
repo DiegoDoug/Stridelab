@@ -15,7 +15,7 @@ Owning Department: 01 Product & Experience. Last advanced: 2026-09-07 (G7 approv
 | Registry records | `stridelab-ai/registry/` |
 | Application map | `stridelab-ai/application-map/` |
 | Current state record | `stridelab-ai/project-memory/current-state/workflow-architecture-v2.md` |
-| Domain model (companion, stub) | `docs/product/domain-model.md` |
+| Domain model (companion) | `docs/product/domain-model.md` — APPROVED (Diego, 2026-09-10; `stridelab-ai/orchestration/approvals/G7-domain-model.md`) |
 | Automated documentation verification | `stridelab-ai/scripts/validate-workflow-architecture.mjs` (CI: `.github/workflows/workflow-architecture-validation.yml`) |
 
 Where wording differs, **this file governs**, then `product-baseline.md` (proposed — `AWAITING_HUMAN_APPROVAL`; invariant context, normative via §9.1), then the supporting spec. The supporting spec carries the full per-workflow detail (actors, capability/trigger, preconditions, authorization assumptions, states, transitions, happy/alternate paths, errors/recovery, offline behaviour, sync implications, notifications, audit, exit condition, downstream artifacts, open questions). Do **not** duplicate that detail here.
@@ -114,7 +114,7 @@ Every remaining OPEN item is an **external policy / legal / implementation** mat
 | F-18 | MINOR | Closed | Event Coach removed from TA-04 (and TA-02/TA-03/IT-03/IT-06) authority; Actor Matrix aligned; future delegation = `CD-EC-DELEGATION`. |
 | F-19 | MINOR | Closed | MG-07 Notification Preferences (safety / operational / social classes; safety un-disable-able; social bundle/mute/quiet-hours). |
 | F-20 | INFORMATIONAL | Closed | Governed baseline (`docs/product/product-baseline.md`), registry records (`stridelab-ai/registry/`), and minimum application-map (`stridelab-ai/application-map/`) created. |
-| F-21 | INFORMATIONAL | Closed | Canonical output location reconciled: **this file** is authoritative; the `stridelab-ai/knowledge/workflows/` tree is the supporting spec; `docs/product/domain-model.md` companion stub created. |
+| F-21 | INFORMATIONAL | Closed | Canonical output location reconciled: **this file** is authoritative; the `stridelab-ai/knowledge/workflows/` tree is the supporting spec; `docs/product/domain-model.md` companion stub created (the stub was authored into the full consolidated domain model and APPROVED by Diego on 2026-09-10). |
 | F-22 | INFORMATIONAL | Closed | The overstated v1 "Department 04 confirmed no other open question was incorrectly treated as settled" is corrected — the independent D04 re-review (§8a.2) supersedes it and enumerates what it found. |
 | F-23 | MAJOR (reclassified) | Closed | SE-10 Athlete Post-Finalization Correction — audited amendment, original preserved, reason mandatory, finalized history never silently rewritten. |
 | F-24 | INFORMATIONAL | Closed | Preservation checklist below; all listed v1 strengths verified intact. |
