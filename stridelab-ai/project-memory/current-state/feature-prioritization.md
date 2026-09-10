@@ -28,9 +28,11 @@ to `MVP conditional`, DR-A5), **MVP conditional** (9, each with a named activati
 condition), **Post-MVP** (F-41 + F-P-1…F-P-16), and **Excluded from the current release**
 (F-EX-1…F-EX-10); a Department 01 review + product-challenge (§6.3) + remediation log; and
 a findings register (P-F-01…P-F-06). The **independent specialist review pass** (D01…D06 +
-architecture + cross-department) is recorded in
-`stridelab-ai/orchestration/reviews/step2-dept01/` and synthesised in
-`docs/product/mvp-release-scope.md` §13.11 (condition **C-IND**).
+architecture + cross-department — condition **C-IND**) is **complete and closed**: all
+eight lenses are recorded in `stridelab-ai/orchestration/reviews/step2-dept01/` (`01`…`08`),
+the three that returned `FAIL` were remediated and re-verified closed (`09-reverify.md`),
+and zero BLOCKING findings remain open. Synthesis: `docs/product/mvp-release-scope.md`
+§13.11; C-IND status: `docs/product/mvp-release-scope.md` §13.10 (`closed`, 2026-09-10).
 
 ## Ownership, dependencies, downstream consumers
 
@@ -92,13 +94,15 @@ No `OQ-*` / `CD-*` item is resolved by any of these.
 
 ## Blockers / accepted conditions
 
-- **Human decision pending:** DR-A1…DR-A4, folded into the single G7 decision package in
+- **Human decision pending:** DR-A1…DR-A5, folded into the single G7 decision package in
   `mvp-release-scope.md` §15 (zero open BLOCKING findings; conditions each with a named
-  owner).
+  owner). The human G7 product-scope decision by Diego is the sole remaining governance step.
 - **No `§9.2` item is resolved.** Every conservative safe default remains in force.
-- **Reviewer independence:** the Department 01 review was orchestrator-executed against the
-  actual artifact; an independent Department 01 reviewer separate from the authoring pass
-  should confirm before G7 (condition C-IND in `mvp-release-scope.md` §13.10).
+- **Reviewer independence (C-IND) — closed.** All eight independent specialist lenses
+  (D01…D06 + architecture + cross-department), each a fresh reviewer context that did not
+  author the artifacts, are recorded in `stridelab-ai/orchestration/reviews/step2-dept01/`;
+  the three `FAIL` lenses were remediated and re-verified closed (`09-reverify.md`).
+  C-IND status: `mvp-release-scope.md` §13.10 (`closed`, 2026-09-10).
 
 ## Source artifact references
 

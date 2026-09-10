@@ -107,16 +107,25 @@ reclassification of F-10 + F-42 to `MVP conditional`); and the INC-0…INC-11 im
 sequence including the hard INC-9-before-media/messaging-exposure gate, the INC-3a/INC-3b
 ordering, and the per-increment S-12 accessibility G5 gate. The exact requested approval
 statement is quoted verbatim in §15. **C-IND** (the independent specialist review pass) is
-partial — D01/D04/D02/D03 recorded, D05/D06/architecture/cross-department pending — so the
-package is presented as near-final pending those reviews and any remediation they trigger.
+**closed** — all eight lenses (D01, D02, D03, D04, D05, D06, architecture, cross-department)
+are recorded in `stridelab-ai/orchestration/reviews/step2-dept01/`; D01/D03/D04/D06/architecture
+returned `PASS_WITH_CONDITIONS`, and D02/D05/cross-department returned `FAIL`, were remediated
+in-artifact, and were re-verified closed (`09-reverify.md`: validator green, independent
+recount matching, no upstream-artifact drift, no new BLOCKING finding). The package is
+presented as **final** for the human G7 product-scope decision.
 
 ## Blockers / accepted conditions
 
 - **Human decision pending:** the G7 product-scope decision is the remaining governance step. Zero open BLOCKING findings. Pre-G7 conditions tracked in `docs/product/mvp-release-scope.md` §13.10 (independent specialist review C-IND; the §11.2 production-launch legal sign-offs are separate and out of scope of the product-scope decision — §11.4).
-- **Non-blocking conditions (each with a named owner — `docs/product/mvp-release-scope.md`
-  §13.10):** C-IND (independent specialist review per Department before G7); D01-N1/N2;
-  D02-N2/N3; D03-N3/N4; D04-N1 (`OQ-PS-MOD-STAFFING`) / D04-N2 (F-22 + F-28 joint
-  activation); D05-N3; D06-N2; ARCH-N2.
+- **C-IND (independent specialist review per Department + architecture + cross-department) —
+  closed** 2026-09-10 (`docs/product/mvp-release-scope.md` §13.10 / §13.11;
+  `stridelab-ai/orchestration/reviews/step2-dept01/`).
+- **Non-blocking conditions carried forward (each with a named owner + later stage —
+  `docs/product/mvp-release-scope.md` §13.10):** D01-N1/N2/N4; D02-N2/N3 + D02-IND-N1…N6;
+  D03-N3/N4; D04-N1 (`OQ-PS-MOD-STAFFING`) / D04-N2 (F-22 + F-28 joint activation) +
+  D04-IND-N1/N2/N4; D05-N3 + D05-IND-N1/N2/N5/N6; D06-N2 + D06-IND-N1/N3/N4; ARCH-N2 +
+  AR-IND-N1/N2. None blocks the G7 product-scope decision; each discharges at its named
+  G2 / G4 / G5 / G6 stage under its safe default.
 - **Production-launch legal sign-offs** (`OQ-IT01-AGE-VERIFY`, `OQ-PS07-JURISDICTION`,
   `OQ-PS08-JURISDICTION`, `OQ-PS09-EXTERNAL`) and `OQ-PS-MOD-STAFFING` remain named
   conditions on G6/G7 for the eventual production launch — safe defaults in force meanwhile.

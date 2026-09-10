@@ -153,10 +153,14 @@ artifacts:
       machine-enforced by stridelab-ai/scripts/validate-step2-artifacts.mjs
       (wired into npm run ai:validate + CI). No OQ-*/CD-* item is resolved,
       converted, or created; every WORKFLOW-ARCHITECTURE-v2.md §9.2 safe default
-      remains in force. No invariant changed; no navigation designed. G7 pending
-      — decision package in docs/product/mvp-release-scope.md §15; condition
-      C-IND (independent specialist review pass) is partial (D01/D04/D02/D03
-      recorded, D05/D06/architecture/cross-department pending).
+      remains in force. No invariant changed; no navigation designed. G7
+      (product-scope) pending — decision package in
+      docs/product/mvp-release-scope.md §15. Condition C-IND (independent
+      specialist review pass — D01..D06 + architecture + cross-department) is
+      CLOSED (2026-09-10): all eight lenses recorded in
+      stridelab-ai/orchestration/reviews/step2-dept01/; the three FAIL lenses
+      (D02, D05, cross-department) remediated and re-verified closed
+      (09-reverify.md); zero open BLOCKING findings.
 
   - id: mvp-release-scope
     type: release-scope
@@ -193,17 +197,26 @@ artifacts:
       production-launch legal sign-offs added §11.2/§11.3) raised, remediated,
       re-run, closed; D02-N1 raised to a fix (INC-3 split INC-3a/INC-3b).
       INDEPENDENT SPECIALIST REVIEW pass (§13.11,
-      stridelab-ai/orchestration/reviews/step2-dept01/): D01 PASS WITH
-      CONDITIONS (reclassified F-10 + F-42 → MVP conditional, DR-A5); D04 PASS
-      WITH CONDITIONS (no boundary crossed; D04-IND-N1..N4); D02 FAIL →
-      remediated (D02-IND-B1: S-12 made a per-increment G5 exit gate); D03 PASS
-      WITH CONDITIONS; D05/D06/architecture/cross-department pending. C-IND is
-      partial. Semantic integrity machine-enforced by
+      stridelab-ai/orchestration/reviews/step2-dept01/) — C-IND CLOSED
+      2026-09-10: D01 PASS WITH CONDITIONS (reclassified F-10 + F-42 → MVP
+      conditional, DR-A5); D03 PASS WITH CONDITIONS (A1-A35 + 14 seams intact);
+      D04 PASS WITH CONDITIONS (no youth-safety/authz/privacy boundary crossed;
+      D04-IND-N1..N4); D06 PASS WITH CONDITIONS (payment ≠ authorization
+      preserved structurally); architecture PASS WITH CONDITIONS (no
+      boundary/dependency/seam/topology change; F-42 reclassification resolves a
+      latent G2 conflict); D02 / D05 / cross-department FAIL → remediated →
+      re-verified closed (09-reverify.md: validator green, independent recount
+      matching, no upstream-artifact drift, no new BLOCKING finding). Zero open
+      BLOCKING findings. Semantic integrity machine-enforced by
       stridelab-ai/scripts/validate-step2-artifacts.mjs (wired into
       npm run ai:validate + CI). No OQ-*/CD-* item is resolved, converted, or
       created; every §9.2 safe default remains in force. Production-launch legal
       sign-offs (OQ-IT01-AGE-VERIFY, OQ-PS07-JURISDICTION, OQ-PS08-JURISDICTION,
       OQ-PS09-EXTERNAL) and OQ-PS-MOD-STAFFING remain named conditions on G6 and
-      a future G7 release decision. G7 (product-scope) pending — decision
-      package §15; the Workflow Architecture v2, the governed product baseline,
-      and the consolidated domain model remain separately approved and unchanged.
+      a future G7 release decision. G7 (product-scope) pending — the human
+      decision by Diego is the sole remaining governance step; decision package
+      §15. Recording the §15 approval statement locks the MVP scope for
+      implementation-design only — it does not merge the PR, authorise a
+      production release, or substitute for legal/compliance review. The
+      Workflow Architecture v2, the governed product baseline, and the
+      consolidated domain model remain separately approved and unchanged.
