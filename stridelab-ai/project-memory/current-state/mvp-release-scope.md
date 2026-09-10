@@ -13,16 +13,19 @@ Registry entry: `stridelab-ai/registry/artifacts.yaml` → `mvp-release-scope`
 ## What this artifact is
 
 One governed MVP release scope + an ordered implementation sequence, translating the
-Phase A prioritization (`docs/product/feature-prioritization.md`) into a definition of what
-the first StrideLab release delivers. It is a **proposal**, not an approved decision. It
-resolves, converts, or creates **no** `OQ-*` / `CD-*` item; changes **no** invariant;
-designs **no** navigation, schema, API, or UI.
+Phase A **42-feature** prioritization (`docs/product/feature-prioritization.md`) into a
+definition of what the first StrideLab release delivers: **35 user-facing + 11 supporting
+= 46** MVP-required capabilities, **9** MVP-conditional, the Post-MVP deferrals, and the
+F-EX-1…F-EX-10 exclusions. It is a **proposal**, not an approved decision. It resolves,
+converts, or creates **no** `OQ-*` / `CD-*` item; changes **no** invariant; designs **no**
+navigation, schema, API, or UI.
 
 Contents: the MVP objective; target users + supported roles (Head Coach, Event Coach,
 Athlete; Platform Safety Administrator as a platform actor); supported devices/platforms
 (iOS/iPadOS; web client out of scope); the included / conditional / deferred / excluded
-capability sets (referencing Phase A feature IDs); 11 end-to-end release journeys
-(J-1…J-11) that collectively exercise all 16 invariants + baseline §6A; the required
+capability sets (referencing Phase A feature IDs); 13 end-to-end release journeys
+(J-1…J-13, incl. J-12 multi-Team isolation for F-04 and J-13 for invariant #9) that
+collectively exercise all 16 invariants + baseline §6A (#11 by construction); the required
 aggregates (A1–A35), bounded contexts, and the 14 cross-context contract seams; the
 authorization / tenant-isolation / privacy / youth-safety / media / Vault / offline /
 accessibility / data-lifecycle requirements; the required infrastructure and the one
@@ -97,15 +100,19 @@ the G7 decision package (§15).
 ## Decisions requiring human approval
 
 The single G7 decision package (`docs/product/mvp-release-scope.md` §15) covers both
-Step-2 artifacts: the 36 user-facing + 12 supporting MVP-required capabilities; the 7
-conditional capabilities + activation conditions; the Post-MVP deferrals; the
-F-EX-1…F-EX-10 exclusions; the C1→C5 method; and the INC-0…INC-11 implementation sequence
-including the hard INC-9-before-media/messaging-exposure gate and the INC-3a/INC-3b
-ordering. The exact requested approval statement is quoted verbatim in §15.
+Step-2 artifacts: the **35 user-facing + 11 supporting = 46** MVP-required capabilities;
+the **9** conditional capabilities + activation conditions; the Post-MVP deferrals; the
+F-EX-1…F-EX-10 exclusions; the C1→C5 method; **DR-A5** (the independent-D01-review
+reclassification of F-10 + F-42 to `MVP conditional`); and the INC-0…INC-11 implementation
+sequence including the hard INC-9-before-media/messaging-exposure gate, the INC-3a/INC-3b
+ordering, and the per-increment S-12 accessibility G5 gate. The exact requested approval
+statement is quoted verbatim in §15. **C-IND** (the independent specialist review pass) is
+partial — D01/D04/D02/D03 recorded, D05/D06/architecture/cross-department pending — so the
+package is presented as near-final pending those reviews and any remediation they trigger.
 
 ## Blockers / accepted conditions
 
-- **Human decision pending:** G7 (the only unresolved step). Zero open BLOCKING findings.
+- **Human decision pending:** the G7 product-scope decision is the remaining governance step. Zero open BLOCKING findings. Pre-G7 conditions tracked in `docs/product/mvp-release-scope.md` §13.10 (independent specialist review C-IND; the §11.2 production-launch legal sign-offs are separate and out of scope of the product-scope decision — §11.4).
 - **Non-blocking conditions (each with a named owner — `docs/product/mvp-release-scope.md`
   §13.10):** C-IND (independent specialist review per Department before G7); D01-N1/N2;
   D02-N2/N3; D03-N3/N4; D04-N1 (`OQ-PS-MOD-STAFFING`) / D04-N2 (F-22 + F-28 joint

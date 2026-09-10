@@ -20,12 +20,17 @@ product invariant, and designs **no** navigation.
 
 Contents: a five-criterion prioritization method (C1 invariant-completion necessity → C2
 core-value necessity → C3 dependency position → C4 risk/uncertainty → C5 relative
-complexity, applied in that lexicographic tie-break order); a 40-feature master table
+complexity, applied in that lexicographic tie-break order); a 42-feature master table
 plus 13 cross-cutting supporting capabilities (`S-01…S-13`); per-feature records covering
-the ~20 required fields; a classification into **MVP required** (36 user-facing + 12
-supporting), **MVP conditional** (7, each with a named activation condition), **Post-MVP**
-(F-41 + F-P-1…F-P-16), and **Excluded from the current release** (F-EX-1…F-EX-10); a
-Department 01 review + remediation log; and a findings register (P-F-01…P-F-06).
+the ~20 required fields; a classification into **MVP required** (35 user-facing + 11
+supporting = 46 — after the independent D01 specialist review reclassified F-10 and F-42
+to `MVP conditional`, DR-A5), **MVP conditional** (9, each with a named activation
+condition), **Post-MVP** (F-41 + F-P-1…F-P-16), and **Excluded from the current release**
+(F-EX-1…F-EX-10); a Department 01 review + product-challenge (§6.3) + remediation log; and
+a findings register (P-F-01…P-F-06). The **independent specialist review pass** (D01…D06 +
+architecture + cross-department) is recorded in
+`stridelab-ai/orchestration/reviews/step2-dept01/` and synthesised in
+`docs/product/mvp-release-scope.md` §13.11 (condition **C-IND**).
 
 ## Ownership, dependencies, downstream consumers
 
@@ -50,7 +55,8 @@ Department 01 review + remediation log; and a findings register (P-F-01…P-F-06
   the three G7 approval records, the phase-gates + dependency-graph + routing +
   feature-delivery files, the shared contracts, the Department 01 `product-strategy` +
   `user-research-usability` SKILLs, the `product-strategist` + `product-experience-lead`
-  agents, and the four repository validators.
+  agents, and the five repository validators (incl. the new
+  `stridelab-ai/scripts/validate-step2-artifacts.mjs`).
 - Confirmed the Step-1 domain model's status is **APPROVED** from three agreeing governed
   sources (registry + `G7-domain-model.md` + artifact header); the Step-1 publication
   (registry flip, lifecycle record, companion-pointer refresh, commit pin) is complete on
@@ -78,8 +84,9 @@ Department 01 review + remediation log; and a findings register (P-F-01…P-F-06
   scope.
 - **DR-A2** — accept the prioritization method (C1→C5 lexicographic tie-break, given the
   absence of user research / market evidence / engineering estimates).
-- **DR-A3** — accept the seven **MVP conditional** activation conditions.
+- **DR-A3** — accept the nine **MVP conditional** activation conditions.
 - **DR-A4** — confirm the F-EX-1…F-EX-10 exclusion list.
+- **DR-A5** — confirm the independent-D01-review reclassification of **F-10** and **F-42** to `MVP conditional` (MVP-required 35 user-facing + 11 supporting = 46; conditional = 9), and pick Option A/B for the v1 commercial scaffold (`feature-prioritization.md` §6.3).
 
 No `OQ-*` / `CD-*` item is resolved by any of these.
 

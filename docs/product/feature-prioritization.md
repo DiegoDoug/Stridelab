@@ -23,7 +23,7 @@ This artifact **prioritizes candidate capabilities** for the first StrideLab rel
 
 ### 1.1 Authoritative inputs inspected
 
-`AGENTS.md`; `CLAUDE.md` (root + project); `stridelab-ai/orchestration/ORCHESTRATOR.md`; `stridelab-ai/project-memory/current-state/` (README, `product-baseline.md`, `workflow-architecture-v2.md`, `domain-model.md`); `stridelab-ai/registry/artifacts.yaml`; `stridelab-ai/registry/bounded-context-owners.yaml`; `stridelab-ai/application-map/*`; `docs/product/product-baseline.md`; `docs/product/workflow-architecture.md`; `docs/product/domain-model.md`; `stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md` (§1–§12, incl. §5 the 16 invariants, §9.1 normative decisions, §9.2 the full OPEN register); all 13 `stridelab-ai/knowledge/workflows/*/WORKFLOWS.md` category files (86 workflows); `stridelab-ai/orchestration/approvals/` (`approval-policy.md`, `approval-matrix.yaml`, `G7-product-baseline.md`, `G7-workflow-architecture-v2.md`, `G7-domain-model.md`); `stridelab-ai/orchestration/phase-gates/gates.yaml` + `gate-execution.md`; `stridelab-ai/orchestration/dependency-graph/departments.yaml`; `stridelab-ai/orchestration/routing/routing-table.yaml`; `stridelab-ai/orchestration/workflows/feature-delivery.md`; `stridelab-ai/shared/contracts/*` (`WORK-PACKAGE-CONTRACT.md`, `HANDOFF-CONTRACT.md`, `REVIEW-CONTRACT.md`); Department 01 core skills `product-strategy`, `user-research-usability`; Department 01 agents `product-strategist`, `product-experience-lead`; `stridelab-ai/scripts/validate-*.mjs` (four validators).
+`AGENTS.md`; `CLAUDE.md` (root + project); `stridelab-ai/orchestration/ORCHESTRATOR.md`; `stridelab-ai/project-memory/current-state/` (README, `product-baseline.md`, `workflow-architecture-v2.md`, `domain-model.md`); `stridelab-ai/registry/artifacts.yaml`; `stridelab-ai/registry/bounded-context-owners.yaml`; `stridelab-ai/application-map/*`; `docs/product/product-baseline.md`; `docs/product/workflow-architecture.md`; `docs/product/domain-model.md`; `stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md` (§1–§12, incl. §5 the 16 invariants, §9.1 normative decisions, §9.2 the full OPEN register); all 13 `stridelab-ai/knowledge/workflows/*/WORKFLOWS.md` category files (86 workflows); `stridelab-ai/orchestration/approvals/` (`approval-policy.md`, `approval-matrix.yaml`, `G7-product-baseline.md`, `G7-workflow-architecture-v2.md`, `G7-domain-model.md`); `stridelab-ai/orchestration/phase-gates/gates.yaml` + `gate-execution.md`; `stridelab-ai/orchestration/dependency-graph/departments.yaml`; `stridelab-ai/orchestration/routing/routing-table.yaml`; `stridelab-ai/orchestration/workflows/feature-delivery.md`; `stridelab-ai/shared/contracts/*` (`WORK-PACKAGE-CONTRACT.md`, `HANDOFF-CONTRACT.md`, `REVIEW-CONTRACT.md`); Department 01 core skills `product-strategy`, `user-research-usability`; Department 01 agents `product-strategist`, `product-experience-lead`; `stridelab-ai/scripts/validate-*.mjs` (five validators, incl. the new `validate-step2-artifacts.mjs`).
 
 ### 1.2 Recorded status of the Step-1 domain model (confirmed per task instruction)
 
@@ -69,11 +69,15 @@ Each candidate capability is scored against five criteria, then classified. The 
 - **[limitation]** "No paid billing ships in v1" (baseline §6B) is an approved-in-force default, not a D06-ratified commercial decision; the commercial-tier *structure* (`OQ-BE-TIER-STRUCTURE`) and mapping (`OQ-BE-TIER-MAP`) remain D06-owned and unresolved.
 - **[assumption]** "Feature" = a coherent user- or system-capability that can be accepted as a unit. One feature may span several workflow IDs; some workflow IDs (PS-02/04/05/06, VS-04) are cross-cutting framing/checkpoints folded into the feature that owns their mechanism.
 
+### 2.5 Notation — citing Workflow Architecture v2 independent-review findings
+
+`docs/product/workflow-architecture.md` §Closure records 24 independent-review findings whose canonical identifiers are **`F-01`…`F-24`**. Those collide with the feature IDs `F-01`…`F-42` introduced in this artifact. To keep every reference unambiguous, this artifact and `docs/product/mvp-release-scope.md` cite a Workflow-Architecture-v2 independent-review finding as **`WA2-F-NN`** (e.g. `WA2-F-04` = the MG-05 chat-attachment finding). This is a **citation label only** — it does not rename, re-scope, or change the status of the upstream finding, which retains its canonical `F-NN` identity in `docs/product/workflow-architecture.md`. A bare `F-NN` in these two artifacts always means the feature. The domain-model persistence findings keep their own distinct prefix `F-D03-NN`.
+
 ---
 
 ## 3. Candidate feature inventory — master table
 
-40 candidate features. Columns: **Ctx** = bounded context(s); **Agg** = principal domain-model aggregates; **Actor** = primary actor; **Dep** = dependency tier (0 = platform foundation, 1 = identity/team, 2 = planning, 3 = execution, 4 = media, 5 = downstream/derived, X = cross-cutting); **Cx** = relative complexity band; **Class** = classification.
+**42 candidate features** (`F-01`…`F-42`), plus **13 cross-cutting supporting capabilities** (`S-01`…`S-13`, §3.1). Every ID's classification is tallied in §5 and enforced by `stridelab-ai/scripts/validate-step2-artifacts.mjs`. Columns: **Ctx** = bounded context(s); **Agg** = principal domain-model aggregates; **Actor** = primary actor; **Dep** = dependency tier (0 = platform foundation, 1 = identity/team, 2 = planning, 3 = execution, 4 = media, 5 = downstream/derived, X = cross-cutting); **Cx** = relative complexity band; **Class** = classification.
 
 | ID | Feature | Workflows | Ctx | Agg | Actor | Dep | Cx | Class |
 |---|---|---|---|---|---|---|---|---|
@@ -86,7 +90,7 @@ Each candidate capability is scored against five criteria, then classified. The 
 | F-07 | Team closure / dissolution (archive-first, recoverable) | IT-09 | identity, teams, governance | A3, A33 | Head Coach | 1 | L | **MVP required** |
 | F-08 | User-owned profile + visibility resolution (PR-03) | PR-01, PR-02, PR-03 | profile (in identity) | A2 | Account owner | 1 | M | **MVP required** |
 | F-09 | Training-plan hierarchy authoring (Macro/Block/Week/Session) | TP-01, TP-02, TP-03, TP-04 | training | A5–A8 | Coach | 2 | L | **MVP required** |
-| F-10 | Session/workout templates | TP-05 | training | A9 | Coach | 2 | S | **MVP required** |
+| F-10 | Session/workout templates | TP-05 | training | A9 | Coach | 2 | S | **MVP conditional** |
 | F-11 | Plan duplication (scope-narrowing enforced) | TP-06 | training | A5–A9 | Coach | 2 | S | **MVP required** |
 | F-12 | Plan assignment to athletes/groups | TP-07 | training | A10 | Coach | 2 | M | **MVP required** |
 | F-13 | Plan modification (published / in-progress) | TP-08 | training | A8, A10 | Coach | 2 | M | **MVP required** |
@@ -118,14 +122,14 @@ Each candidate capability is scored against five criteria, then classified. The 
 | F-39 | Platform Safety Administrator role + moderation/escalation tooling | PS-03 + cross-cutting | governance | A29, A33 | Platform Safety Admin | X | L | **MVP required** (role + tooling; staffing = launch condition) |
 | F-40 | Commercial tier state (Free/Mid/Top skeleton; no gating) | BE-01 | billing | A28 | Head Coach | 1 | S | **MVP conditional** |
 | F-41 | Paid billing (trial/subscription, upgrade/downgrade, failed-payment/grace) | BE-02, BE-03, BE-04, BE-06 | billing | A28 | Head Coach | 5 | L | **Post-MVP** |
-| F-42 | Entitlement derivation interface (BE-05 single point; flag ≠ authz predicate) | BE-05 | billing, entitlements | A28 (EntitlementSet DS) | System | X | S | **MVP required** (interface + typing discipline) |
+| F-42 | Entitlement derivation interface (BE-05 single point; flag ≠ authz predicate) | BE-05 | billing, entitlements | A28 (EntitlementSet DS) | System | X | S | **MVP conditional** (deferred with F-40 gating; the one load-bearing v1 rule moves into S-02) |
 
 ### 3.1 Cross-cutting supporting capabilities (system, not screens) — required for the user-facing set to function
 
 | ID | Capability | Serves | Contract / invariant | Class |
 |---|---|---|---|---|
 | S-01 | Authentication + active-Team-context resolution | every Team-scoped feature | contract 7; IT-05 | **MVP required** |
-| S-02 | Authorization & tenant-isolation kernel (role / management-scope / communication-reach kept distinct; per-request evaluation against current authoritative state; no stale-cache elevation) | every feature | invariants #2, #3, #15; contracts 7, 8 | **MVP required** |
+| S-02 | Authorization & tenant-isolation kernel (role / management-scope / communication-reach kept distinct; per-request evaluation against current authoritative state; no stale-cache elevation; **+ the build-time rule that no `identity` / `teams` / `vault` / `profile` / `performance` authorization path references a commercial / entitlement flag type — the one load-bearing v1 clause of invariant #9, absorbed here when F-42 was reclassified conditional**) | every feature | invariants #2, #3, #9, #15; contracts 6 (C-5), 7, 8 | **MVP required** |
 | S-03 | Offline / local-first sync substrate (queue, pending-vs-server-durable state, reconciliation hooks, no last-write-wins) | F-14…F-19, F-20, F-26…F-28 | invariant #13; contracts 9, 14 | **MVP required** |
 | S-04 | Durable safety-notification capability (transactional in-app state + retry + idempotent processing + delivery/ack state + audited terminal failure + human escalation) | F-21, F-22, F-23, F-29, F-36, F-38 | invariant #14; contract 10 | **MVP required** |
 | S-05 | Audit-log capability (append-only; every destructive/authorization-sensitive transition) | F-01…F-39 | invariant #12; A35 | **MVP required** |
@@ -224,7 +228,7 @@ Shared conventions (stated once; per-feature entries note only deviations):
 
 **F-05 — Athlete + Event-Coach group assignment (management scope)**
 - User problem / outcome: the Head Coach needs to place athletes into event groups/subgroups and put Event Coaches in charge of groups — this is what defines who a coach manages, tags, gives feedback to, and sees performance data for.
-- Actor: Head Coach (sole assignment authority in v1). Workflows: TA-04, TA-05. Requirement refs: baseline §2 (Event Coach scope = assigned groups only; Head-Coach-only assignment in v1), invariants #1, #3, #15; F-18 finding.
+- Actor: Head Coach (sole assignment authority in v1). Workflows: TA-04, TA-05. Requirement refs: baseline §2 (Event Coach scope = assigned groups only; Head-Coach-only assignment in v1), invariants #1, #3, #15; `WA2-F-18` (Event Coach removed from TA-04 authority).
 - Aggregates / contexts: A4 Membership (AthleteGroupAssignment, EventCoachAssignment); `ManagementScope` VO (derived union); teams context. Contract 7.
 - User value: high — without it the Event Coach role and every scope-gated capability (tagging, feedback, performance visibility) has no meaning.
 - MVP necessity: **C1** (management scope = invariant #3; the boundary every scope-gated feature reads) + **C2**.
@@ -277,7 +281,7 @@ Shared conventions (stated once; per-feature entries note only deviations):
 
 **F-08 — User-owned profile + visibility resolution (PR-03)**
 - User problem / outcome: a member needs to own and edit their own profile; other members need to see exactly the right amount (peers: display name + role; in-scope coaches: catalogue fields; nobody gets DOB/age); no coach can edit an athlete's profile.
-- Actor: Account owner (edit); any member (view). Workflows: PR-01, PR-02, PR-03. Requirement refs: baseline §3 (profiles user-owned; not discoverable; peers get minimum identity; coach access = current role + scope; DOB/age restricted; `is_minor` only), invariants #1, #4 (coach-edit boundary), #15; F-01 finding.
+- Actor: Account owner (edit); any member (view). Workflows: PR-01, PR-02, PR-03. Requirement refs: baseline §3 (profiles user-owned; not discoverable; peers get minimum identity; coach access = current role + scope; DOB/age restricted; `is_minor` only), invariants #1, #4 (coach-edit boundary), #15; `WA2-F-01` (profile category + normative visibility model).
 - Aggregates / contexts: A2 Profile; `ProfileVisibilityResolution` DS; profile (in identity). Contract 8.
 - User value: high — identity surface; and the visibility model is a core youth-privacy control.
 - MVP necessity: **C1** (profile ownership + non-discoverability + DOB restriction are invariants; every member-rendering surface calls PR-03) + **C2**.
@@ -310,26 +314,26 @@ Shared conventions (stated once; per-feature entries note only deviations):
 
 ---
 
-**F-10 — Session / workout templates**
+**F-10 — Session / workout templates** · **RECLASSIFIED `MVP conditional`** (independent D01 review finding N-1, §13.11 of the release scope; DR-A5). *Activation condition: at INC-2 G4, D02/D03 confirm an author-private template save+instantiate slice does **not** extend the increment's critical path — else F-10 defers to Post-MVP (F-P-1 covers the shared-library form). Safe default meanwhile: F-09 authoring + F-11 duplication cover v1 prescription reuse.*
 - User problem / outcome: a coach re-uses prescription patterns (a taper week, a tempo session) across the season without rebuilding them.
 - Actor: Coach. Workflow: TP-05. Requirement refs: domain-model A9; `OQ-TP-TEMPLATE-SHARING` (safe default: author-private + Head Coach).
 - Aggregates / contexts: A9 SessionTemplate; training context.
-- User value: medium-high — a strong retention/efficiency lever for coaches, who prescribe repetitively in track & field.
-- MVP necessity: **C2** (materially reduces the effort of F-09, the core coach loop) — borderline; classified required because a coach authoring every session from scratch is a credible adoption risk and the build is small and self-contained.
+- User value: medium-high — an efficiency lever for coaches, who prescribe repetitively in track & field.
+- MVP necessity: **C2** only, and weakly — it accelerates F-09 but is **not** on the core-value critical path (F-09 delivers "plan training" end to end) and **no invariant requires it**. The first draft's "required" rested on an adoption-risk assertion, which §2.1 prohibits (no user-research / market evidence exists). F-11 duplication already covers the dominant v1 reuse case. → **conditional**.
 - Dependency position: tier 2; upstream = F-09.
-- Risk / uncertainty: `OQ-TP-TEMPLATE-SHARING` — safe default **author-private (+ Head Coach)**; a Team-wide shared template library (`CD-TEMPLATE-LIBRARY`) is **Post-MVP** (F-P-1). Scope slice: author-private instantiation only.
+- Risk / uncertainty: `OQ-TP-TEMPLATE-SHARING` — safe default **author-private (+ Head Coach)**; a Team-wide shared template library (`CD-TEMPLATE-LIBRARY`) is **Post-MVP** (F-P-1).
 - Security / privacy / youth-safety / authz: templates carry no athlete data, no assignment, no date; author-private by default.
 - Offline / sync: usable against locally cached templates; new templates sync for cross-device use.
 - Media-processing: none.
 - Complexity: **S.**
-- Acceptance evidence: save a Session as a template → instantiate into a new Week/Session; template is author-private (+ Head Coach) — another Event Coach cannot see it; archived template reactivable.
-- Rationale: **include (thin).** Author-private only. Shared-library deferred. Reconsider at Phase-B review if increment capacity is tight — it is the least-load-bearing "required" item and could move to `MVP conditional` on increment budget.
+- Acceptance evidence (if activated): save a Session as a template → instantiate into a new Week/Session; template is author-private (+ Head Coach) — another Event Coach cannot see it; archived template reactivable.
+- Rationale: **conditional.** Author-private slice only; shared library deferred (F-P-1). Ships only if INC-2 has the budget; otherwise Post-MVP. Not in any end-to-end journey — F-09 + F-11 carry J-2.
 
 ---
 
 **F-11 — Plan duplication (scope-narrowing enforced)**
 - User problem / outcome: a coach copies a prior season/block/week/session to accelerate authoring the next one.
-- Actor: Coach. Workflow: TP-06. Requirement refs: F-15 finding (normative): a duplicate is a `draft` owned by the duplicating actor, scoped to *that actor's* authority — never inheriting a broader source scope.
+- Actor: Coach. Workflow: TP-06. Requirement refs: `WA2-F-15` (normative): a duplicate is a `draft` owned by the duplicating actor, scoped to *that actor's* authority — never inheriting a broader source scope.
 - Aggregates / contexts: A5–A9 (new draft referencing source as origin); training context.
 - User value: medium-high — same efficiency rationale as F-10.
 - MVP necessity: **C2** (accelerates F-09) + **C1** (the scope-narrowing rule is normative and must be enforced wherever duplication exists — so if duplication ships, it must ship correctly).
@@ -418,7 +422,7 @@ Shared conventions (stated once; per-feature entries note only deviations):
 
 **F-16 — Session finalization**
 - User problem / outcome: a coach closes the ordinary edit window on a session and locks the prescribed structure for the historical record.
-- Actor: Coach. Workflow: SE-08. Requirement refs: F-23 finding (finalization locks the prescribed structure **only**, never athlete performed-work truth — SE-10 path remains); invariant #12.
+- Actor: Coach. Workflow: SE-08. Requirement refs: `WA2-F-23` (finalization locks the prescribed structure **only**, never athlete performed-work truth — SE-10 path remains); invariant #12.
 - Aggregates / contexts: A11 terminal state; A12 stays amendable via F-18; sessions context.
 - User value: medium; the honesty guarantee (finalization ≠ locking athlete truth) is high-value.
 - MVP necessity: **C2** (a session lifecycle needs a close) + **C1** (F-23 normative decision; the anchor for PF-* history and F-18).
@@ -453,7 +457,7 @@ Shared conventions (stated once; per-feature entries note only deviations):
 
 **F-18 — Athlete post-finalization correction (audited amendment)**
 - User problem / outcome: an athlete realises days later they logged a value wrong on a now-finalized session and needs an audited way to correct **their own** record without re-opening the session or touching the prescribed structure.
-- Actor: Athlete (own records only). Workflow: SE-10. Requirement refs: F-23 finding (audited amendment; original + amended + timestamp + actor + mandatory reason preserved; finalized history never silently rewritten), invariant #4; data-subject-correction framing (PS-08).
+- Actor: Athlete (own records only). Workflow: SE-10. Requirement refs: `WA2-F-23` (audited amendment; original + amended + timestamp + actor + mandatory reason preserved; finalized history never silently rewritten), invariant #4; data-subject-correction framing (PS-08).
 - Aggregates / contexts: A12 AmendmentRecord (layered, chronological, never destroying the original); sessions context. Contract 9 (→ PS-08).
 - User value: medium-high — it is the athlete's guaranteed correction path and the fulfilment mechanism for a data-subject correction request on session data.
 - MVP necessity: **C1** (F-23 normative decision; invariant #4 — the athlete's audited correction path is part of what "coach cannot overwrite athlete truth" means; and PS-08 correction of session data is fulfilled through SE-10) + **C2**.
@@ -489,7 +493,7 @@ Shared conventions (stated once; per-feature entries note only deviations):
 
 **F-21 — Tag athlete(s) in media**
 - User problem / outcome: a coach or athlete identifies which athletes appear in a clip — an identification act, explicitly **not** a visibility grant.
-- Actor: Coach + Athlete (within tagging scope). Workflow: MD-05. Requirement refs: baseline §4 (tagging is metadata only; never grants Vault access; bounded to the tagger's current scope), invariant #7; F-11 finding.
+- Actor: Coach + Athlete (within tagging scope). Workflow: MD-05. Requirement refs: baseline §4 (tagging is metadata only; never grants Vault access; bounded to the tagger's current scope), invariant #7; `WA2-F-11` (VS-01 is an explicit server-authoritative grant, not automatic).
 - Aggregates / contexts: A15 Tag child; media context. Contract 1.
 - User value: medium — enables the athlete-facing grant (F-23) and multi-subject-consent enforcement (F-22).
 - MVP necessity: **C1** (the tag ≠ grant boundary is invariant #7; the tag is the identification a later VS-01 grant references and the key multi-subject enforcement uses) + **C2**.
@@ -507,7 +511,7 @@ Shared conventions (stated once; per-feature entries note only deviations):
 
 **F-23 — Vault grant / share / revoke + visibility resolution (VS-04 checkpoint)**
 - User problem / outcome: a media owner deliberately lets a specific athlete see a specific clip in their Vault (grant); an in-scope coach shares a specific item with a managed athlete or authorized coach (share); either can be revoked; the athlete's Vault shows exactly what was granted or shared — never inferred from membership, group, or tag.
-- Actor: Media owner / in-scope coach (grant/share); grantor or Platform Safety Administrator (revoke). Workflows: VS-01, VS-02, VS-03, VS-04. Requirement refs: baseline §4 (explicit server-authoritative grant; in-scope coaches only; athlete-to-athlete disabled; multi-subject blocked by default; Vault visibility never derived), invariants #7, #8; F-11 finding; contracts 1, 2, 3, 11.
+- Actor: Media owner / in-scope coach (grant/share); grantor or Platform Safety Administrator (revoke). Workflows: VS-01, VS-02, VS-03, VS-04. Requirement refs: baseline §4 (explicit server-authoritative grant; in-scope coaches only; athlete-to-athlete disabled; multi-subject blocked by default; Vault visibility never derived), invariants #7, #8; `WA2-F-11` (VS-01 explicit server-authoritative grant); contracts 1, 2, 3, 11.
 - Aggregates / contexts: A16 VaultGrant, A17 Share (independent aggregates — DR-2(b)); `VaultVisibilityResolution` DS (query-time over A16 + A17 only, **no** denormalised `visible` flag — domain-model F-D03-05); vault context. Contracts 1, 2, 3.
 - User value: high — "review and analyse athlete media" for the athlete depends on it; and it is the single highest-sensitivity surface in the product.
 - MVP necessity: **C1** (invariants #7, #8; VS-03 revocation is "the most safety-critical synchronization property in the entire product"; you cannot ship F-20/F-24/F-25/F-28 without it) + **C2**.
@@ -597,10 +601,10 @@ Shared conventions (stated once; per-feature entries note only deviations):
 
 **F-28 — Chat attachments (stricter-transition routing)**
 - User problem / outcome: a member attaches a file or media clip to a message — and if that broadens a media artifact's visibility, it creates a **formal, revocable, auditable** VS-02 (private thread) or MD-06 (group/Team channel) record, routing through the *stricter* transition, never a chat-only lightweight grant.
-- Actor: same as the hosting channel. Workflow: MG-05. Requirement refs: F-04 finding (attachment broadening visibility → formal VS-02 / MD-06 record; offline submission pending until server-confirmed), invariant #7; contract 4.
+- Actor: same as the hosting channel. Workflow: MG-05. Requirement refs: `WA2-F-04` (attachment broadening visibility → formal VS-02 / MD-06 record; offline submission pending until server-confirmed), invariant #7; contract 4.
 - Aggregates / contexts: A21 MessageAttachment; routes to A16/A17 (VS-02) or A15 Publication (MD-06); messaging + media + vault. Contract 4.
 - User value: medium — attachments are expected in any chat; the guarantee is that they cannot bypass media-visibility safeguards.
-- MVP necessity: **C1** (if F-26/F-27 ship, attachments must be handled — and an attachment must never reach a Team/group audience while bypassing MD-06's minor-consent gate; F-04 finding).
+- MVP necessity: **C1** (if F-26/F-27 ship, attachments must be handled — and an attachment must never reach a Team/group audience while bypassing MD-06's minor-consent gate; `WA2-F-04`).
 - Dependency position: tier 4; upstream = F-26, F-27, F-20, F-23, S-03.
 - Risk / uncertainty: inherits `OQ-MD06-AUTHORITY` / `OQ-VS02-MULTISUBJECT` for group-channel attachments of media depicting a tagged minor (safe default: blocked); an attachment whose broadened-visibility transition the actor cannot perform is rejected at that transition's boundary.
 - Security / privacy / youth-safety / authz: **high.** Private-thread attachment → VS-02 semantics (authority, audit, VS-03 revocation); group/Team attachment → MD-06 semantics (publication authority, minor-consent gate, audience scoping, audit); a member cannot attach another member's private draft; athlete-to-athlete media routing rejected (no athlete-to-athlete channel; VS-02 disabled for athletes).
@@ -609,13 +613,13 @@ Shared conventions (stated once; per-feature entries note only deviations):
 - Complexity: **M.**
 - Additional reviewers: D04 (mandatory), architecture-reviewer (contract 4).
 - Acceptance evidence: attach a clip to a private thread → a formal VS-02 record created, revocable via VS-03, audited; attach to a Team channel → an MD-06 publication record, minor-consent gate applied (blocked if consent missing — see F-22), audited; attach a file the actor cannot share denied; offline attachment stays pending, broadened visibility not shown until server-confirmed.
-- Rationale: **include.** Required the moment F-26/F-27 ship; the F-04 finding forbids a lightweight bypass.
+- Rationale: **include.** Required the moment F-26/F-27 ship; `WA2-F-04` forbids a lightweight bypass.
 
 ---
 
 **F-29 — Report / block / moderation path**
 - User problem / outcome: any member can flag concerning content/behaviour in any channel and block unwanted contact from a specific person; reports route to the Head Coach, or bypass Team leadership to the Platform Safety Administrator when they implicate the Head Coach or are classified illegal/imminent-harm.
-- Actor: any member (report/block); Head Coach (first responder); Platform Safety Administrator (escalated). Workflows: MG-06, PS-02. Requirement refs: baseline §5 (report/block available to **every** member regardless of role/tier/group; block semantics; restricted safety telemetry; MG-06 authoritative), invariant #14; MAJOR (finding F-17 in the workflow architecture).
+- Actor: any member (report/block); Head Coach (first responder); Platform Safety Administrator (escalated). Workflows: MG-06, PS-02. Requirement refs: baseline §5 (report/block available to **every** member regardless of role/tier/group; block semantics; restricted safety telemetry; MG-06 authoritative), invariant #14; `WA2-F-17` (blocking behaviour reclassified MAJOR in the Workflow Architecture v2 review).
 - Aggregates / contexts: A22 BlockRelationship, A23 ReportCase, A29 EscalationCase; messaging + governance. Contract 11; S-04.
 - User value: high — it is a youth-safety control, not a convenience; the product cannot responsibly carry minors + messaging + media without it.
 - MVP necessity: **C1** (an approved safety invariant; you cannot ship F-20…F-28 for a 13–17 audience without report/block/moderation) + **C2** (trust prerequisite).
@@ -651,7 +655,7 @@ Shared conventions (stated once; per-feature entries note only deviations):
 
 **F-31 — Performance & history views (workout, training, metrics, PB/PR)**
 - User problem / outcome: an athlete reviews their own full history, metrics, and personal bests; a coach reviews the same for athletes **currently** within their management scope; group aggregates never leak an out-of-scope athlete's individual data.
-- Actor: Athlete (own full history); coach (current-scope athletes). Workflows: PF-01, PF-02, PF-03, PF-04. Requirement refs: baseline §2/§3 (current-scope-only for coaches; athletes always retain their own data; aggregates never reveal out-of-scope individuals), invariant #15; F-15 finding; contract 5.
+- Actor: Athlete (own full history); coach (current-scope athletes). Workflows: PF-01, PF-02, PF-03, PF-04. Requirement refs: baseline §2/§3 (current-scope-only for coaches; athletes always retain their own data; aggregates never reveal out-of-scope individuals), invariant #15; `WA2-F-15` (PF-01 current-scope-only made normative); contract 5.
 - Aggregates / contexts: A25 PBRecord (the one stateful performance entity) + derived read models (WorkoutHistoryView, TrainingHistoryView, PerformanceMetricsView — own no primary data); performance context; S-11 pipeline. Contract 5.
 - User value: high — "review athlete performance" is core value and a primary athlete motivator (PB tracking).
 - MVP necessity: **C2** (core value — "review athlete performance") + **C1** (current-scope-only visibility and the aggregation-boundary rule are normative).
@@ -792,21 +796,21 @@ Shared conventions (stated once; per-feature entries note only deviations):
 
 ---
 
-**F-42 — Entitlement derivation interface (BE-05 single point; flag ≠ authz predicate)**
-- User problem / outcome: there must be exactly **one** place where commercial state translates into feature-availability flags, and those flags must be **structurally non-consumable** as authorization predicates — so no identity/teams/vault/profile authorization path can ever grow a dependency on billing state.
-- Actor: system. Workflow: BE-05. Requirement refs: baseline §6A (payment ≠ authorization — invariant #9), contract 6 (BE-05 is the single entitlement-derivation point; consumers read flags only; C-5: flags typed/namespaced separately from role/scope checks, with a documented testable "no authz path consumes a BE-05 flag" rule).
-- Aggregates / contexts: A28 TeamSubscription → `EntitlementSet` DS (derived projection, not a stored aggregate — DR-2(e)); billing + `platform/entitlements`. Contract 6.
-- User value: not a user feature — an architectural control point that keeps invariant #9 structurally enforceable.
-- MVP necessity: **C1** (invariant #9 / baseline §6A; contract 6 C-5 is a structural discipline that is cheap to establish now and expensive to retrofit once other contexts have grown dependencies) — required as the **interface + typing discipline**, even though in v1 it emits an "all features available" flag set (`OQ-BE-TIER-MAP` default: nothing tier-gated).
-- Dependency position: cross-cutting; upstream = F-40 (tier-state field), S-02.
-- Risk / uncertainty: `OQ-BE-TIER-MAP` (safe default: **no feature is tier-gated** until D06's approved entitlement artifact defines the mapping — so v1 ships a trivial all-enabled projection), `OQ-BE-TIER-STRUCTURE` (D06 not ratified). A separate approved D06 entitlement artifact is a hard precondition to any **billing** implementation (F-41), not to this interface.
-- Security / privacy / youth-safety / authz: **structural.** Recompute fails toward the more restrictive state; a stale cache never grants paid-tier access indefinitely; flags are typed/namespaced so they are not interchangeable with role/scope checks; a documented, testable rule asserts no authorization path consumes a BE-05 flag.
-- Offline / sync: entitlement state cached for offline checks but revalidated on connect; never trusted indefinitely.
+**F-42 — Entitlement derivation interface (BE-05 single point; flag ≠ authz predicate)** · **RECLASSIFIED `MVP conditional`** (independent D01 review finding N-2, §13.11 of the release scope; DR-A5). *Activation condition: F-40 tier gating is activated (a D06-approved entitlement artifact defines `OQ-BE-TIER-MAP`) — i.e., the BE-05 derivation interface + `EntitlementFlag` type are built when there is commercial state to derive flags from. Safe default in v1: there is **no** `EntitlementFlag` type and **no** BE-05 interface; the one load-bearing rule — no `identity`/`teams`/`vault`/`profile`/`performance` authorization path references a commercial/entitlement flag type — is carried by **S-02** and enforced by a build-time lint check (S-02, INC-0).*
+- User problem / outcome: when commercial state eventually gates features, there must be exactly **one** place it translates into feature-availability flags, and those flags must be **structurally non-consumable** as authorization predicates.
+- Actor: system. Workflow: BE-05. Requirement refs: baseline §6A (payment ≠ authorization — invariant #9), contract 6 (C-5: flags typed/namespaced separately from role/scope checks, with a documented testable "no authz path consumes a BE-05 flag" rule).
+- Aggregates / contexts: A28 TeamSubscription → `EntitlementSet` DS (DR-2(e)); billing + `platform/entitlements`. Contract 6.
+- User value: not a user feature — an architectural control point for a commercial model that does not ship in v1.
+- MVP necessity: **not C1 in v1.** The circular reasoning the first draft used ("required so no authz path can grow a dependency on billing state") is answered more directly by the fact that **v1 has no billing/entitlement flag type at all** — there is nothing to depend on. The only rule that must exist now is the *negative* build-time constraint, which is cheap and lives in S-02. The derivation interface itself is built with F-40 gating. → **conditional**.
+- Dependency position: cross-cutting; upstream = F-40 (which is itself conditional), S-02.
+- Risk / uncertainty: `OQ-BE-TIER-MAP`, `OQ-BE-TIER-STRUCTURE` (D06 not ratified). A separate approved D06 entitlement artifact is a hard precondition to F-42 activation and to any billing implementation (F-41).
+- Security / privacy / youth-safety / authz: **structural** — see the S-02 row and J-13. In v1, invariant #9 holds vacuously (no flag type) *and* by the S-02 build-time rule.
+- Offline / sync: n/a in v1 (nothing built).
 - Media-processing: none.
-- Complexity: **S** (v1: a trivial projection + the typing discipline + the test).
-- Additional reviewers: D04 (payment ≠ authorization — mandatory), D06 (`operations-governance-reviewer`), architecture-reviewer (contract 6, ratified BE-05 as the single derivation point).
-- Acceptance evidence: exactly one derivation point exists; consumers read only typed feature-availability flags, never raw billing state; a static/lint check asserts no identity/teams/vault/profile authorization path references a BE-05 flag type; recompute failure falls to the restrictive state; v1 projection returns all features available.
-- Rationale: **include (interface + discipline only).** No paid billing, no tier gating in v1; but the single-derivation-point + non-consumable-flag typing is an invariant-preserving control worth establishing before other contexts exist to depend on it.
+- Complexity: **S** (when activated).
+- Additional reviewers: D04 (payment ≠ authorization — mandatory), D06 (`operations-governance-reviewer`), architecture-reviewer (contract 6 ratified BE-05 as the single derivation point).
+- Acceptance evidence (v1): the S-02 build-time check finds **no** `identity`/`teams`/`vault`/`profile`/`performance` authorization path referencing any commercial/entitlement flag type, **and** no such type exists (J-13). (On activation: exactly one derivation point; typed flags only; recompute fails restrictive.)
+- Rationale: **conditional.** Resolves finding P-F-05. The negative rule (S-02) is the v1 invariant-#9 control; the positive interface is deferred with F-40.
 
 ---
 
@@ -960,9 +964,9 @@ Shared conventions (stated once; per-feature entries note only deviations):
 
 | Class | Count | Feature IDs |
 |---|---|---|
-| **MVP required** | 36 user-facing features + 12 supporting capabilities (11 `S-*` + F-42) = 48 | F-01…F-18, F-20, F-21, F-23, F-24, F-25, F-26, F-27, F-28, F-29, F-30, F-31, F-32, F-34 (athlete self), F-35, F-36, F-37 (assisted), F-38, F-39 (36 user-facing); F-42, S-01, S-02, S-03, S-04, S-05, S-06, S-07, S-08, S-11, S-12, S-13 (12 supporting) |
-| **MVP conditional** | 7 | F-19 (gated by F-06), F-22 (D04 consent mechanism), F-33 (`OQ-PF-AGG-METHOD`), F-34-cond (`OQ-PF-MINOR-EXPORT`), F-40 (tier gating → D06 artifact), S-09 (automated fan-out), S-10 (realtime) |
-| **Post-MVP** | F-41 + F-P-1…F-P-16 (+ the S-09 / S-10 automated/realtime layers) | see §4 table |
+| **MVP required** | 35 user-facing features + 11 supporting capabilities = 46 | F-01, F-02, F-03, F-04, F-05, F-06, F-07, F-08, F-09, F-11, F-12, F-13, F-14, F-15, F-16, F-17, F-18, F-20, F-21, F-23, F-24, F-25, F-26, F-27, F-28, F-29, F-30, F-31, F-32, F-34 (athlete self), F-35, F-36, F-37 (assisted), F-38, F-39 (35 user-facing); S-01, S-02, S-03, S-04, S-05, S-06, S-07, S-08, S-11, S-12, S-13 (11 supporting) |
+| **MVP conditional** | 9 | F-10 (increment budget at INC-2 G4, else Post-MVP), F-19 (gated by F-06), F-22 (D04 consent mechanism), F-33 (`OQ-PF-AGG-METHOD`), F-40 (tier gating → D06 artifact), F-42 (BE-05 derivation interface — deferred with F-40; the one load-bearing v1 rule lives in S-02), F-34-cond (`OQ-PF-MINOR-EXPORT`), S-09 (automated fan-out), S-10 (realtime) |
+| **Post-MVP** | F-41 + F-P-1…F-P-16 (+ the S-09 / S-10 automated/realtime layers; F-10 falls here if INC-2 has no budget) | see §4 table |
 | **Excluded from current release** | 10 | F-EX-1…F-EX-10 |
 
 **Highest-risk / highest-attention MVP items (for Phase B sequencing):**
@@ -993,12 +997,31 @@ Per the command contract, Phase A is reviewed by Department 01 before Phase B. T
 | A-03 | Export (PF-06) was a single "required" item, conflating athlete self-export with coach-initiated external export of minor data (`OQ-PF-MINOR-EXPORT`, open). | Split into F-34 (MVP required — athlete self) and F-34-cond (MVP conditional). |
 | A-04 | Complexity bands risked being read as effort estimates. | Added explicit "not an engineering estimate — D02/D03 own real estimates at G4" labelling in §2.2/§2.4 and per-feature. |
 | A-05 | The Step-1 domain-model status needed confirmation from governed sources, and an earlier draft had noticed a lifecycle-record sync gap. | §1.2 confirms APPROVED from three agreeing sources; the lifecycle-record sync (registry flip, current-state record, companion-pointer refresh, commit pin) was completed on `main` at commit `5db47f1` before this artifact was authored — no residual finding. |
-| A-06 | F-10 (templates) as "MVP required" is the weakest necessity claim in the required set. | Kept as required (thin, author-private) with an explicit note that it may move to `MVP conditional` on increment budget at Phase B. |
+| A-06 | F-10 (templates) as "MVP required" is the weakest necessity claim in the required set. | **Superseded by the independent D01 review (finding N-1) — F-10 reclassified `MVP conditional` (§6.3, DR-A5).** |
 
-- **Conditions:** (1) the independent cross-department review (recorded in `mvp-release-scope.md`) must confirm the classification, particularly D04 on F-22/F-29/F-36/F-38 and D03 on F-17/F-23/S-03; (2) human approval (G7) of this artifact and the Phase B scope is the final step; (3) `user-research-usability` follow-ups (`OQ-MG07-DEFAULTS`, `OQ-SE-RECONCILE-UX` presentation, `OQ-MG-BLOCK-SAFE-COLLAPSE` classifier) are named, not resolved.
+- **Conditions:** (1) the independent specialist reviews (recorded in `stridelab-ai/orchestration/reviews/step2-dept01/` and synthesised in `mvp-release-scope.md` §13.11) confirm the classification — condition **C-IND**; (2) the human **G7 product-scope decision** is the final governance step (it is **not** a legal review or a launch authorization — `mvp-release-scope.md` §11.4); (3) `user-research-usability` follow-ups (`OQ-MG07-DEFAULTS`, `OQ-SE-RECONCILE-UX` presentation, `OQ-MG-BLOCK-SAFE-COLLAPSE` classifier) are named, not resolved.
 - **Disposition:** **PASS WITH CONDITIONS** (`product-strategy` production assessment: PASS WITH CONDITIONS — usable; named external/environmental limits remain and their effect is explicit).
-- **Reviewer identity:** Department 01 `product-experience-lead` lens, orchestrator-executed. **Residual condition:** an independent Department 01 reviewer separate from the authoring pass should confirm before G7 (consistent with the repository's independent-review discipline for material artifacts).
-- **Downstream effect:** this artifact is the input to `docs/product/mvp-release-scope.md` (Phase B) and to the cross-department review recorded there.
+- **Reviewer identity:** Department 01 `product-experience-lead` lens, orchestrator-executed (this §6.1 pass). The **independent** D01 specialist review is `stridelab-ai/orchestration/reviews/step2-dept01/01-d01-product.md` (`PASS_WITH_CONDITIONS`; findings N-1…N-4 applied — F-10 and F-42 reclassified, §7.1 matrix aligned).
+- **Downstream effect:** this artifact is the input to `docs/product/mvp-release-scope.md` (Phase B) and to the cross-department + independent specialist reviews recorded there (§13).
+
+### 6.3 Product challenge — necessity re-examination of seven capabilities
+
+Per the review mandate ("do not rubber-stamp 'smallest coherent MVP'; a capability required only because another *optional* capability was included must not become 'required' through circular reasoning"), the seven flagged capabilities were re-examined by the independent D01 lens (`.../step2-dept01/01-d01-product.md`).
+
+| Capability | Verdict | Basis |
+|---|---|---|
+| **F-10 Session/workout templates** | **Reclassified `MVP conditional`** (was "MVP required"). | Not on the core-value critical path (F-09 delivers "plan training" end to end); no invariant requires it; F-11 duplication covers the dominant v1 reuse case. The "required" justification used an adoption-risk claim, which §2.1 prohibits (no user-research / market evidence). Activation condition + safe default in §4 and `mvp-release-scope.md` §6.1. |
+| **F-42 Entitlement derivation interface** | **Reclassified `MVP conditional`** (was "MVP required"); the one load-bearing v1 rule moved into **S-02**. | Circular: "required so no authz path can grow a dependency on billing state" is answered directly by the fact that v1 has **no** entitlement-flag type at all. The negative build-time constraint (no `identity`/`teams`/`vault`/`profile`/`performance` authz path references a commercial/entitlement flag type) is cheap and lives in S-02 (MVP required, INC-0). The BE-05 derivation interface is built with F-40 gating. Resolves finding **P-F-05**. |
+| **F-26 / F-27 messaging** | **Kept `MVP required`.** | "Communicate" is named in the approved product objective (`mvp-release-scope.md` §2) and baseline §1. Removing it contradicts approved scope. Invariant #15 (reach ≠ scope) is only testable once F-27 exists. |
+| **F-30 Notification preferences** | **Kept `MVP required`**, scope stated precisely. | Not circular: invariant #14 (safety class cannot be disabled) + the three-class model apply the moment **any** notification is emitted — and S-04 safety notifications are emitted by F-21/F-23/F-36, not only by messaging. The v1 scope is the class model + the safety-lock enforcement (store refuses "safety = off") + operational-always-in-app + a basic social on/off; quiet-hours/bundling polish is `OQ-MG07-DEFAULTS` (a `user-research-usability` follow-up, D01-N2). |
+| **F-31 Performance & history views** | **Kept `MVP required`.** | "Review athlete performance" is in the approved objective. Removing it contradicts approved scope. The current-scope-only + aggregation-boundary invariants must be enforced from day one. |
+| **F-32 Own-data reports** | **Kept `MVP required`, flagged the weakest of the kept set (DR-A5 note).** | F-31 (views) + F-34 (export) already deliver "review performance" + "take your data" end to end; a formatted report *document* (PF-05) is a convenience layer. Retained because it is small (complexity S) and is the visible athlete/coach payoff of F-31; if increment budget is tight it is the first "kept" capability to defer — recorded for Diego in DR-A5. |
+| **F-34 Data export (athlete self-export)** | **Kept `MVP required`.** | Baseline §5 names self-service export (PF-06) as a **data-subject right** alongside self-service deletion. Removing it contradicts baseline §5 and a data-subject-rights obligation. |
+| **F-39 Platform Safety Administrator role + tooling** | **Kept `MVP required` — not circular.** | Required because F-29 (report/block) needs a recipient — and F-29 is itself required by baseline §5 ("report/block available to every member") + invariant #14, which apply the moment any UGC/media reaches minors (F-20, F-26). A real safety dependency chain rooted in baseline §5, not in an optional capability. Staffing/SLA (`OQ-PS-MOD-STAFFING`) is a separate production-launch condition. |
+
+**Alternative recorded for the human (F-42 / F-40).** *Option A (adopted, recommended):* ship the Free-default tier-state field (F-40) + the S-02 build-time rule in v1; defer the BE-05 interface (F-42) to the paid-billing release. *Option B:* defer **all** commercial/entitlement concept (no tier-state field, no BE-05, no flag type) to the paid-billing release — invariant #9 then holds vacuously in v1. Baseline §6B / IT-02 ("a new Team defaults to Free") leans toward Option A, so A is adopted; Option B is a legitimate Diego decision (DR-A5).
+
+No `OQ-*` / `CD-*` item is resolved by any of the above. The reclassifications are pre-approval draft-state changes made by the owning Department's review and are put to the human in **DR-A5**.
 
 ---
 
@@ -1012,7 +1035,7 @@ Per the task: "If prioritization reveals a real contradiction, register it as a 
 | P-F-02 | sequencing note | F-22 (publication) and the group-channel slice of F-28 share the same D04-owned consent-mechanism block; activating one without the other would be inconsistent. | `messaging/WORKFLOWS.md` MG-05 open questions; `media/WORKFLOWS.md` MD-06; `OQ-MD06-AUTHORITY`. | non-blocking | D01 + D04; recorded as a joint activation condition in Phase B. |
 | P-F-03 | evidence gap | No usability evidence exists for a 13–17 primary audience; several UX-detail OPEN items (`OQ-MG07-DEFAULTS`, `OQ-SE-RECONCILE-UX` presentation, `OQ-MG-BLOCK-SAFE-COLLAPSE`) depend on it. | `product-strategy` / `user-research-usability` SKILLs; §9.2. | non-blocking (safe defaults ship and are tuned) | D01 `user-research-usability`; a research work package, not a v1 blocker. |
 | P-F-04 | scope clarification | The repo carries `domains/*/web/` scaffold directories, but the product objective is "iOS-first, iPad-oriented". | `stridelab-ai/application-map/bounded-contexts.md` (scaffold note); baseline §1. | informational | D01 + D02; recorded as F-P-14 (Post-MVP) and stated in `mvp-release-scope.md` §devices/platforms. |
-| P-F-05 | dependency note | F-42 (BE-05 entitlement interface) is classified MVP-required as a *typing/discipline* control even though no paid billing ships; a reviewer could read this as scope creep. | contract 6 C-5; baseline §6A; invariant #9. | non-blocking | architecture-reviewer + D06; rationale recorded in F-42 and re-tested in the cross-department review. |
+| P-F-05 | dependency note | F-42 (BE-05 entitlement interface) was classified MVP-required as a *typing/discipline* control even though no paid billing ships; a reviewer could read this as scope creep. | contract 6 C-5; baseline §6A; invariant #9. | **RESOLVED** — the independent D01 review (finding N-2) reclassified F-42 `MVP conditional`; the one load-bearing v1 rule is now in S-02 (§3.1, §6.3, DR-A5). | closed |
 | P-F-06 | method limitation | Complexity bands (C5) are qualitative orchestrator judgement with no engineering input; increment sequencing in Phase B inherits this uncertainty. | §2.2, §2.4 `[assumption]` labels. | non-blocking | D02 + D03 own real estimates at G4; Phase B increments are dependency-ordered, not effort-ordered, to limit the exposure. |
 
 ---
@@ -1023,7 +1046,7 @@ Per the task: "If prioritization reveals a real contradiction, register it as a 
 |---|---|---|
 | G0 — Authority & Context | `PASS_WITH_CONDITIONS` | Primary owner (D01) resolved; all authoritative artifacts identified (§1.1); Step-1 domain-model status confirmed APPROVED from three agreeing governed sources (§1.2). |
 | G1 — Product / Workflow (D01, owner) | **recommend-approve-with-conditions** | Inventory covers all 86 workflows + the supporting authorization/sync/media/notification/audit/release capabilities; classification method stated with criteria, tie-break order, limitations, assumptions; no OPEN item resolved; no invariant contradicted; conditions = the §6.1 conditions + §7 findings' safe defaults. |
-| G2 — Architecture / Contracts | `PASS_WITH_CONDITIONS` | No bounded-context boundary changed; no new deployable service beyond the already-approved `services/media-worker`; every feature mapped to its aggregates + contract seams; F-42 rationale (contract 6 C-5) recorded for reviewer scrutiny (P-F-05). |
+| G2 — Architecture / Contracts | `PASS_WITH_CONDITIONS` | No bounded-context boundary changed; no new deployable service beyond the already-approved `services/media-worker`; every feature mapped to its aggregates + contract seams; the F-42 scope-creep concern (P-F-05) is **resolved** — F-42 reclassified `MVP conditional`, the contract-6-C-5 rule now carried by S-02 (§6.3). |
 | G3 — Security / Privacy / Youth safeguarding (D04) | `PASS_WITH_CONDITIONS` | Every safety/authz/privacy/media/messaging feature carries a D04-mandatory-reviewer note and its `§9.2` safe default; F-22/F-34-cond reclassified conditional where a D04 policy is open; `OQ-PS-MOD-STAFFING` routed as a launch-gate condition (P-F-01). Conditions = the D04-owned OPEN items, each defaulted conservatively. |
 | Department 03 — persistence / sync / media feasibility | `PASS_WITH_CONDITIONS` | Features reference the domain-model aggregates + the D03-reviewed §10 remediations; F-17/F-23/S-03/S-07 flagged as the D03-critical items; residual = already-open D03 items (`OQ-MEDIA-CACHE-INVALIDATION`, `OQ-PF-AGG-METHOD`, `OQ-SE-OFFLINE-P2P`, `OQ-PF-REPORT-OFFLINE`). |
 | **G7 — Human Approval** | **PENDING** | Requested after Phase B, the full cross-department review, and remediation — see `mvp-release-scope.md` §decision package. |
@@ -1038,8 +1061,9 @@ This artifact proposes; it does not decide. The following are put to a human at 
 - **DR-A2** — Accept the stated prioritization **method** (§2): invariant-and-dependency-driven necessity with the C1→C5 lexicographic tie-break, given the absence of user research / market evidence / engineering estimates.
 - **DR-A3** — Accept the **MVP conditional** activation conditions in §4 (F-19 ← F-06; F-22 ← D04 consent mechanism; F-33 ← `OQ-PF-AGG-METHOD`; F-34-cond ← `OQ-PF-MINOR-EXPORT`; F-40 gating ← D06 entitlement artifact; S-09 ← automated fan-out design; S-10 ← realtime transport selection).
 - **DR-A4** — Confirm the **Excluded** list (§4, F-EX-1…F-EX-10) as out of scope for the current release, noting each is invariant-mandated or requires a separate new product decision.
+- **DR-A5** — Confirm the **review-driven reclassifications** (§6.3, from the independent D01 specialist review): **F-10 templates** and **F-42 entitlement interface** move from `MVP required` to `MVP conditional` (the one load-bearing v1 rule of F-42 is absorbed into S-02). Net effect: MVP-required = **35 user-facing + 11 supporting = 46** (was 48); MVP-conditional = **9** (was 7). Optionally decide **Option A vs Option B** for the v1 commercial scaffold (§6.3): A (adopted) ships a Free-default tier-state field + the S-02 rule; B defers all commercial/entitlement concept to the paid-billing release.
 
-No `OQ-*` / `CD-*` item is resolved by any of the above.
+No `OQ-*` / `CD-*` item is resolved by any of the above. DR-A5 is a pre-approval scope adjustment by the owning Department's review; the human confirms or reverts it.
 
 ---
 
