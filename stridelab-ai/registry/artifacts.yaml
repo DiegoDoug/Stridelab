@@ -71,17 +71,38 @@ artifacts:
   - id: domain-model
     type: domain-model
     path: docs/product/domain-model.md
-    status: STUB
+    status: APPROVED
+    approved_by: Diego
+    approved_date: 2026-09-10
+    approval_record: stridelab-ai/orchestration/approvals/G7-domain-model.md
     owner: 01-product-experience
-    downstream_owner: "01-product-experience/domain-workflow-architect (skill: domain-modeling); 03-platform-data-engineering/database-engineer for persistence-adjacent aggregate boundaries"
-    blocking_stage: "conservative default (offered for D01 ratification, not an approved decision): should exist before G4 (Implementation Integrity) sign-off for any bounded context — before a schema / API contract shape / client-feature design is approved for that context; does NOT block G7 approval of workflow-architecture v2, and does NOT block the 14 G2 seam identifications (only their shape design at G4)"
+    primary_specialist: domain-workflow-architect
+    reviewed_by: [database-engineer, security-compliance-reviewer, architecture-reviewer]
+    downstream_owner: "01-product-experience/domain-workflow-architect (skill: domain-modeling); 03-platform-data-engineering/database-engineer for persistence-adjacent aggregate/transaction boundaries"
+    blocking_stage: "before_G4_per_bounded_context (ratified by DR-3, 2026-09-10): the consolidated domain model must exist before G4 (Implementation Integrity) sign-off for a bounded context — before that context's schema / API contract shape / client-feature design is approved; does NOT block G7 of workflow-architecture v2, and does NOT block the 14 G2 seam identifications (only their shape design at G4)"
     upstream: [workflow-architecture, product-baseline]
+    current_state_record: stridelab-ai/project-memory/current-state/domain-model.md
+    downstream_consumers: [02-client-feature-engineering, 03-platform-data-engineering, 04-security-identity-compliance, 06-business-operations-governance]
     notes: >
-      Not a required Phase 01 deliverable per the workflow-architecture SKILL
-      output contract. Domain concepts, ownership rules, invariants, lifecycles,
-      and workflow states are fully present in workflow-architecture v2, the
-      product baseline, and the application map; this path marks where the
-      consolidated model will live. Not claimed complete.
+      Authored 2026-09-10 by 01-product-experience/domain-workflow-architect
+      (skill: domain-modeling), consolidating content already normative via
+      Workflow Architecture v2 §9.1 and the APPROVED product baseline. Contains a
+      ubiquitous-language glossary, an entity/value-object catalogue across all 14
+      bounded contexts + platform capabilities, 35 aggregate boundaries +
+      ownership, the 16-invariant-to-aggregate mapping, consolidated
+      lifecycles/transitions, the bounded-context map, and nine scenario tests. A
+      Department 03 persistence & transaction-boundary review is folded in (§10,
+      PASS WITH CONDITIONS; 12 findings; the five MAJOR remediated in-artifact).
+      No OQ-*/CD-* item is resolved, converted, or created — the OPEN register
+      remains WORKFLOW-ARCHITECTURE-v2.md §9.2 with every safe default in force.
+      G7 granted by Diego on 2026-09-10 (record G7-domain-model.md), with DR-1
+      APPROVED (adopt as the governed domain model), DR-2 APPROVED AS-IS (ratify
+      the aggregate-ownership decisions that lock downstream schema design), and
+      DR-3 CONFIRMED (blocking stage). No repository commit SHA is pinned in the
+      approval record yet — to be added when the approved artifact and this
+      metadata are committed together. Diego also applied three in-session
+      corrections (media-lifecycle representation §3.6/§7.9; ReportCase routing
+      target §4 A23; the VaultVisibilityResolution cross-reference §10 F-D03-05).
 
   - id: application-map
     type: application-map
