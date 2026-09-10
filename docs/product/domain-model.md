@@ -1,6 +1,6 @@
 # StrideLab Consolidated Domain Model
 
-**Status:** `APPROVED` — authored 2026-09-10 by Department 01 `domain-workflow-architect` (skill `domain-modeling`), with a Department 03 persistence & transaction-boundary review folded in (§10). Human approval by Diego recorded 2026-09-10 in §12. Replaces the former **stub** at this canonical path (created in the v2 correction pass, finding F-21) and is now the governed consolidated domain model. Repository publication metadata — registry status, companion pointer, and commit pin — must be written against the actual repository commit; no commit SHA is asserted from this uploaded file alone.
+**Status:** `APPROVED` — authored 2026-09-10 by Department 01 `domain-workflow-architect` (skill `domain-modeling`), with a Department 03 persistence & transaction-boundary review folded in (§10). Human approval by Diego recorded 2026-09-10 in §12. Replaces the former **stub** at this canonical path (created in the v2 correction pass, finding F-21) and is now the governed consolidated domain model. Published to `main` at `760ca3cf6a60b96a594727060587c26be1973ff9` (squash-merge of PR #6) — registry status, approval record, lifecycle record, and the `docs/product/workflow-architecture.md` companion pointer all landed in that commit; this commit-pin note was added in the immediately following commit.
 
 **Owning Department:** 01 Product & Experience (`domain-workflow-architect`). **Reviewers:** Department 03 Platform & Data Engineering (`database-engineer` / `platform-data-reviewer`) for persistence-adjacent aggregate/transaction boundaries; Department 04 for the safety/privacy invariants restated here; `architecture-reviewer` for bounded-context/contract consistency.
 
@@ -502,7 +502,7 @@ No scenario produces a contradiction; every important workflow narrates cleanly 
 
 ## 12. Human approval record
 
-Explicit human approval was provided by Diego on 2026-09-10. This section is the content-level G7 approval record for the consolidated domain model. Its repository commit pin must be added when this approved artifact and its companion metadata are committed together.
+Explicit human approval was provided by Diego on 2026-09-10. This section is the content-level G7 approval record for the consolidated domain model; the governed approval record is `stridelab-ai/orchestration/approvals/G7-domain-model.md`. The approved artifact and its companion metadata were published to `main` at `760ca3cf6a60b96a594727060587c26be1973ff9` (squash-merge of PR #6).
 
 | ID | Approved decision | Disposition | Governed effect |
 |---|---|---|---|
@@ -521,7 +521,7 @@ Explicit human approval was provided by Diego on 2026-09-10. This section is the
 **PASS WITH CONDITIONS.**
 
 - **PASS basis:** the six required deliverables (glossary §2; concept catalogue + ownership §3; relationship model §5; invariants §6; lifecycle + events §7; bounded-context map §8) are complete and internally consistent; all nine scenarios (§9) narrate without contradiction; every conclusion traces to an approved input and is labelled [normative] / [modelled] / [open]; the D03 review (§10) returned PASS WITH CONDITIONS with its MAJOR findings folded in.
-- **Conditions (named external/environmental limits, effect explicit):** (1) the §11 open register — each item carries a conservative safe default, so v1 modelling can proceed, but a schema/API/UI approval for a bounded context must resolve the §9.2 items that gate it first, as confirmed by DR-3; (2) the D03-owned persistence items in §10's disposition; (3) repository publication must update the registry, workflow-architecture companion pointer, and G7 commit pin against the actual commit containing this approved artifact.
+- **Conditions (named external/environmental limits, effect explicit):** (1) the §11 open register — each item carries a conservative safe default, so v1 modelling can proceed, but a schema/API/UI approval for a bounded context must resolve the §9.2 items that gate it first, as confirmed by DR-3; (2) the D03-owned persistence items in §10's disposition; (3) repository publication is complete — registry status, approval record, lifecycle record, and the `docs/product/workflow-architecture.md` companion pointer landed on `main` at `760ca3c` (PR #6).
 - **Not FAIL:** no critical invariant, evidence requirement, or safety boundary is unmet or weakened; the highest-risk invariants (#4/#5 coach-edit boundary, #7/#8 media visibility, #9 payment≠authorization, #10 age gate, #13 offline honesty, #14 safety notifications) are each mapped to a structural enforcement point and exercised by a denied/offline/empty-path scenario.
 
 ### 13.2 Gate posture
@@ -536,7 +536,7 @@ Explicit human approval was provided by Diego on 2026-09-10. This section is the
 
 ### 13.3 Provenance
 
-- **Canonical path:** `docs/product/domain-model.md` (this file). **Registry:** `stridelab-ai/registry/artifacts.yaml` → `domain-model`. **Lifecycle record:** `stridelab-ai/project-memory/current-state/domain-model.md`. **Human approval:** Diego, 2026-09-10 (§12). **Commit pin:** to be recorded from the repository commit containing this approved artifact; unavailable in the supplied file-only workspace.
+- **Canonical path:** `docs/product/domain-model.md` (this file). **Registry:** `stridelab-ai/registry/artifacts.yaml` → `domain-model`. **Lifecycle record:** `stridelab-ai/project-memory/current-state/domain-model.md`. **Human approval:** Diego, 2026-09-10 (§12; record `stridelab-ai/orchestration/approvals/G7-domain-model.md`). **Commit pin:** `main` at `760ca3cf6a60b96a594727060587c26be1973ff9` (squash-merge of PR #6).
 - **Upstream (approved):** `docs/product/product-baseline.md`, `docs/product/workflow-architecture.md` (+ `stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md`), `ARCHITECTURE.md`. **Application map:** `stridelab-ai/application-map/`.
 - **No application code, schema, API, UI component, or navigation was created or modified.** Development-time infrastructure under `stridelab-ai/` is not production runtime.
 
