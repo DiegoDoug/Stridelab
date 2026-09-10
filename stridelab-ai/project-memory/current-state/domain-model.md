@@ -12,9 +12,12 @@ Canonical artifact: `docs/product/domain-model.md` (one canonical location).
 Registry entry: `stridelab-ai/registry/artifacts.yaml` → `domain-model`
 (`status: APPROVED`, `approved_by: Diego`, `approved_date: 2026-09-10`). The
 Workflow Architecture v2 and the governed product baseline remain separately
-approved and unchanged. No repository commit SHA is pinned in the approval record
-yet — to be added when the approved artifact and its companion metadata are
-committed together.
+approved and unchanged. Published to `main` at
+`760ca3cf6a60b96a594727060587c26be1973ff9` (squash-merge of PR #6,
+`phase-1/domain-model-consolidated-g7`; `validate` check passed) — the approved
+artifact, the approval record, the registry flip, this lifecycle record, and the
+`docs/product/workflow-architecture.md` companion-pointer refresh all landed in
+that commit; the commit pin was recorded in the immediately following commit.
 
 ## What this artifact is
 
@@ -114,8 +117,9 @@ illegal/imminent-harm classification, `IllegalContentCase` A32); and the
 **No `OQ-*` / `CD-*` item was resolved, converted, or created by the approval.**
 The D03-owned persistence items remain open under their existing IDs. Companion
 publication (the `docs/product/workflow-architecture.md` "stub → companion"
-pointer refresh) is applied; the commit pin is to be recorded when the change is
-committed to `main` via PR (branch protection: PR + `validate` check required).
+pointer refresh) is applied. Published to `main` at `760ca3c` via **PR #6**
+(squash-merged; `validate` check passed); the commit pin was recorded in the
+immediately following commit.
 
 ## Reviews and gate posture (advisory — not human approval)
 
@@ -146,11 +150,14 @@ committed to `main` via PR (branch protection: PR + `validate` check required).
   `OQ-SE-OFFLINE-P2P`, `OQ-SE-RECONCILE-UX` UX portion, `OQ-PF-REPORT-OFFLINE`)
   stay D03-owned and open — accepted downstream conditions, each gating its
   implementation sub-area, not this artifact.
-- **Pending publication step:** the change (approved artifact + registry flip +
-  approval record + this record + the `docs/product/workflow-architecture.md`
-  companion-pointer refresh) must land on `main` via PR (branch protection: PR +
-  `validate` check, `enforce_admins: true`); the commit pin is then added to the
-  approval record and this record.
+- **Publication complete.** The approved artifact, registry flip, approval
+  record, this record, and the `docs/product/workflow-architecture.md`
+  companion-pointer refresh landed on `main` at
+  `760ca3cf6a60b96a594727060587c26be1973ff9` (squash-merge of PR #6,
+  `phase-1/domain-model-consolidated-g7`; `validate` check passed). The commit
+  pin was recorded across the approval record, this record, and
+  `docs/product/domain-model.md` §13.3 in the immediately following commit
+  (PR #7).
 
 ## Source artifact references
 
