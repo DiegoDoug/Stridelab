@@ -235,3 +235,77 @@ artifacts:
       production release, or substitute for legal/compliance review. The
       Workflow Architecture v2, the governed product baseline, and the
       consolidated domain model remain separately approved and unchanged.
+
+  - id: information-architecture
+    type: information-architecture
+    path: docs/product/information-architecture.md
+    status: AWAITING_HUMAN_APPROVAL
+    owner: 01-product-experience
+    primary_specialist: ux-architect
+    reviewed_by: [product-experience-lead, domain-workflow-architect, security-compliance-reviewer, client-feature-lead, platform-data-reviewer, ux-research-accessibility-reviewer, "combined cross-department review — stridelab-ai/orchestration/reviews/step3-4-cross-department/"]
+    upstream: [feature-prioritization, mvp-release-scope, domain-model, product-baseline, workflow-architecture, architecture-decision]
+    current_state_record: stridelab-ai/project-memory/current-state/information-architecture.md
+    downstream_consumers: [navigation-specification, 02-client-feature-engineering, 03-platform-data-engineering, 04-security-identity-compliance, 05-quality-infrastructure-release]
+    notes: >
+      Department 01 Step 3. Authored 2026-09-11 by
+      01-product-experience/ux-architect, executed per
+      stridelab-ai/departments/01-product-experience/commands/ux/design-information-architecture.md.
+      Derives the StrideLab content hierarchy, ~29-object inventory, 8
+      independent hierarchies (org / training-time / execution / media-analysis
+      / communication / personal-history / Vault-sharing / reporting), a
+      27-destination map (primary/secondary/contextual/modal/administrative),
+      role-based discoverability (reusing J-1..J-13 for complete, machine-
+      checkable coverage), cross-linking/return/deep-link rules, an
+      information-level search model, and platform-continuity rules grounded
+      in current Apple HIG sourcing (access date 2026-09-11) — from the
+      approved MVP release scope, feature prioritization, and consolidated
+      domain model. No OQ-*/CD-* item resolved; no invariant changed; no
+      visual UI or production code. Step 3 gate (7 independent lenses,
+      stridelab-ai/orchestration/reviews/step3-information-architecture/):
+      all PASS WITH CONDITIONS; five non-blocking findings (IA-N1, DWA-N1,
+      DWA-N2/IA-OQ-4, D04-IA-N2, A11Y-IA-N1) remediated in-artifact, zero
+      BLOCKING. Findability validation (§9): 12 PASS, 1 PASS WITH CONDITIONS
+      (offline-index-freshness threshold, D03-owned, G4). Semantic integrity
+      machine-enforced by stridelab-ai/scripts/validate-step3-4-artifacts.mjs
+      (wired into npm run ai:validate + CI). G7 (combined with
+      navigation-specification) pending — decision package in
+      docs/product/navigation-specification.md §12.
+
+  - id: navigation-specification
+    type: navigation-specification
+    path: docs/product/navigation-specification.md
+    status: AWAITING_HUMAN_APPROVAL
+    owner: 01-product-experience
+    primary_specialist: ux-architect
+    reviewed_by: [product-experience-lead, domain-workflow-architect, ux-research-accessibility-reviewer, client-feature-lead, platform-data-reviewer, security-compliance-reviewer, quality-release-lead, architecture-reviewer, "combined cross-department review — stridelab-ai/orchestration/reviews/step3-4-cross-department/"]
+    upstream: [information-architecture, feature-prioritization, mvp-release-scope, domain-model, product-baseline, workflow-architecture, architecture-decision]
+    current_state_record: stridelab-ai/project-memory/current-state/navigation-specification.md
+    downstream_consumers: [02-client-feature-engineering, 05-quality-infrastructure-release, architecture-reviewer]
+    notes: >
+      Department 01 Step 4. Authored 2026-09-11 by
+      01-product-experience/ux-architect, executed per
+      stridelab-ai/departments/01-product-experience/commands/ux/design-navigation.md.
+      Requires the reviewed, version-pinned information-architecture (Step 3
+      gate passed) as input. Defines 10 navigation principles; per-role
+      navigation models (Head Coach, Event Coach, Athlete, multi-Team user);
+      a per-platform model (iPad three-column split view; iPhone 5-tab bar
+      with deeper grouping per current Apple HIG sourcing, access date
+      2026-09-11; no web/admin surface in v1); a 19-state navigation state
+      model (session/auth, discovery, task-flow, connectivity/data-integrity);
+      a full destination-to-navigation mapping (all 27 IA destinations
+      reachable, none dropped); a 6-mode creation/start-action
+      disambiguation model; context/orientation signaling rules; and
+      restricted/administrative navigation placement rules (Team
+      Administration, Report & Block, the Platform Safety Console as a
+      wholly separate navigation root, and the tier-state field never
+      adjacent to an authorization surface — machine-checked). Navigation
+      validation (§10, reusing J-1..J-13): all PASS. Combined cross-
+      department review (10 participants, 17-point anti-pattern checklist,
+      stridelab-ai/orchestration/reviews/step3-4-cross-department/): all PASS
+      WITH CONDITIONS; two process findings (CDR-N1 unreachable-capability
+      validator allowlist, CDR-N2 tier-state/authorization adjacency proof)
+      closed by stridelab-ai/scripts/validate-step3-4-artifacts.mjs. Zero
+      open BLOCKING findings. No OQ-*/CD-* item resolved; every §9.2 safe
+      default remains in force. G7 (combined with information-architecture)
+      pending — decision package in this artifact's §12; not a legal/
+      compliance sign-off and does not authorise production release.
