@@ -56,6 +56,7 @@ const REGISTRY = 'stridelab-ai/registry/artifacts.yaml';
 const MRS = 'docs/product/mvp-release-scope.md';
 const STEP3_REVIEW_DIR = 'stridelab-ai/orchestration/reviews/step3-information-architecture';
 const CROSS_DEPT_DIR = 'stridelab-ai/orchestration/reviews/step3-4-cross-department';
+const REMEDIATION_DIR = 'stridelab-ai/orchestration/reviews/step3-remediation';
 
 for (const f of [IA, NAV, CS_IA, CS_NAV, CS_README, REGISTRY, MRS]) {
   if (!exists(f)) err(`Missing required file: ${f}`);
@@ -307,6 +308,228 @@ if (!/information-architecture\.md[\s\S]{0,200}(reviewed|finalized|version-pinne
   err(`${NAV}: does not declare a version-pinned dependency on ${IA} as required by the task ("Step 4 may be prepared against the version-pinned reviewed IA ... but it must declare that dependency")`);
 }
 
+// --------------------------------------------------------------------------
+// 8b. Step-3 remediation review evidence (13 lenses) must be durably recorded,
+//     with every BLOCKING finding shown CLOSED.
+// --------------------------------------------------------------------------
+const remediationFiles = exists(REMEDIATION_DIR)
+  ? fs.readdirSync(path.join(root, REMEDIATION_DIR)).filter((f) => f.endsWith('.md'))
+  : [];
+const remediationLenses = remediationFiles.filter((f) => f !== 'README.md');
+if (remediationLenses.length < 13) {
+  err(`${REMEDIATION_DIR} has ${remediationLenses.length} lens file(s); the Step-3 remediation pass requires 13 independent lenses`);
+}
+const remediationReadme = exists(`${REMEDIATION_DIR}/README.md`) ? read(`${REMEDIATION_DIR}/README.md`) : '';
+if (!remediationReadme) {
+  err(`${REMEDIATION_DIR}/README.md missing — the remediation finding register must be durably recorded`);
+} else {
+  for (const row of remediationReadme.split('\n')) {
+    if (/^\|\s*\*\*RP-B\d+\*\*/.test(row) && !/\bCLOSED\b/.test(row)) {
+      err(`${REMEDIATION_DIR}/README.md: a BLOCKING finding row is not marked CLOSED: ${row.trim().slice(0, 140)}`);
+    }
+  }
+}
+// --------------------------------------------------------------------------
+// 9. Increment traceability (INC-0…INC-11) — IA §1.9
+// --------------------------------------------------------------------------
+const incSection = ia.match(/### 1\.9 Increment traceability[\s\S]*?(?=### 1\.10)/);
+const incText = incSection ? incSection[0] : '';
+if (!incText) err(`${IA}: §1.9 Increment traceability section not found`);
+
+// Authoritative increment IDs come from the approved release scope's own §10
+// headings — never re-derived here.
+const approvedIncrements = [...mrs.matchAll(/^### (INC-\d{1,2}[ab]?)\s/gm)].map((m) => m[1]);
+if (approvedIncrements.length === 0) err(`${MRS}: no "### INC-*" increment headings found — cannot verify increment coverage`);
+for (const inc of approvedIncrements) {
+  // Word-boundary match so "INC-3" is not satisfied by "INC-3a".
+  const re = new RegExp(`${inc}(?![0-9a-z])`);
+  if (!re.test(incText)) err(`${IA} §1.9: approved increment ${inc} (${MRS} §10) is not mapped`);
+}
+
+// Every destination defined in §4 must be claimed by exactly one owning
+// increment. Only the "Destinations first delivered" column counts — the
+// "Also touched by" column legitimately re-mentions destinations.
+const incRows = incText.split('\n').filter((l) => /^\|\s*\*\*INC-/.test(l));
+const ownedDest = new Map();
+for (const row of incRows) {
+  const cells = row.split('|');
+  const incId = (cells[1] || '').replace(/\*/g, '').trim();
+  const destCell = cells[3] || '';
+  for (const m of destCell.matchAll(/\bD-\d{1,2}\b/g)) {
+    if (ownedDest.has(m[0])) {
+      err(`${IA} §1.9: destination ${m[0]} is claimed as first-delivered by both ${ownedDest.get(m[0])} and ${incId} — each destination must have exactly one owning increment`);
+    } else {
+      ownedDest.set(m[0], incId);
+    }
+  }
+}
+for (const d of destsDefined) {
+  if (!ownedDest.has(d)) err(`${IA} §1.9: destination ${d} (defined in §4) is not claimed by any owning increment`);
+}
+
+// --------------------------------------------------------------------------
+// 9b. Journey coverage — every approved J-* release journey must be walked
+//     through in IA §5.1, from its primary role.
+// --------------------------------------------------------------------------
+const approvedJourneys = [...new Set([...mrs.matchAll(/(?<![A-Za-z-])(J-\d{1,2})(?![0-9])/g)].map((m) => m[1]))];
+const walkSection = ia.match(/### 5\.1 Walkthroughs[\s\S]*?(?=### 5\.2)/);
+const walkText = walkSection ? walkSection[0] : '';
+if (!walkText) err(`${IA}: §5.1 Walkthroughs section not found`);
+for (const j of approvedJourneys) {
+  const row = walkText.split('\n').find((l) => new RegExp(`^\\|\\s*${j}(?![0-9])`).test(l));
+  if (!row) {
+    err(`${IA} §5.1: approved release journey ${j} (${MRS} §7) has no IA walkthrough row`);
+    continue;
+  }
+  const cells = row.split('|');
+  // columns: 1 Journey | 2 Primary role | 3 Locate | 4 Identify | 5 Open | 6 Relate | 7 Complete | 8 Return
+  if (!(cells[2] || '').trim()) err(`${IA} §5.1: ${j} names no primary role`);
+  for (const [idx, step] of [[3, 'Locate'], [5, 'Open'], [7, 'Complete'], [8, 'Return']]) {
+    if (!(cells[idx] || '').trim()) err(`${IA} §5.1: ${j} has an empty "${step}" step`);
+  }
+}
+// --------------------------------------------------------------------------
+// 10. Invariant coverage — IA §1.10 must account for all 16, each with evidence
+// --------------------------------------------------------------------------
+const invSection = ia.match(/### 1\.10 Invariant coverage[\s\S]*?(?=### 1\.11)/);
+const invText = invSection ? invSection[0] : '';
+if (!invText) err(`${IA}: §1.10 Invariant coverage section not found`);
+const invRows = new Map();
+for (const line of invText.split('\n')) {
+  const m = line.match(/^\|\s*(\d{1,2})\s*\|([^|]*)\|([^|]*)\|/);
+  if (m) invRows.set(Number(m[1]), m[3].trim());
+}
+for (let i = 1; i <= 16; i += 1) {
+  if (!invRows.has(i)) {
+    err(`${IA} §1.10: invariant #${i} (WORKFLOW-ARCHITECTURE-v2.md §5) has no coverage row`);
+  } else if (!/§\d/.test(invRows.get(i))) {
+    err(`${IA} §1.10: invariant #${i} coverage cites no IA section (§N) as evidence`);
+  }
+}
+
+// --------------------------------------------------------------------------
+// 11. Actor coverage — IA §1.11
+// --------------------------------------------------------------------------
+const actorSection = ia.match(/### 1\.11 Actor coverage[\s\S]*?(?=### 1\.12)/);
+const actorText = actorSection ? actorSection[0] : '';
+if (!actorText) err(`${IA}: §1.11 Actor coverage section not found`);
+for (const actor of ['Head Coach', 'Event Coach', 'Athlete', 'Platform Safety Administrator', 'Multi-Team user']) {
+  const row = actorText.split('\n').find((l) => /^\|/.test(l) && l.includes(actor));
+  if (!row) {
+    err(`${IA} §1.11: no coverage row for canonical actor "${actor}"`);
+    continue;
+  }
+  const cells = row.split('|');
+  // columns: 1 Actor | 2 Entry | 3 Primary destinations | 4 Denied | 5 Cross-Team | 6 Journeys
+  if (!/\bD-\d{1,2}\b/.test(cells[3] || '')) err(`${IA} §1.11: actor "${actor}" has no primary destination`);
+  if (!(cells[4] || '').trim()) err(`${IA} §1.11: actor "${actor}" has an empty denied/absent column — every actor must have an explicit denial set`);
+}
+for (const actor of ['Head Coach', 'Event Coach', 'Athlete']) {
+  const row = actorText.split('\n').find((l) => /^\|/.test(l) && l.includes(actor));
+  const cells = row ? row.split('|') : [];
+  if (!/\bJ-\d{1,2}\b/.test(cells[6] || '')) err(`${IA} §1.11: end-user actor "${actor}" is not the primary role in any J-* journey`);
+}
+
+// --------------------------------------------------------------------------
+// 12. Conditional-capability treatment — IA §1.12, all 9, none activated
+// --------------------------------------------------------------------------
+const condSection = ia.match(/### 1\.12 Conditional-capability treatment[\s\S]*?(?=\n---)/);
+const condText = condSection ? condSection[0] : '';
+if (!condText) err(`${IA}: §1.12 Conditional-capability treatment section not found`);
+for (const id of conditionalIds) {
+  const re = new RegExp(`\\b${id.replace(/[-]/g, '\\-')}\\b`);
+  if (!re.test(condText)) err(`${IA} §1.12: MVP-conditional capability ${id} (${MRS} §6.1) has no treatment row`);
+}
+
+// --------------------------------------------------------------------------
+// 13. Explicit non-goals — IA §11
+// --------------------------------------------------------------------------
+const ngSection = ia.match(/## 11\. Non-goals[\s\S]*?(?=\n---)/);
+const ngText = ngSection ? ngSection[0] : '';
+if (!ngText) {
+  err(`${IA}: §11 Non-goals section not found — the IA must state explicitly what it does not own`);
+} else {
+  const ngRows = ngText.split('\n').filter((l) => /^\|\s*\*\*N-\d+\*\*\s*\|/.test(l));
+  if (ngRows.length < 10) err(`${IA} §11: only ${ngRows.length} non-goal row(s); the IA must enumerate its non-goals (>= 10 expected)`);
+  for (const key of ['navigation-specification.md', 'Interaction Design', 'OQ-*', 'Option A']) {
+    if (!ngText.includes(key)) err(`${IA} §11: non-goals do not address "${key}"`);
+  }
+}
+
+// --------------------------------------------------------------------------
+// 14. System-state surfaces — IA §4.5 (denied/unavailable/offline/queued/
+//     conflict/recovery), each with an owning destination.
+// --------------------------------------------------------------------------
+const stateSection = ia.match(/### 4\.5 System-state surfaces[\s\S]*?(?=Every approved MVP destination)/);
+const stateText = stateSection ? stateSection[0] : '';
+if (!stateText) err(`${IA}: §4.5 System-state surfaces section not found`);
+const REQUIRED_STATES = [
+  ['X-1', 'Empty'], ['X-2', 'Denied'], ['X-3', 'Unavailable'], ['X-4', 'Offline'],
+  ['X-5', 'Queued'], ['X-6', 'Conflict'], ['X-7', 'Recovery'],
+];
+for (const [id, label] of REQUIRED_STATES) {
+  const row = stateText.split('\n').find((l) => new RegExp(`^\\|\\s*\\*\\*${id}\\*\\*\\s*\\|`).test(l));
+  if (!row) {
+    err(`${IA} §4.5: required system state ${id} (${label}) is not defined`);
+    continue;
+  }
+  if (!new RegExp(label, 'i').test(row)) err(`${IA} §4.5: ${id} row does not name the "${label}" state`);
+  const cells = row.split('|');
+  // columns: 1 ID | 2 State | 3 Trigger | 4 Required content | 5 Never does | 6 Owning destination(s) | 7 Recovery
+  const owning = cells[6] || '';
+  if (!/\bD-\d{1,2}\b|every/i.test(owning)) err(`${IA} §4.5: ${id} names no owning destination`);
+  if (!(cells[5] || '').trim()) err(`${IA} §4.5: ${id} has an empty "Never does" column — each state must state its prohibition`);
+}
+// Conflict is the one state backed by a real destination.
+const x6 = stateText.split('\n').find((l) => /^\|\s*\*\*X-6\*\*\s*\|/.test(l)) || '';
+if (!/\bD-28\b/.test(x6)) err(`${IA} §4.5: X-6 (conflict) must name D-28 Reconciliation Center as its owning destination`);
+
+// --------------------------------------------------------------------------
+// 15. Destination uniqueness — no D-NN defined twice in §4
+// --------------------------------------------------------------------------
+const destDefsAll = [...iaDestText.matchAll(/^\|\s*(D-\d{1,2})\s*\|/gm)].map((m) => m[1]);
+const seenDest = new Set();
+for (const d of destDefsAll) {
+  if (seenDest.has(d)) err(`${IA} §4: destination ${d} is defined more than once — destination IDs must be unique`);
+  seenDest.add(d);
+}
+
+// --------------------------------------------------------------------------
+// 16. Upstream commit pins must be current (no stale pin).
+// --------------------------------------------------------------------------
+const G7_STEP2 = 'stridelab-ai/orchestration/approvals/G7-mvp-feature-prioritization-release-scope.md';
+if (!exists(G7_STEP2)) {
+  err(`${G7_STEP2}: Step-2 G7 approval record missing — the IA's upstream pin cannot be verified`);
+} else {
+  const g7 = read(G7_STEP2);
+  const pin = (g7.match(/\b([0-9a-f]{40})\b/) || [])[1];
+  if (!pin) {
+    err(`${G7_STEP2}: no 40-character approved-version commit pin found`);
+  } else if (!ia.includes(pin)) {
+    err(`${IA}: does not cite the Step-2 approved-version pin ${pin} recorded in ${G7_STEP2} — upstream pin is stale or absent`);
+  }
+}
+
+// --------------------------------------------------------------------------
+// 17. No undocumented OQ-*/CD-* mutation: every governed item cited by either
+//     artifact must already exist in the governed registers upstream.
+// --------------------------------------------------------------------------
+const OQ_RE = /(?<![A-Za-z-])(?:OQ|CD)-[A-Z0-9][A-Z0-9-]*/g;
+const registerText = [
+  'stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md',
+  'docs/product/feature-prioritization.md',
+  MRS,
+].filter(exists).map(read).join('\n');
+const governedIds = new Set([...registerText.matchAll(OQ_RE)].map((m) => m[0]));
+for (const [name, text] of [[IA, ia], [NAV, nav]]) {
+  for (const m of text.matchAll(OQ_RE)) {
+    if (!governedIds.has(m[0])) {
+      err(`${name}: cites ${m[0]}, which exists in no governed upstream register — a Step-3/4 artifact may not create or rename an OQ-*/CD-* item`);
+    }
+  }
+}
+
+
 report();
 process.exit(errors.length ? 1 : 0);
 
@@ -322,6 +545,16 @@ function report() {
       destinations_mapped_in_nav: destsInNav.size,
       step3_review_files: step3Files.length,
       cross_department_review_files: crossDeptFiles.length,
+      remediation_review_lenses: remediationLenses.length,
+      increments_mapped: approvedIncrements.length,
+      journeys_walked: approvedJourneys.length,
+      destinations_uniquely_owned: ownedDest.size,
+      invariants_covered: invRows.size,
+      actors_covered: actorText ? actorText.split('\n').filter((l) => /^\|\s*\*\*/.test(l)).length : 0,
+      conditionals_treated: conditionalIds.length,
+      non_goals: ngText ? ngText.split('\n').filter((l) => /^\|\s*\*\*N-\d+\*\*\s*\|/.test(l)).length : 0,
+      system_states: stateText ? REQUIRED_STATES.filter(([id]) => new RegExp(`^\\|\\s*\\*\\*${id}\\*\\*\\s*\\|`, 'm').test(stateText)).length : 0,
+      governed_oq_cd_ids_verified: new Set([...(ia + nav).matchAll(OQ_RE)].map((m) => m[0])).size,
     },
     errors,
     warnings,

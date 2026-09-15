@@ -23,7 +23,7 @@ Coach, Athlete, and the multi-Team user (§3); a per-platform model — iPad thr
 split view, iPhone 5-tab bar with deeper grouping, no web/admin surface — grounded in
 current Apple HIG sourcing (§4); a 19-state navigation state model covering session/auth,
 discovery, task-flow, and connectivity/data-integrity states (§5); a full
-destination-to-navigation mapping for all 27 IA destinations, none dropped (§6); a
+destination-to-navigation mapping for all 28 IA destinations, none dropped (§6); a
 creation/start-action model disambiguating six task modes (§7); context/orientation
 signaling rules (§8); restricted/administrative navigation placement rules (§9); and a
 navigation-validation table reusing J-1…J-13, all **PASS** (§10).

@@ -26,12 +26,30 @@ Contents: a traceability matrix from every MVP-required/-conditional capability 
 destination and object (§1.8); a ~29-record object inventory across identity/Team,
 training-time, media/analysis/Vault, communication, and performance/system domains (§2);
 eight independently-modelled hierarchies with an explicit context-retention map (§3); a
-27-destination map spanning primary/secondary/contextual/modal/administrative types (§4);
+28-destination map spanning primary/secondary/contextual/modal/administrative types (§4);
 a role-based discoverability walkthrough reusing the J-1…J-13 release journeys for
 complete, machine-checkable coverage (§5); cross-linking/return/deep-link rules (§6); an
 information-level search model (§7); platform-continuity rules grounded in current Apple
 HIG sourcing (§8); and a 13-scenario findability validation, 12 PASS / 1 PASS WITH
-CONDITIONS (§9). **This is the first navigation-adjacent artifact StrideLab has ever
+CONDITIONS (§9).
+
+**Step-3 remediation pass (2026-09-15).** After PR #9 merged the approved Step-2 scope to
+`main` (`39f42d5`) and that `main` was merged into this branch by a normal merge commit,
+the artifact gained the traceability and state semantics the original Step 3 gate had not
+reviewed: increment traceability for `INC-0…INC-11` (§1.9), coverage of all 16
+cross-workflow invariants (§1.10), an actor-coverage matrix (§1.11), conditional-capability
+treatment for all nine conditionals with none activated (§1.12), the `X-1…X-7`
+system-state surfaces for empty/denied/unavailable/offline/queued/conflict/recovery
+(§4.5), and thirteen explicit non-goals (§11; the provenance footer moved to §12).
+Upstream commit pins were refreshed to cite the Step-2 approved-version pin
+`9893c1d4dd0166fd0c55f1950e601e5f8737946c`. The destination count was corrected 27 → 28
+here, in the registry, and in the navigation-specification record. Independent review of
+the delta across 13 lenses is recorded in
+`stridelab-ai/orchestration/reviews/step3-remediation/`: three BLOCKING findings
+(RP-B1 duplicate destination ownership, RP-B2 an actor with no primary destination, RP-B3
+an unapproved increment assignment for F-22) were remediated and independently
+re-verified; four non-blocking findings were closed. **Zero open BLOCKING findings.**
+No upstream governed artifact was changed — proven byte-identical against `origin/main`. **This is the first navigation-adjacent artifact StrideLab has ever
 produced** — Steps 1–2 explicitly avoided designing navigation (invariant #11); this
 artifact is the first to do so, and confirms no prior navigation decision exists anywhere
 in the repository to have been silently revived (checked explicitly, `stridelab-ai/

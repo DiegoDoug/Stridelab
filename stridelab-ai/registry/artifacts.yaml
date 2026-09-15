@@ -253,7 +253,7 @@ artifacts:
       Derives the StrideLab content hierarchy, ~29-object inventory, 8
       independent hierarchies (org / training-time / execution / media-analysis
       / communication / personal-history / Vault-sharing / reporting), a
-      27-destination map (primary/secondary/contextual/modal/administrative),
+      28-destination map (primary/secondary/contextual/modal/administrative),
       role-based discoverability (reusing J-1..J-13 for complete, machine-
       checkable coverage), cross-linking/return/deep-link rules, an
       information-level search model, and platform-continuity rules grounded
@@ -267,7 +267,21 @@ artifacts:
       BLOCKING. Findability validation (§9): 12 PASS, 1 PASS WITH CONDITIONS
       (offline-index-freshness threshold, D03-owned, G4). Semantic integrity
       machine-enforced by stridelab-ai/scripts/validate-step3-4-artifacts.mjs
-      (wired into npm run ai:validate + CI). G7 (combined with
+      (wired into npm run ai:validate + CI). Step-3 remediation pass 2026-09-15
+      (after PR #9 merged Step 2 to main at 39f42d5, merged into this branch by a
+      normal merge commit): added INC-0..INC-11 increment traceability (1.9),
+      all-16 invariant coverage (1.10), actor coverage (1.11), conditional
+      treatment for all 9 conditionals with none activated (1.12), the X-1..X-7
+      system-state surfaces for empty/denied/unavailable/offline/queued/conflict/
+      recovery (4.5), and 13 explicit non-goals (11; footer moved to 12); refreshed
+      the upstream pin to the Step-2 approved version
+      9893c1d4dd0166fd0c55f1950e601e5f8737946c. Independent 13-lens review of the
+      delta: stridelab-ai/orchestration/reviews/step3-remediation/ - 3 BLOCKING
+      (RP-B1/B2/B3) remediated and re-verified, 4 non-blocking closed, zero open
+      BLOCKING. Validator extended with checks 9, 9b, 10-17 (increment, journey,
+      invariant, actor, conditional, non-goal, system-state, destination
+      uniqueness, upstream-pin freshness, OQ/CD non-mutation), all negative-tested
+      fail-closed. G7 (combined with
       navigation-specification) pending — decision package in
       docs/product/navigation-specification.md §12.
 
@@ -292,7 +306,7 @@ artifacts:
       with deeper grouping per current Apple HIG sourcing, access date
       2026-09-11; no web/admin surface in v1); a 19-state navigation state
       model (session/auth, discovery, task-flow, connectivity/data-integrity);
-      a full destination-to-navigation mapping (all 27 IA destinations
+      a full destination-to-navigation mapping (all 28 IA destinations
       reachable, none dropped); a 6-mode creation/start-action
       disambiguation model; context/orientation signaling rules; and
       restricted/administrative navigation placement rules (Team

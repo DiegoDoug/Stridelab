@@ -19,7 +19,7 @@ This artifact is a **proposal**, not an approved decision. It derives the Stride
 | Registry id | `information-architecture` (`stridelab-ai/registry/artifacts.yaml`) |
 | Canonical path | `docs/product/information-architecture.md` (this file — one canonical location) |
 | Lifecycle record | `stridelab-ai/project-memory/current-state/information-architecture.md` |
-| Upstream (approved) | `feature-prioritization` (APPROVED, Diego 2026-09-10), `mvp-release-scope` (APPROVED, Diego 2026-09-10 — same joint G7, `stridelab-ai/orchestration/approvals/G7-mvp-feature-prioritization-release-scope.md`), `domain-model` (APPROVED, Diego 2026-09-10, `main`@`5db47f1`), `product-baseline` (APPROVED, Diego 2026-09-08), `workflow-architecture` v2 (APPROVED, Diego 2026-09-07), `architecture-decision` (`ARCHITECTURE.md`, APPROVED) |
+| Upstream (approved) | `feature-prioritization` + `mvp-release-scope` (both APPROVED, Diego 2026-09-10 — same joint Step-2 G7, `stridelab-ai/orchestration/approvals/G7-mvp-feature-prioritization-release-scope.md`; **approved version pinned to commit `9893c1d4dd0166fd0c55f1950e601e5f8737946c`**; merged to `main` via PR #9 as commit `39f42d5`, whose only delta from the pinned version is the lifecycle/status metadata the G7 record itself anticipates — no product scope differs), `domain-model` (APPROVED, Diego 2026-09-10, published on `main` at `5db47f1`, unchanged by PR #9), `product-baseline` (APPROVED, Diego 2026-09-08), `workflow-architecture` v2 (APPROVED, Diego 2026-09-07), `architecture-decision` (`ARCHITECTURE.md`, APPROVED) |
 | Application map consumed | `stridelab-ai/application-map/bounded-contexts.md`, `cross-context-contracts.md` |
 | Downstream consumers | `navigation-specification` (Step 4, this same work package); Departments 02, 03, 04, 05; `architecture-reviewer`; every future interaction-design / visual-UI / implementation work package |
 | Owns | content/object inventory, hierarchy model, destination map, role-based discoverability, cross-linking/return rules, the information-level search model, platform-continuity rules |
@@ -109,6 +109,102 @@ Post-MVP (F-41, F-P-1…F-P-16) and Excluded (F-EX-1…F-EX-10) capabilities fro
 | S-01, S-02, S-03, S-05, S-06, S-07, S-08, S-09, S-10, S-11, S-12, S-13 | required/conditional (system — no v1 UI surface, cross-cutting) | none — surfaced only via §2.5's cross-cutting objects | O-30 Sync/Conflict State (S-03), O-05/O-11/O-14/O-15 offline-pending states (S-03/S-07), the accessibility conventions applied throughout (S-12) | contracts 1–14 | A34, A35, various | system | platform capabilities |
 
 Machine-checked by `stridelab-ai/scripts/validate-step3-4-artifacts.mjs`: every MVP-required `F-*`/`S-*` ID from `mvp-release-scope.md` §5 appears in this table's *Feature/Capability* column at least once.
+
+### 1.9 Increment traceability (`INC-0…INC-11`)
+
+Every destination and object below is delivered by exactly one **owning** increment
+from `mvp-release-scope.md` §10 (the increment whose acceptance evidence first
+requires it to exist). "Also touched by" records later increments that extend the
+same surface without owning it. This mapping **adopts** the approved sequence; it
+does not reorder, merge, split, or re-scope any increment.
+
+| Increment | Capabilities (approved §10) | Destinations first delivered | Objects first delivered | Also touched by |
+|---|---|---|---|---|
+| **INC-0** Platform foundations | S-01, S-02, S-03, S-04, S-05, S-08, S-12, S-13 | **none** — no destination ships in INC-0 by design; it establishes the authorization kernel, sync substrate, audit log, preservation-hold seam, and the S-12 accessibility conventions every later destination inherits | **O-30** Sync/Conflict/Upload/Processing State (the cross-cutting state vocabulary of §4.5) | every later increment (each inherits S-02 authorization, S-03 offline semantics, S-12 accessibility, S-05 audit) |
+| **INC-1** Identity & Team spine | F-01…F-08, F-35, F-40 | D-00, D-01, D-02, D-14, D-15, D-18, D-19, D-23 | O-01, O-02, O-02a, O-02b, O-03, O-04, O-05, O-29 | INC-9 (D-19 deletion under hold), INC-11 (O-29 confirmation) |
+| **INC-2** Training planning | F-09, F-11, F-12, F-13 (+ **F-10 conditional**) | D-03, D-22 | O-06, **O-06a** *(conditional)* | INC-3 (D-22 gains execution/log panes) |
+| **INC-3a** Execution & logging | F-14, F-15, F-16 | D-04 | O-07, O-08 | INC-10 (O-08 feeds the reporting read-model) |
+| **INC-3b** Reconciliation & correction | F-17, F-18 | D-28 | O-09 | — (**INC-3a is not externally exposed until INC-3b passes** — §10 hard gate, restated in §4.5 X-6) |
+| **INC-4** Personal workouts | F-19 *(conditional)* | **D-05** *(conditional)* | **O-10** *(conditional)* | INC-10 (own-history view only) |
+| **INC-5** Media capture & tagging | F-20, F-21, S-06, S-07 | D-06, D-24 | O-11, O-12 | INC-6, INC-7, INC-8 |
+| **INC-6** Vault visibility | F-23 | D-07 | O-14, O-15 | INC-7 (analysis source visibility), INC-8 (attachment routing) |
+| **INC-7** Analysis & feedback | F-24, F-25 | D-08, D-26, D-21 | O-16, O-17 | — |
+| **INC-8** Communication | F-26, F-27, F-28, F-30 (+ **S-10** conditional) | D-09, D-25, D-13 | O-18, O-19, O-20, O-22 | INC-9 (report/block targets). INC-8's group-channel attachment slice **inherits the F-22 block while F-22 is inactive** (§8.3 contract 4) — it does not deliver F-22 |
+| **INC-9** Safety & governance spine | F-29, F-36, F-37, F-38, F-39 | D-16, D-17, D-20 | O-21, O-26, O-27, O-28 | **hard gate: INC-9 complete + D04 G3 sign-off precedes any external exposure of INC-5 media or INC-8 messaging** (§10, §4.5 X-6) |
+| **INC-10** Performance & reporting | F-31, F-32, F-34, S-11 (+ **F-33**, **F-34-cond** conditional) | D-10, D-11, **D-27** *(conditional)* | O-23, O-24, O-25 | INC-1's D-19 (export audit leaf) |
+| **INC-11** Commercial scaffold | F-40 confirmation; S-02 rule re-verified; **no** `EntitlementFlag` type, **no** BE-05 | **none** — confirmation-only; the tier-state field's only surface shipped with INC-1 and is unchanged here | none | — (**F-42 not built in v1**) |
+
+**Increment invariants preserved by this mapping.**
+
+1. **INC-0 ships no destination.** Any IA that gave INC-0 a screen would contradict §10's "a partial UI shell does not count as a completed increment."
+2. **INC-3a → INC-3b exposure gate.** D-04 (execution) has no externally exposed state until D-28 (reconciliation) exists — modelled as state **X-6** in §4.5, not as a navigable destination.
+3. **INC-9 precedes external media/messaging exposure.** D-06/D-07/D-24 (INC-5/6) and D-09/D-25 (INC-8) are not externally exposed until D-16/D-17 (INC-9) exist and D04 has signed off at G3.
+4. **INC-11 adds no surface.** O-29 is displayed at D-15 from INC-1 onward and gates nothing at any increment — the tier-state field's existence is not an increment's user-visible deliverable.
+5. **`INC-3` is represented by its two approved sub-increments.** `mvp-release-scope.md` §10 defines `INC-3` with sub-increments `INC-3a` (F-14/F-15/F-16) and `INC-3b` (F-17/F-18); this table uses the sub-increment rows because the exposure gate between them is load-bearing for the IA. `INC-3` = `INC-3a` ∪ `INC-3b`; no increment is added, removed, or re-scoped.
+6. **`F-22` (media publication) has no owning increment, by design.** The approved §10 sequence never schedules it — §6.1 lists it as MVP-conditional pending the D04 consent mechanism, and §10 references it only as a *block* that INC-8's group-channel attachment slice inherits. This IA therefore assigns **O-13 to no increment**: it is modelled in §2.3 and §1.12 as an inert, unscheduled conditional surface. Assigning it an increment here would over-specify the approved sequence.
+7. **S-12 accessibility is a per-increment G5 exit gate** for every increment shipping an interactive surface (INC-1…INC-10). The IA-level obligation this creates is the accessibility convention stated at the head of §2 (every marker carries a non-colour, VoiceOver-accessible label); Step 4 and interaction-design carry it per control.
+
+*Machine-checked:* `validate-step3-4-artifacts.mjs` asserts every `INC-*` ID in `mvp-release-scope.md` §10 appears in this table, and that every `D-NN` defined in §4 is claimed by exactly one owning increment here.
+
+### 1.10 Invariant coverage (`WORKFLOW-ARCHITECTURE-v2.md` §5, all 16)
+
+The IA does not restate the invariants — it records **where each is structurally honored**, so a reviewer can verify none was quietly designed around.
+
+| # | Invariant | Where this IA honors it |
+|---|---|---|
+| 1 | Hierarchy `Team → Event Group → Subgroup → Athlete`; membership metadata distinct from profile | §3.1 (the organization hierarchy, modelled independently); §2.1 O-02/O-02a/O-02b; O-03/O-04 (membership/assignment) kept as separate objects from O-05 (profile) |
+| 2 | Exactly one Head Coach per Team; role is Team-scoped, never shared across Teams | §2.1 O-03 (role badge bound to a Membership, not an Account); §5.1 J-11 (transfer at D-15); §5.1 J-12 + §6 cross-Team-links rule (role never travels between Teams) |
+| 3 | Event Coach management scope is narrower than communication reach | §2.1 O-02a/b role-based visibility (management denied outside assigned scope); §2.4 O-18/O-19 (an Event Coach may start a thread with **any** Team athlete); §1.11 records this asymmetry per actor |
+| 4 | Coaches cannot edit athlete-owned profile or personal-workout data | §2.1 O-05 ("edited only by its owner"); §2.2 O-07/O-08 ("the coach never has a write path into O-08 — the client literally does not render an edit control"); §2.2 O-10 (athlete-exclusive) |
+| 5 | Prescription and performed work are always separate records | §3.3 (prescription vs execution vs log as three aggregates, A8/A11/A12); §2.2 O-06 vs O-07 vs O-08; the `PrescriptionVersionMarker` row in §3.9 |
+| 6 | Personal-workout non-elevation; disabling never deletes or blocks correction/export | §2.2 O-10 empty/restricted states (existing items stay visible, correctable, exportable; only *new* creation blocked, reason stated inline); §4.2 D-05; §3.3 (O-10 structurally outside the execution hierarchy) |
+| 7 | Tag ≠ grant ≠ share ≠ publish — independently representable | §3.4 (Tag, SessionAttachment, Publication as independent siblings of O-11; Grant/Share as independent records, not children); §2.3 O-12 ("tag only — not shared with them" cue); §2.3 O-13/O-14/O-15 |
+| 8 | Vault shows exactly what was explicitly granted/shared — never derived from membership | §3.7 (flat, query-time union; never derived from §3.1 or §3.2); §2.3 O-14/O-15 secondary-discovery row ("no path lets a viewer discover Vault content other than through D-07"); §3.9's deliberate "nothing carries here" row |
+| 9 | Payment ≠ authorization | §2.5 O-29 (no feature reads it in v1; the non-negotiable non-adjacency rule); §5.1 J-13; machine-checked by the CDR-N2 adjacency assertion in the validator |
+| 10 | Age 13+ baseline; discovered under-age handled by PS-07 | §4.1 D-00 (age gate; under-13 → hard reject); §2.1 O-01 `restricted_pending_review` state; §5.1 J-9; §4.4 D-17 (O-26 Underage Case) |
+| 11 | No revoked navigation as requirement; workflows describe availability, not screens | §1.1 "Does not own" row; §11 non-goals N-1/N-2 — this artifact derives destinations from approved *capabilities*, and never treats a workflow field as a screen specification |
+| 12 | Destructive-transition discipline (authority, confirmation, reversibility, downstream effects, exit state) | §4.1 D-15 (closure is a confirmation-gated sub-area, blocked under an active `PreservationHold`, never one tap from settings); §2.3 O-13 (publish), O-14/O-15 (revoke); §4.5 X-7 (recovery surface); the per-control confirmation design is Step 4 / interaction-design work (§11 N-4) |
+| 13 | Offline honesty — offline success is never server-durable until reconciliation succeeds | §2.5 O-30 ("Saved on this device" never worded or styled as "Saved"); §4.5 X-3/X-4/X-5; §6 unsynchronized-local-objects rule; §2.3 O-14 (`grant_pending` never rendered as effective; a queued grant loses to a concurrent revoke) |
+| 14 | Safety-critical notification state; safety-class notifications cannot be disabled | §2.4 O-22 (class label always shown; disabling safety class rejected client- **and** server-side, "the store refuses to persist safety = off"); §4.4 D-13; §2.2 O-09 (the one place where no badge is itself a defect) |
+| 15 | Communication reach ≠ any other scope | §2.4 O-18/O-19 role-based visibility; §2.3 O-16/O-17 (an Event Coach cannot deliver feedback to an out-of-scope athlete **even though messaging them is allowed**); §1.11 actor matrix |
+| 16 | Departed-member content disposition (DD-DEPARTED-CONTENT) | §5.2 rule 2 (historical content never deleted; the *person* disappears from active rosters/channels/switchers immediately); §2.2 O-09 (a departed athlete's conflict is held and flagged to the coach, never silently dropped); §5.1 J-11 |
+
+*Machine-checked:* the validator asserts all 16 invariant rows are present and that each cites at least one IA section.
+
+### 1.11 Actor coverage
+
+The canonical actors are `mvp-release-scope.md` §3's. Each must have a coherent, complete path — not merely "a destination exists."
+
+| Actor | Entry | Primary destinations | Explicitly denied / absent | Cross-Team behavior | Journeys |
+|---|---|---|---|---|---|
+| **Head Coach / Team Creator** | D-00 → D-01 | D-01, D-02, D-03, D-04, D-06, D-08, D-09, D-10, D-11, D-13, D-14, D-15, D-18 | no D-05 (Personal Workouts is athlete-only); no D-07 (Vault is athlete-only); no D-17; **cannot edit any athlete's O-05 profile** (inv. 4); no standing read access to a group channel they hold no assignment to (`OQ-MG-HC-CHANNEL` default) | role is per-Team; Head Coach in Team A may be Athlete in Team B — §5.1 J-12 | J-1, J-2, J-4 (toggle), J-5, J-6, J-7, J-8, J-10, J-11, J-12, J-13 |
+| **Event Coach** | D-00 → D-01 | D-01, D-02, D-03 *(scope-limited)*, D-04, D-06, D-08, D-09, D-10 *(in-scope athletes only)*, D-11, D-13, D-14, D-18 | **no D-15 at all** (Team Administration is Head-Coach-only); no D-05; no D-07; no D-17; cannot edit profiles; cannot author/assign outside `ManagementScope`; **cannot deliver feedback (O-17) to an out-of-scope athlete even though a private thread with them is permitted** (inv. 3, 15) | same as above | J-2, J-3, J-5, J-6, J-7, J-8, J-10, J-12 |
+| **Athlete** | D-00 → D-01 | D-01, D-02 *(read-only, own placement)*, D-04 *(log side)*, D-05 *(if enabled)*, D-06, D-07, D-08, D-09, D-10 *(own, full)*, D-11 *(own)*, D-13, D-14, D-19, D-21, D-22 *(own log)*, D-28 *(own conflicts)* | **no D-03** (planning authority is never granted — their assigned work appears via D-01/D-04); no D-15; no D-17; no D-26 for a project they do not author; never sees a `draft` Session | same as above | J-3, J-4, J-5 *(subject)*, J-6, J-7, J-8, J-9 *(subject)*, J-10, J-12 |
+| **Platform Safety Administrator** *(platform actor, not a Team role)* | **separate sign-in; never reachable from a Team-scoped session** | **D-17 only** | **every Team-scoped destination** — the PSA acts on case artifacts, never by browsing Team content (least privilege) | outside every Team hierarchy entirely (domain-model §2.4) | J-8, J-9 |
+| **Multi-Team user** | D-00 → D-18 → D-01 | **D-18** (the switcher itself, always in chrome); beyond it, exactly the destination set of whichever role they hold **in the active Team** | anything their role in the *active* Team denies; a link generated under Team A is invalid under Team B and never silently switches context | this is the actor J-12 exists to prove | J-12 |
+| **Prospective user / invitee** | D-00 | D-00 only | everything else until an O-03 Membership exists | n/a | J-1 *(invitee side)* |
+| **Data subject / guardian** *(assisted, non-navigable)* | D-19 → D-20 | D-20 handoff only | **no self-service guardian portal exists in v1** (F-P-11, Post-MVP — not modelled) | n/a | J-10 |
+
+**Coverage proof.** The three canonical end-user roles (Head Coach, Event Coach, Athlete) each have: an entry path, a non-empty primary-destination set, an explicit denial set, defined cross-Team behavior, and at least one journey in which they are the primary role. *Machine-checked* by the validator.
+
+### 1.12 Conditional-capability treatment (9, none activated)
+
+Per DR-A3/DR-A5, nine capabilities are **MVP conditional**. The IA models each so that the destination/object exists in the design record without the capability being switched on — and so that no reader can mistake presence-in-IA for activation.
+
+| ID | Activation condition (approved §6.1) | IA treatment | Inert-by-default proof |
+|---|---|---|---|
+| **F-10** Session templates | INC-2 G4 confirms an author-private slice does not extend the critical path | O-06a; a contextual "Templates" list inside D-03 | §2.2 O-06a "Inert-by-default note" — if unmet, the row does not exist in v1 and F-09/F-11 are the only reuse paths; **no shared library** (`CD-TEMPLATE-LIBRARY` / F-P-1 not modelled) |
+| **F-19** Personal workouts | Head Coach `personal_workouts_allowed` on the Team (F-06) | D-05; O-10 | D-05 exists but creation is blocked with the reason stated when disabled; **existing records stay visible/correctable/exportable** (inv. 6). This is a Team setting, **not** an athlete planning authority (§11 N-7) |
+| **F-22** Media publication | D04-approved consent mechanism for tagged minors **and** the Head-Coach publication-authority gate (`OQ-MD06-AUTHORITY`, `OQ-VS02-MULTISUBJECT`) | O-13; a "Publish" action on D-24. **No owning increment** — unscheduled in the approved §10 sequence (§1.9 note 6) | §2.3 O-13 — while inactive the surface **does not exist**; any publish attempt is refused with the named reason, never a silent no-op; never rendered in Vault chrome |
+| **F-33** Group/Team reports | `OQ-PF-AGG-METHOD` resolved (D03) | D-27; O-24 group variant | §4.3/§4.4 D-11/D-27 "inert while F-33 inactive"; an aggregate may never let a coach infer an out-of-scope athlete's individual value (§2.5) |
+| **F-34-cond** Coach export of a minor's identifiable data | `OQ-PF-MINOR-EXPORT` resolved (D04/legal) | a distinct, separately-gated sub-capability of D-11 | §4.4 D-11 — explicitly **never bundled into** ordinary athlete self-export (D-19) |
+| **F-40** Team tier-state field | **shipped in v1 under Option A** — the *field* ships; **tier gating does not activate** | O-29 at D-15 | §2.5 O-29 — no feature reads it; the non-adjacency rule is machine-checked (CDR-N2). Option A ships the field + the S-02 build-time rule; it activates **no billing and no F-42** (§11 N-8) |
+| **F-42** BE-05 entitlement interface | F-40 gating activated via a separately approved D06 entitlement artifact | **no v1 UI surface at all** | §1.8 row F-42 "— (no v1 UI surface)"; INC-11 confirms **no `EntitlementFlag` type and no BE-05 interface exists** in v1 |
+| **S-09** Automated notification fan-out | automated fan-out design accepted | **no UI surface** — D-13 renders notifications regardless of how they were produced | fan-out is a delivery mechanism, not a destination; its absence changes no navigation |
+| **S-10** Realtime transport | realtime transport selection | **no UI surface** — D-09/D-25 behave identically over queue/sync (the default) | transport choice never changes object meaning, membership, or reachability |
+
+**Rule applied throughout:** a conditional capability's presence in this artifact is a *design record*, never an activation. No conditional capability is given a primary destination slot that would have to be removed if its condition is never met — the two that own a destination (D-05, D-27) are both explicitly typed as conditional in §4, and the validator asserts each of the nine IDs carries a conditional marker wherever it appears.
+
 
 ---
 
@@ -523,6 +619,38 @@ Columns: **Type** = primary / secondary / contextual / modal / administrative. *
 | D-27 | Group/Team Report Detail | One generated group/Team report *(conditional)* | Coach | D-11 | O-24 | view, export within scope | D-19 | from D-11 | D-11 | inert while F-33 inactive | contextual |
 | D-17 | Platform Safety Console | Moderation, escalation, under-age, illegal-content, and hold administration | Platform Safety Administrator **only** | **none — a separate navigation root, outside every Team hierarchy** | O-21, O-26, O-28, preservation holds | review, determine, hold/release, escalate | none into ordinary Team surfaces (least-privilege; the PSA acts on case artifacts, not by browsing Team content) | PSA sign-in (never reachable from a Team-scoped session) | n/a (its own root) | a durable severity-ordered queue; never empty-styled away — "queue clear" is stated, not implied by an empty screen indistinguishable from a loading state | administrative (separate root) |
 
+### 4.5 System-state surfaces (denied, unavailable, offline, queued, conflict, recovery)
+
+**Why these are states, not destinations.** A denial, an outage, or a queued write is
+something a *destination enters*, not somewhere a user navigates to. Minting
+`D-NN` entries for them would misrepresent the information architecture (a user
+never "goes to Denied"), would create destinations Step 4 must place in chrome,
+and would collide with the rule in §2 that every entry is **object + task**.
+They therefore carry their own `X-N` namespace. The one genuine exception is
+**conflict**, which additionally owns a real destination — **D-28 Reconciliation
+Center** — because resolving a conflict *is* a task performed on an object.
+
+| ID | State | Trigger | Required content | Never does | Owning destination(s) | Recovery path |
+|---|---|---|---|---|---|---|
+| **X-1** | **Empty** | the viewer is authorized and the authoritative set is genuinely zero | names *why* it is empty and the next action, where one exists for that role | never shown when the real cause is a denial, an outage, or an unsynced cache — those are X-2/X-3/X-4 | every list-bearing destination (D-01…D-11, D-13, D-15, D-21, D-22, D-24, D-25, D-27, D-28) | n/a — the state is correct |
+| **X-2** | **Denied** | authorization refuses the object or action at the authoritative check | a neutral refusal naming the boundary in the user's terms ("You don't manage this group"), never the policy internals | **never reveals that a hidden object exists**; never a lock icon or greyed placeholder that confirms existence; never distinguishable from "not found" where the object type's ordinary browsing would not already reveal the distinction (§6, §7) | any scope-bearing destination; every object's "Restricted/denied state" row in §2 | return to the last authorized destination (§6 back behavior) |
+| **X-3** | **Unavailable** | the object existed for this viewer and no longer does — deleted, revoked, moved, or scope-narrowed | one of the four §6 deep-link outcomes: "This no longer exists" / "You no longer have access to this" / resolved-to-new-location / neutral denial | **Vault items collapse deletion and revocation into one neutral message** — D-07 must never confirm whether an artifact still exists elsewhere (§2.3) | D-07, D-22, D-24, D-25, D-26, D-23, D-27 | return to the parent list, with the stale row already dropped |
+| **X-4** | **Offline** | no connectivity; the destination is rendering last-synced authoritative state | an explicit staleness marker; for search, the stated limitation "search is limited while offline" (§7) | never fabricates a shell for content never synced to this device — that fails honestly; never presents a partial local index as a complete result set | every cached-readable destination (D-01…D-11, D-13, D-21, D-22, D-24, D-25) | automatic on reconnect; no user action required |
+| **X-5** | **Queued** | an offline-capable write succeeded **locally only** | the O-30 vocabulary — `Saved on this device` / `Uploading…` / `Synced` / `Needs attention`, plus the chrome-level aggregate indicator | **"Saved on this device" is never worded or styled as "Saved"** (invariant 13); a queued grant, publication, attachment, or message is never rendered as effective; a queued grant **loses** to a concurrent revoke | D-03 (draft authoring — §2.2 O-06), D-04, D-05, D-06, D-09, D-22, D-24, D-25 (every offline-capable write surface) | reconciliation on reconnect → X-6 if divergent, otherwise `Synced` |
+| **X-6** | **Conflict** | reconnect detects a divergence that cannot merge without loss | both sides preserved and attributed; the `as executed — version changed` marker persists permanently, not only during the conflict | never last-write-wins; never silently drops a departed athlete's conflict (it is held and flagged to the coach); **never absent a badge** — for this state alone, no signal is itself the defect | **D-28 Reconciliation Center** (a real destination), surfaced as a badge/banner from D-01 and D-04 | the user resolves at D-28 → returns to the affected D-22/D-04. **Gate:** the INC-3a execution surface is not externally exposed until INC-3b delivers this state (§1.9) |
+| **X-7** | **Recovery** | an authorization or session precondition lapsed mid-use, or a terminal failure occurred | names what lapsed and the single next action — re-authenticate, switch Team, retry, or contact support | never silently re-authenticates into a different Team context; never continues displaying content that became unauthorized mid-session (it degrades to X-2); never drops a permanently failed upload without an audited, retryable record | D-00 (session expiry), D-18 (wrong-Team link), D-06/D-24 (failed upload/processing), D-13 (terminal safety-notification failure → human escalation, S-04) | re-auth → resume at the last meaningful destination **within the current active Team**, re-validating scope before rendering (§6 resume behavior) |
+
+**Cross-cutting rules.**
+
+- **States are mutually exclusive in presentation.** A destination renders exactly one of X-1…X-7 at a time; where two could apply, the **more restrictive** wins (X-2 denied outranks X-1 empty; X-3 unavailable outranks X-4 offline), so a boundary is never softened into an outage.
+- **No state leaks existence.** X-2 and X-3 obey §7's counting rule: no rendered count, badge, or summary may include an object outside the viewer's authorized visibility.
+- **Every state is role-aware.** The same underlying condition can be X-1 for a Head Coach and X-2 for an Event Coach; §2's per-object rows are authoritative for which.
+- **Step 4 owns placement, not meaning.** The navigation specification decides where a banner, badge, or full-screen state appears; the wording obligations, the never-does column, and the recovery path above are IA-owned and may not be weakened downstream (§11 N-3).
+- **Accessibility.** Every state marker above is subject to the §2 convention — a non-colour, VoiceOver-accessible textual label; sync and conflict state is never communicated by colour or icon shape alone (S-12). **Entering or leaving any of X-1…X-7 is a state *change*, not only a static label:** the transition must be announced to assistive technology (an accessible status/live-region announcement) so a VoiceOver user learns that a write went queued, that a conflict appeared, or that a session lapsed without having to re-explore the screen. The IA fixes this obligation; the announcement mechanism and wording are Step 4 / Step 5 work (§11 N-3).
+
+*Machine-checked:* the validator asserts all seven `X-N` states are defined with a non-empty owning-destination set, and that **D-28** is the destination backing X-6.
+
+
 Every approved MVP destination above is reachable — proven in §9 (findability validation) and enforced by `validate-step3-4-artifacts.mjs` (every `D-NN` referenced in §1.8 exists in §4).
 
 ---
@@ -667,7 +795,30 @@ Zero BLOCKING findings remain open (§10 of the review files; remediation log in
 
 ---
 
-## 11. Status and provenance footer
+## 11. Non-goals
+
+Stated explicitly so a downstream reader cannot infer authority this artifact
+does not carry. Each non-goal names who *does* own the item.
+
+| # | This artifact does **not** | Owner / where it is decided |
+|---|---|---|
+| **N-1** | Design navigation chrome, shells, tab/sidebar structure, gestures, or control microstates | Step 4 — `docs/product/navigation-specification.md` (§1.1 "Does not own") |
+| **N-2** | Specify screens, layouts, wireframes, or visual design of any kind | Step 5 MVP Interaction Design, then `visual-ui-design`; **not started** |
+| **N-3** | Define per-control interaction contracts — focus order, validation timing, confirmation dialogs, progressive disclosure, retry affordances | Step 5 Interaction Design. §4.5 fixes the **meaning and wording obligations** of each state; it does not fix how a control presents them |
+| **N-4** | Specify destructive-action confirmation mechanics | Step 5; invariant 12's authority/reversibility requirements are recorded in §1.10 and §4.1 D-15, not designed here |
+| **N-5** | Resolve, convert, narrow, or create any `OQ-*` / `CD-*` item | `WORKFLOW-ARCHITECTURE-v2.md` §9.2 remains the complete OPEN register under its existing owners, every safe default in force |
+| **N-6** | Change any product invariant, authorization rule, role definition, or the approved MVP scope | Approved upstream artifacts; a real contradiction is raised as a decision-change request, never edited away |
+| **N-7** | Grant athletes planning authority | Athletes have **no D-03**. F-19 personal workouts depend on the Head Coach's Team setting and confer no authoring authority over Team plans (invariant 6; §1.12) |
+| **N-8** | Activate billing, tier gating, or F-42 | Option A ships the Free-default **field** plus the S-02 build-time rule only. No feature reads it in v1; F-42/BE-05 awaits a separately approved Department 06 entitlement artifact |
+| **N-9** | Authorize external exposure of media or messaging | Gated on INC-9 completion **plus D04 G3 sign-off**; INC-3a additionally gated on INC-3b (§1.9) |
+| **N-10** | Define search ranking, index technology, read-model shape, or database schema | Department 03. §7 is the **information-level** model only |
+| **N-11** | Model Post-MVP or Excluded capabilities (F-41, F-P-*, F-EX-*) | Out of scope by DR-A4; each is marked `[post-MVP — not modelled]` / `[excluded — not modelled]` where it could otherwise be inferred (§1.4) |
+| **N-12** | Model a guardian self-service portal, a web/internal-admin surface, or an athlete-to-athlete sharing path | F-P-11 / F-P-14 / excluded respectively — all Post-MVP or excluded; only the D-20 assisted handoff exists |
+| **N-13** | Constitute human approval, a freeze, a legal or compliance sign-off, or any production-release authorization | Diego at G7, via the decision package in `navigation-specification.md` §12 |
+
+---
+
+## 12. Status and provenance footer
 
 **This artifact is a proposal.** No `OQ-*` / `CD-*` item is resolved, converted, or created. No product invariant is changed. No visual design or production code exists here. It becomes the required, version-pinned Step 4 input once its Step 3 gate review (§10, `stridelab-ai/orchestration/reviews/step3-information-architecture/`) shows zero BLOCKING findings — confirmed in this version.
 
