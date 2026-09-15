@@ -42,7 +42,13 @@ import YAML from 'yaml';
 const root = process.cwd();
 const errors = [];
 const warnings = [];
-const read = (p) => fs.readFileSync(path.join(root, p), 'utf8');
+// Normalise CRLF -> LF on read. Every section-extraction regex below anchors on
+// blank-line/`---` boundaries written as \n\n; on a CRLF checkout (Windows CI, or
+// any clone with core.autocrlf=true) those anchors would silently fail to match
+// and the validator would report missing sections for an artifact that is in
+// fact correct. Normalising here makes every downstream check line-ending
+// agnostic, which is the only safe behaviour for a fail-closed validator.
+const read = (p) => fs.readFileSync(path.join(root, p), 'utf8').replace(/\r\n/g, '\n');
 const exists = (p) => fs.existsSync(path.join(root, p));
 const err = (m) => errors.push(m);
 const warn = (m) => warnings.push(m);
