@@ -239,7 +239,7 @@ artifacts:
   - id: information-architecture
     type: information-architecture
     path: docs/product/information-architecture.md
-    status: AWAITING_HUMAN_APPROVAL
+    status: APPROVED
     owner: 01-product-experience
     primary_specialist: ux-architect
     reviewed_by: [product-experience-lead, domain-workflow-architect, security-compliance-reviewer, client-feature-lead, platform-data-reviewer, ux-research-accessibility-reviewer, "combined cross-department review — stridelab-ai/orchestration/reviews/step3-4-cross-department/"]
@@ -282,14 +282,16 @@ artifacts:
       BLOCKING. Validator extended with checks 9, 9b, 10-17 (increment, journey,
       invariant, actor, conditional, non-goal, system-state, destination
       uniqueness, upstream-pin freshness, OQ/CD non-mutation), all negative-tested
-      fail-closed. G7 (combined with
-      navigation-specification) pending — decision package in
-      docs/product/navigation-specification.md §12.
+      G7 APPROVED - Diego, 2026-09-15 (combined Steps 3-4 decision);
+      approved version ad8c45bddace1d5307f5ef492e563ee2814513fe; record
+      stridelab-ai/orchestration/approvals/G7-information-architecture-navigation.md.
+      Authorises Step 5 MVP Interaction Design and implementation-design only;
+      no production release, no legal/compliance sign-off, no OQ-*/CD-* resolved.
 
   - id: navigation-specification
     type: navigation-specification
     path: docs/product/navigation-specification.md
-    status: AWAITING_HUMAN_APPROVAL
+    status: APPROVED
     owner: 01-product-experience
     primary_specialist: ux-architect
     reviewed_by: [product-experience-lead, domain-workflow-architect, ux-research-accessibility-reviewer, client-feature-lead, platform-data-reviewer, security-compliance-reviewer, quality-release-lead, architecture-reviewer, "combined cross-department review — stridelab-ai/orchestration/reviews/step3-4-cross-department/"]
@@ -321,6 +323,8 @@ artifacts:
       validator allowlist, CDR-N2 tier-state/authorization adjacency proof)
       closed by stridelab-ai/scripts/validate-step3-4-artifacts.mjs. Zero
       open BLOCKING findings. No OQ-*/CD-* item resolved; every §9.2 safe
-      default remains in force. G7 (combined with information-architecture)
-      pending — decision package in this artifact's §12; not a legal/
-      compliance sign-off and does not authorise production release.
+      G7 APPROVED - Diego, 2026-09-15 (combined Steps 3-4 decision);
+      approved version ad8c45bddace1d5307f5ef492e563ee2814513fe; record
+      stridelab-ai/orchestration/approvals/G7-information-architecture-navigation.md.
+      Authorises Step 5 MVP Interaction Design and implementation-design only;
+      not a legal/compliance sign-off; does not authorise production release.

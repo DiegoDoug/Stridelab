@@ -1,10 +1,10 @@
 # StrideLab Information Architecture
 
-**Status:** `AWAITING_HUMAN_APPROVAL` — Department 01 Step 3. Authored 2026-09-11 by Department 01 Product & Experience (`ux-architect`, skills `workflow-architecture` + `information-architecture` + `interaction-design`), orchestrated per `stridelab-ai/commands/orchestrate/orchestrate-task.md` and executed per `stridelab-ai/departments/01-product-experience/commands/ux/design-information-architecture.md`.
+**Status:** `APPROVED` — G7 granted by Diego on 2026-09-15 for Department 01 Step 3 (combined Steps 3-4 decision), pinned to commit `ad8c45bddace1d5307f5ef492e563ee2814513fe`. Approval record: `stridelab-ai/orchestration/approvals/G7-information-architecture-navigation.md`. Department 01 Step 3. Authored 2026-09-11 by Department 01 Product & Experience (`ux-architect`, skills `workflow-architecture` + `information-architecture` + `interaction-design`), orchestrated per `stridelab-ai/commands/orchestrate/orchestrate-task.md` and executed per `stridelab-ai/departments/01-product-experience/commands/ux/design-information-architecture.md`.
 **Owning Department:** 01 Product & Experience. **Primary specialist:** `ux-architect`. **Department lead:** `product-experience-lead`.
 **Companion artifact (Step 4):** `docs/product/navigation-specification.md` (consumes this artifact as a required, version-pinned input).
 
-This artifact is a **proposal**, not an approved decision. It derives the StrideLab content hierarchy, destination map, discovery model, and search model from the **approved** MVP release scope, feature prioritization, and consolidated domain model. It does not resolve, convert, or create any `OQ-*` / `CD-*` item (`stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md` §9.2 remains the complete OPEN register with every safe default in force), does not change any product invariant, and does not weaken any authorization or privacy boundary. It designs no visual UI, no interaction microstates, and no production code.
+This artifact is the **approved governed information architecture** for the MVP, and the required version-pinned input to Step 4 Navigation Specification and Step 5 MVP Interaction Design. It derives the StrideLab content hierarchy, destination map, discovery model, and search model from the **approved** MVP release scope, feature prioritization, and consolidated domain model. It does not resolve, convert, or create any `OQ-*` / `CD-*` item (`stridelab-ai/knowledge/workflows/WORKFLOW-ARCHITECTURE-v2.md` §9.2 remains the complete OPEN register with every safe default in force), does not change any product invariant, and does not weaken any authorization or privacy boundary. It designs no visual UI, no interaction microstates, and no production code.
 
 **Notation.** A bare `F-NN` / `S-NN` is a feature/supporting capability from `feature-prioritization.md`. `J-NN` is a release journey from `mvp-release-scope.md` §7. `A-NN` is a domain-model aggregate. This artifact introduces its own namespace for destinations (`D-NN`) and objects (`O-NN`), chosen to avoid collision with every existing ID space.
 
@@ -814,16 +814,17 @@ does not carry. Each non-goal names who *does* own the item.
 | **N-10** | Define search ranking, index technology, read-model shape, or database schema | Department 03. §7 is the **information-level** model only |
 | **N-11** | Model Post-MVP or Excluded capabilities (F-41, F-P-*, F-EX-*) | Out of scope by DR-A4; each is marked `[post-MVP — not modelled]` / `[excluded — not modelled]` where it could otherwise be inferred (§1.4) |
 | **N-12** | Model a guardian self-service portal, a web/internal-admin surface, or an athlete-to-athlete sharing path | F-P-11 / F-P-14 / excluded respectively — all Post-MVP or excluded; only the D-20 assisted handoff exists |
-| **N-13** | Constitute human approval, a freeze, a legal or compliance sign-off, or any production-release authorization | Diego at G7, via the decision package in `navigation-specification.md` §12 |
+| **N-13** | Constitute a legal or compliance sign-off, or any production-release authorization | **G7 human approval was granted by Diego on 2026-09-15** (record `stridelab-ai/orchestration/approvals/G7-information-architecture-navigation.md`), which locks this artifact for design purposes only. Production release, legal sign-off, and every `OQ-*`/`CD-*` resolution remain separate later decisions. |
 
 ---
 
 ## 12. Status and provenance footer
 
-**This artifact is a proposal.** No `OQ-*` / `CD-*` item is resolved, converted, or created. No product invariant is changed. No visual design or production code exists here. It becomes the required, version-pinned Step 4 input once its Step 3 gate review (§10, `stridelab-ai/orchestration/reviews/step3-information-architecture/`) shows zero BLOCKING findings — confirmed in this version.
+**This artifact is APPROVED and FROZEN** at commit `ad8c45bddace1d5307f5ef492e563ee2814513fe` (G7, Diego, 2026-09-15; record `stridelab-ai/orchestration/approvals/G7-information-architecture-navigation.md`). No `OQ-*` / `CD-*` item is resolved, converted, or created by this approval; every §9.2 safe default remains in force. No product invariant is changed. No visual design or production code exists here. It is the required, version-pinned input to Step 4 Navigation Specification (approved in the same decision) and to Step 5 MVP Interaction Design. Changes after the freeze require a new governed decision, not an edit.
 
 - Canonical path: `docs/product/information-architecture.md` (this file)
 - Lifecycle record: `stridelab-ai/project-memory/current-state/information-architecture.md`
 - Registry: `stridelab-ai/registry/artifacts.yaml` → `information-architecture`
 - Review evidence: `stridelab-ai/orchestration/reviews/step3-information-architecture/`, `stridelab-ai/orchestration/reviews/step3-4-cross-department/`
-- Downstream: `docs/product/navigation-specification.md` (Step 4)
+- Approval: `stridelab-ai/orchestration/approvals/G7-information-architecture-navigation.md` (G7 APPROVED, Diego, 2026-09-15, version `ad8c45bddace1d5307f5ef492e563ee2814513fe`)
+- Downstream: `docs/product/navigation-specification.md` (Step 4, approved in the same decision); Step 5 MVP Interaction Design (not started)

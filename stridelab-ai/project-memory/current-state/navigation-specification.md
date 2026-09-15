@@ -1,6 +1,6 @@
 # Current State — StrideLab Navigation Specification
 
-**Status: `AWAITING_HUMAN_APPROVAL`** — Department 01 Step 4. Authored 2026-09-11 by
+**Status: `APPROVED`** — G7 granted by Diego on 2026-09-15 (combined Steps 3-4 decision); approved version pinned to commit `ad8c45bddace1d5307f5ef492e563ee2814513fe`; approval record `stridelab-ai/orchestration/approvals/G7-information-architecture-navigation.md`. Department 01 Step 4. Authored 2026-09-11 by
 Department 01 Product & Experience (`ux-architect`, skills `workflow-architecture` +
 `information-architecture` + `interaction-design`) under
 `stridelab-ai/departments/01-product-experience/commands/ux/design-navigation.md`,
@@ -8,7 +8,7 @@ orchestrated per `stridelab-ai/commands/orchestrate/orchestrate-task.md`.
 
 Canonical artifact: `docs/product/navigation-specification.md` (one canonical location).
 Registry entry: `stridelab-ai/registry/artifacts.yaml` → `navigation-specification`
-(`status: AWAITING_HUMAN_APPROVAL`). Header, registry, and this record agree.
+(`status: APPROVED`). Header, registry, and this record agree.
 
 ## What this artifact is
 
