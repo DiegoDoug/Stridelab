@@ -39,7 +39,8 @@ Two further defects were caught **by these checks during authoring, before any c
 RP-B1 (D-15 claimed by two increments) and RP-B2 (an actor with no primary destination).
 The checks therefore have demonstrated real defect-detection value, not only synthetic.
 
-- **Blocking findings:** none.
+- **Blocking findings:**
+  - **RP-B4** — the validator was green against the authoring working tree but **red against a clean clone of the pushed commit**. Every section-extraction regex anchors on `\n\n` / `\n\n---`, which cannot match a CRLF checkout; on Windows CI it would have reported §1.8 and §4 missing, 0 destinations, and ~55 spurious coverage errors for a correct artifact. A fail-closed validator that fails on correct input is as broken as one that passes on incorrect input. *Remediation applied:* `read()` normalises CRLF to LF at the source (`c54735e`). *Re-verified:* full suite green on a fresh clone; `destinations_defined: 28`.
 - **Non-blocking findings:**
   - **RP-N4** — the validator proved feature, destination, actor, invariant and increment coverage but **not journey coverage**, even though J-1…J-13 is the IA's own completeness argument (§5.0). *Remediation applied:* check 9b added; `journeys_walked: 13`; negative-tested.
 - **Disposition:** **`PASS`** — every coverage claim in the delta is now machine-proven and fail-closed; `ai:validate` remains wired into CI.

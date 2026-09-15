@@ -45,10 +45,11 @@ Upstream commit pins were refreshed to cite the Step-2 approved-version pin
 `9893c1d4dd0166fd0c55f1950e601e5f8737946c`. The destination count was corrected 27 → 28
 here, in the registry, and in the navigation-specification record. Independent review of
 the delta across 13 lenses is recorded in
-`stridelab-ai/orchestration/reviews/step3-remediation/`: three BLOCKING findings
+`stridelab-ai/orchestration/reviews/step3-remediation/`: four BLOCKING findings
 (RP-B1 duplicate destination ownership, RP-B2 an actor with no primary destination, RP-B3
-an unapproved increment assignment for F-22) were remediated and independently
-re-verified; four non-blocking findings were closed. **Zero open BLOCKING findings.**
+an unapproved increment assignment for F-22, RP-B4 a validator that failed on a CRLF
+checkout) were remediated and independently re-verified against a clean clone of the
+pushed commit; four non-blocking findings were closed. **Zero open BLOCKING findings.**
 No upstream governed artifact was changed — proven byte-identical against `origin/main`. **This is the first navigation-adjacent artifact StrideLab has ever
 produced** — Steps 1–2 explicitly avoided designing navigation (invariant #11); this
 artifact is the first to do so, and confirms no prior navigation decision exists anywhere

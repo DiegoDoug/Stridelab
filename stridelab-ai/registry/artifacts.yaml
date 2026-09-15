@@ -276,8 +276,9 @@ artifacts:
       recovery (4.5), and 13 explicit non-goals (11; footer moved to 12); refreshed
       the upstream pin to the Step-2 approved version
       9893c1d4dd0166fd0c55f1950e601e5f8737946c. Independent 13-lens review of the
-      delta: stridelab-ai/orchestration/reviews/step3-remediation/ - 3 BLOCKING
-      (RP-B1/B2/B3) remediated and re-verified, 4 non-blocking closed, zero open
+      delta: stridelab-ai/orchestration/reviews/step3-remediation/ - 4 BLOCKING
+      (RP-B1/B2/B3/B4) remediated and re-verified against a clean clone, 4
+      non-blocking closed, zero open
       BLOCKING. Validator extended with checks 9, 9b, 10-17 (increment, journey,
       invariant, actor, conditional, non-goal, system-state, destination
       uniqueness, upstream-pin freshness, OQ/CD non-mutation), all negative-tested

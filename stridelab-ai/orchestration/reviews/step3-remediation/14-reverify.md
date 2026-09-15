@@ -12,6 +12,13 @@ described as closed in a review file), and that nothing upstream moved.
 | **RP-B2** | multi-Team actor given a primary destination | §1.11's multi-Team row names **D-18** explicitly; check 11 errors when an actor row contains no `D-NN` | **CLOSED** |
 | **RP-B3** | F-22 / O-13 no longer assigned an increment | §1.9's INC-8 row no longer lists O-13 or claims F-22; §1.9 note 6 and §1.12's F-22 row both record that F-22 is unscheduled in the approved §10. Cross-checked against `mvp-release-scope.md` §10: F-22 occurs there exactly once, inside INC-8's acceptance evidence, as an inherited **block** — never as a deliverable | **CLOSED** |
 
+| **RP-B4** | validator normalises CRLF on read | Verified by cloning the **pushed** commit into a fresh working copy and running the full suite there — not only against the authoring worktree, whose surviving LF regions had masked the defect. `npm run ai:validate`: all six validators PASS; `destinations_defined: 28`, `journeys_walked: 13`, `invariants_covered: 16`, `system_states: 7` | **CLOSED** |
+
+**Method note.** RP-B4 is the reason this re-verification is performed against a clean
+clone rather than the working tree. A validator verified only where it was written can pass
+for environment-specific reasons; the clean-clone run is what makes the "validator-green"
+claim meaningful, and it is the step that caught a defect every prior check had missed.
+
 ## Non-blocking findings — re-verified
 
 | ID | Verification | Verdict |
@@ -60,7 +67,7 @@ The Navigation Specification was re-checked against the remediated IA:
 
 ## Verdict
 
-**Zero open BLOCKING findings.** All three `RP-B*` findings are closed and verified in the
+**Zero open BLOCKING findings.** All four `RP-B*` findings are closed and verified in the
 artifact itself; all four `RP-N*` findings are closed; one pre-existing D03 condition
 (RP-C1) is carried unchanged. `npm run ai:validate` passes all six validators.
 
