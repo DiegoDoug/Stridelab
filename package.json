@@ -9,7 +9,7 @@
     "services/*"
   ],
   "scripts": {
-    "ai:validate": "node stridelab-ai/scripts/validate-ai-system.mjs && node stridelab-ai/scripts/validate-orchestration.mjs && node stridelab-ai/scripts/validate-routing-cases.mjs && node stridelab-ai/scripts/validate-workflow-architecture.mjs"
+    "ai:validate": "node stridelab-ai/scripts/validate-ai-system.mjs && node stridelab-ai/scripts/validate-orchestration.mjs && node stridelab-ai/scripts/validate-routing-cases.mjs && node stridelab-ai/scripts/validate-workflow-architecture.mjs && node stridelab-ai/scripts/validate-step2-artifacts.mjs"
   },
   "devDependencies": {
     "turbo": "^2.0.0",

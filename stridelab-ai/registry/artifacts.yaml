@@ -14,7 +14,7 @@ artifacts:
     contributors: [04-security-identity-compliance, 06-business-operations-governance]
     supersedes: "embedded invariants list in Department agent prompts (ungoverned)"
     current_state_record: stridelab-ai/project-memory/current-state/product-baseline.md
-    downstream_consumers: [workflow-architecture, domain-model, application-map]
+    downstream_consumers: [workflow-architecture, domain-model, application-map, feature-prioritization, mvp-release-scope]
     notes: >
       Governed record of the product invariants the Workflow Architecture v2 was
       validated against; normative force of each invariant comes from Workflow
@@ -119,3 +119,119 @@ artifacts:
     status: APPROVED
     owner: architecture-reviewer
     notes: "Domain-driven modular monolith; cross-domain access via public contracts."
+
+  - id: feature-prioritization
+    type: feature-prioritization
+    path: docs/product/feature-prioritization.md
+    status: APPROVED
+    approved_by: Diego
+    approved_date: 2026-09-10
+    approved_commit: 9893c1d4dd0166fd0c55f1950e601e5f8737946c
+    approval_record: stridelab-ai/orchestration/approvals/G7-mvp-feature-prioritization-release-scope.md
+    owner: 01-product-experience
+    primary_specialist: product-strategist
+    reviewed_by: [product-experience-lead, "independent D01 specialist review (stridelab-ai/orchestration/reviews/step2-dept01/01-d01-product.md)"]
+    upstream: [product-baseline, workflow-architecture, domain-model, architecture-decision]
+    current_state_record: stridelab-ai/project-memory/current-state/feature-prioritization.md
+    downstream_consumers: [mvp-release-scope, 02-client-feature-engineering, 03-platform-data-engineering, 04-security-identity-compliance, 05-quality-infrastructure-release, 06-business-operations-governance]
+    notes: >
+      Department 01 Step 2, Phase A. Authored 2026-09-10 by
+      01-product-experience/product-strategist (skills: product-strategy,
+      user-research-usability), executed per
+      stridelab-ai/departments/01-product-experience/commands/strategy/prioritize-features.md.
+      A prioritized inventory of candidate MVP capabilities: a five-criterion
+      method (C1 invariant-completion → C2 core-value → C3 dependency position →
+      C4 risk/uncertainty → C5 relative complexity, applied in that lexicographic
+      tie-break order); a 42-feature master table + 13 cross-cutting supporting
+      capabilities (S-01..S-13); per-feature records; and a classification into
+      MVP required (35 user-facing + 11 supporting = 46), MVP conditional (9,
+      each with a named activation condition), Post-MVP (F-41 + F-P-1..F-P-16),
+      and Excluded from the current release (F-EX-1..F-EX-10). The independent
+      D01 specialist review (stridelab-ai/orchestration/reviews/step2-dept01/)
+      reclassified F-10 (templates) and F-42 (BE-05 entitlement interface) from
+      MVP required to MVP conditional — DR-A5 — with F-42's one load-bearing v1
+      rule absorbed into S-02; counts moved from 48 to 46 MVP-required and 7 to 9
+      conditional. Department 01 review (product-experience-lead lens): PASS WITH
+      CONDITIONS; A-01..A-06 remediated. Findings register P-F-01..P-F-06
+      (P-F-05 resolved by the F-42 reclassification). Semantic integrity is
+      machine-enforced by stridelab-ai/scripts/validate-step2-artifacts.mjs
+      (wired into npm run ai:validate + CI). No OQ-*/CD-* item is resolved,
+      converted, or created; every WORKFLOW-ARCHITECTURE-v2.md §9.2 safe default
+      remains in force. No invariant changed; no navigation designed. G7
+      (product-scope) granted by Diego on 2026-09-10, pinned to
+      9893c1d4dd0166fd0c55f1950e601e5f8737946c. DR-A1..DR-A5 APPROVED; DR-A5
+      explicitly selects Option A: the Free-default Team tier-state field and
+      S-02 build-time authorization-isolation rule ship in v1, while F-42/BE-05
+      stays deferred until tier gating is activated through a separately
+      approved Department 06 entitlement artifact. This is implementation-design
+      authority only, not legal/compliance, launch, or production-release
+      authorization. Condition C-IND (independent
+      specialist review pass — D01..D06 + architecture + cross-department) is
+      CLOSED (2026-09-10): all eight lenses recorded in
+      stridelab-ai/orchestration/reviews/step2-dept01/; the three FAIL lenses
+      (D02, D05, cross-department) remediated and re-verified closed
+      (09-reverify.md); zero open BLOCKING findings.
+
+  - id: mvp-release-scope
+    type: release-scope
+    path: docs/product/mvp-release-scope.md
+    status: APPROVED
+    approved_by: Diego
+    approved_date: 2026-09-10
+    approved_commit: 9893c1d4dd0166fd0c55f1950e601e5f8737946c
+    approval_record: stridelab-ai/orchestration/approvals/G7-mvp-feature-prioritization-release-scope.md
+    owner: 01-product-experience
+    primary_specialist: product-strategist
+    reviewed_by: [product-experience-lead, client-feature-lead, platform-data-lead, security-compliance-lead, quality-release-lead, operations-governance-reviewer, architecture-reviewer, cross-department-reviewer, "independent specialist review pass — stridelab-ai/orchestration/reviews/step2-dept01/"]
+    upstream: [feature-prioritization, product-baseline, workflow-architecture, domain-model, architecture-decision]
+    current_state_record: stridelab-ai/project-memory/current-state/mvp-release-scope.md
+    downstream_consumers: [02-client-feature-engineering, 03-platform-data-engineering, 04-security-identity-compliance, 05-quality-infrastructure-release, 06-business-operations-governance]
+    notes: >
+      Department 01 Step 2, Phase B. Authored 2026-09-10 by
+      01-product-experience/product-strategist, executed per
+      stridelab-ai/departments/01-product-experience/commands/strategy/scope-release.md.
+      One governed MVP release scope + an ordered implementation sequence
+      (INC-0..INC-11, dependency-ordered not effort-ordered) for the Phase A
+      42-feature inventory: 35 user-facing + 11 supporting = 46 MVP-required
+      capabilities, 9 MVP-conditional. Defines the MVP objective; roles;
+      devices/platforms (iOS/iPadOS; web client out of scope); included /
+      conditional / deferred / excluded sets; 13 end-to-end release journeys
+      (J-1..J-13, incl. J-12 multi-Team isolation and J-13 for invariant #9)
+      exercising all 16 invariants + baseline §6A (#11 by construction);
+      aggregates A1-A35, the 14 seams; authorization / tenant-isolation /
+      privacy / youth-safety / media / Vault / offline / accessibility /
+      data-lifecycle requirements; the one independently-deployable workload
+      (services/media-worker); a per-capability definition-of-done table; gate
+      entry/exit + the MVP-completion definition (§11.4 states plainly it
+      authorises building only, not a launch and not legal sign-off); the
+      open-questions register; and the G7 decision package.
+      ORCHESTRATOR-RUN advisory review (§13.1-§13.9, 8 lenses): all PASS WITH
+      CONDITIONS; three BLOCKING (D04-B1 hard INC-9-before-media/messaging
+      exposure gate; D04-B2 S-08 fail-safe moved to INC-0; CDR-B1
+      production-launch legal sign-offs added §11.2/§11.3) raised, remediated,
+      re-run, closed; D02-N1 raised to a fix (INC-3 split INC-3a/INC-3b).
+      INDEPENDENT SPECIALIST REVIEW pass (§13.11,
+      stridelab-ai/orchestration/reviews/step2-dept01/) — C-IND CLOSED
+      2026-09-10: D01 PASS WITH CONDITIONS (reclassified F-10 + F-42 → MVP
+      conditional, DR-A5); D03 PASS WITH CONDITIONS (A1-A35 + 14 seams intact);
+      D04 PASS WITH CONDITIONS (no youth-safety/authz/privacy boundary crossed;
+      D04-IND-N1..N4); D06 PASS WITH CONDITIONS (payment ≠ authorization
+      preserved structurally); architecture PASS WITH CONDITIONS (no
+      boundary/dependency/seam/topology change; F-42 reclassification resolves a
+      latent G2 conflict); D02 / D05 / cross-department FAIL → remediated →
+      re-verified closed (09-reverify.md: validator green, independent recount
+      matching, no upstream-artifact drift, no new BLOCKING finding). Zero open
+      BLOCKING findings. Semantic integrity machine-enforced by
+      stridelab-ai/scripts/validate-step2-artifacts.mjs (wired into
+      npm run ai:validate + CI). No OQ-*/CD-* item is resolved, converted, or
+      created; every §9.2 safe default remains in force. Production-launch legal
+      sign-offs (OQ-IT01-AGE-VERIFY, OQ-PS07-JURISDICTION, OQ-PS08-JURISDICTION,
+      OQ-PS09-EXTERNAL) and OQ-PS-MOD-STAFFING remain named conditions on G6 and
+      a future G7 release decision. G7 (product-scope) granted by Diego on
+      2026-09-10, pinned to 9893c1d4dd0166fd0c55f1950e601e5f8737946c;
+      DR-A1..DR-A5 APPROVED and DR-A5 Option A explicitly selected. The approval
+      locks the MVP scope for implementation-design only — it does not merge PR
+      #9, authorise a
+      production release, or substitute for legal/compliance review. The
+      Workflow Architecture v2, the governed product baseline, and the
+      consolidated domain model remain separately approved and unchanged.
